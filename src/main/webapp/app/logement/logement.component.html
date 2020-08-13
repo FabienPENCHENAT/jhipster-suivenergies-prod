@@ -1,0 +1,587 @@
+<div class="offset-2 col-10 mr-0 mt-2">
+
+	<div class="card" id="infos-dpe">
+		<div class="card-body">
+			<h1 class="card-title">Mon habitat</h1>
+			<hr class="col-md-3 ml-0" />
+			<div class="card-text col-md-12">
+				<form>
+					<div class="form-group row offset-md-1">
+						<label for="numDPE" class="col-md-2 col-form-label">Mon N°DPE</label>
+						<div class="col-md-5">
+							<input type="text" class="form-control" id="numDPE"
+								value="1370V1000XXX">
+
+						</div>
+						<div class="col-md-1">
+							<i class="far fa-question-circle" type="button"
+								class="btn btn-secondary" data-trigger="focus"
+								data-container="body" data-toggle="popover"
+								data-placement="right"> </i>
+						</div>
+						<div class="col-md-4">
+							<button type="button" class="btn btn-primary"
+								onclick="displayDonneesDPE()">Télécharger mes donn�es</button>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-md-2">
+							<i class="fas fa-home fa-7x icon-light"></i>
+						</div>
+						<div class="col-md-10" id="bien">
+							<div class="row">
+								<label class="col-md-2 col-form-label" for="adresseNumero">Adresse</label>
+								<div class="col-md-5">
+									<input type="text" class="form-control dpeInput"
+										id="adresseNumero" value="Rue de Grenoble" readonly> <input
+										type="text" class="form-control dpeInput" id="dpt"
+										value="38000 GRENOBLE" readonly>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12" id="home">
+							<div class="row">
+								<label class="col-md-2 col-form-label" for="batiment">Type
+									de bâtiment</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control dpeInput" id="batiment"
+										value="Maison individuelle" readonly>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-md-2 col-form-label" for="construction">Date
+									de construction</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control dpeInput"
+										id="construction" value="1981" readonly>
+								</div>
+								<label class="col-md-2 col-form-label" for="surface">Surface(m²)</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control dpeInput" id="surface"
+										value="123" readonly>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12" id="light">
+							<div class="row">
+								<label class="col-sm-4 col-form-label" for="enerPrincpaleChauf"><i
+									class="text-danger fab fa-hotjar fa-2x pr-2"></i>Energie
+									principale de chauffage</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control dpeInput"
+										id="enerPrincpale" value="Chaudi�re � Gaz" readonly>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-md-4 col-form-label" for="enerPrincpaleEau"><i
+									class="text-info fas fa-tint fa-2x pr-2"></i>Energie principale
+									pour l'eau chaude sanitaire</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control dpeInput"
+										id="enerPrincpaleEau" value="Chaudi�re � Gaz" readonly>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-md-4 col-form-label" for="enerPrincpaleEau"><i
+									class="fas fa-solar-panel fa-2x pr-2"></i>Production d'énergie
+									photovoltaïque</label>
+								<div class="col-md-3">
+									<input type="text" class="form-control dpeInput"
+										id="enerPrincpaleEau" value="0" readonly>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="card" id="factures">
+		<div class="card-body">
+			<h1 class="card-title">Mes consommations (à relever sur vos factures)</h1>
+			<hr class="col-md-3 ml-0" />
+			<div class="card-text col-md-12">
+				<form>
+					<div class="row">
+						<div class="col-md-2">
+							<i class="far fa-file-alt fa-7x icon-light"></i>
+						</div>
+						<div class="col-md-10" id="conso">
+							<div class="row">
+								<table class="col-md-6 table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th style="width: 30%" scope="col"></th>
+											<th style="text-align: center;" scope="col">2019</th>
+											<th style="text-align: center;" scope="col">2018</th>
+											<th style="text-align: center;" scope="col">2017</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Electricité (kWh)</td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value="3 739"></td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value="3 894"></td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value="3 731"></td>
+										</tr>
+										<tr>
+											<td>Gaz (kWh)</td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value="29 050"></td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value="32 310"></td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value="29 570"></td>
+										</tr>
+										<tr>
+											<td>Fioul (l)</td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value=""></td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value=""></td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value=""></td>
+										</tr>
+										<tr>
+											<td>Bois (m3)</td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value=""></td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value=""></td>
+											<td><input type="text" class="form-control"
+												id="enerPrincpale" value=""></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<br /> <br />
+
+	<div class="card" id="modeVie">
+		<div class="card-body">
+			<h1 class="card-title">Mon mode de vie</h1>
+			<hr class="col-md-3 ml-0" />
+			<div class="card-text col-md-12">
+				<form>
+					<div class="row">
+						<div class="col-md-1">
+							<i class="fas fa-lock fa-3x mr-5"></i>
+						</div>
+						<div class="col-md-11 mt-3">
+							<p>Données personnelles sécurisées et utilisées à des fins
+								d'analyse de manière strictement confidentielle et dans le cadre
+								de l'application.</p>
+						</div>
+					</div>
+					<hr />
+
+					<div class="row newCat energie">
+						<div class="col-md-3">
+							<i class="fas fa-users fa-7x icon-light"></i>
+						</div>
+						<div class="col-md-9" id="thermo">
+							<div class="row">
+								<label class="col-md-4 col-form-label" for="nbPersonnes">Nombre
+									de personnes au domicile</label>
+								<div class="col-md-3">
+									<input type="number" class="form-control" id="nbPersonnes"
+										value="4">
+								</div>
+							</div>
+							<br />
+
+							<div class="row">
+								<h5>Ma présence à la maison</h5>
+							</div>
+							<div class="row form-check form-check-inline">
+								<table
+									class="col-md-12 table table-striped table-bordered foyer">
+									<thead>
+										<tr>
+											<th style="text-align: center;" scope="col"></th>
+											<th style="text-align: center" scope="col">Semaine</th>
+											<th style="text-align: center" scope="col">Week-end</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><p>Matin</p>
+											<td><input class="form-check-input" type="radio"
+												name="inlineRadioOptions1" id="inlineRadio1"></td>
+											<td><input class="form-check-input" type="radio"
+												name="inlineRadioOptions11" id="inlineRadio11" checked></td>
+										</tr>
+										<tr>
+											<td><p>Après-midi</p>
+											<td><input class="form-check-input" type="radio"
+												name="inlineRadioOptions2" id="inlineRadio2" value="option2"></td>
+											<td><input class="form-check-input" type="radio"
+												name="inlineRadioOptions22" id="inlineRadio22"
+												value="option2"></td>
+										</tr>
+										<tr>
+											<td><p>Soir</p>
+											<td><input class="form-check-input" type="radio"
+												name="inlineRadioOptions3" id="inlineRadio3" value="option3"></td>
+											<td><input class="form-check-input" type="radio"
+												name="inlineRadioOptions33" id="inlineRadio33" checked
+												value="option1"></td>
+										</tr>
+										<tr>
+											<td><p>Nuit</p>
+											<td><input class="form-check-input" type="radio"
+												name="inlineRadioOptions4" id="inlineRadio3" checked
+												value="option3"></td>
+											<td><input class="form-check-input" type="radio"
+												name="inlineRadioOptions44" id="inlineRadio33" checked
+												value="option1"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+
+
+							<div class="row">
+								<h5>Mon temps d'absence sur l'année</h5>
+							</div>
+							<div class="row">
+								<label class="col-md-4 col-form-label" for="nbPersonnes">Semaines
+									d'absence en hiver</label>
+								<div class="col-md-3">
+									<input value="1" min="0" type="number" id="presentEte" />
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-md-4 col-form-label" for="nbPersonnes">Semaines
+									d'absence en été</label>
+								<div class="col-md-3">
+									<input value="2" min="0" type="number" id="presentEte" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+	<!-- /#page-content-wrapper -->
+
+
+	<div class="card" id="monConfort">
+		<div class="card-body">
+			<h1 class="card-title">Mon confort</h1>
+			<hr class="col-md-3 ml-0" />
+			<div class="card-text col-md-12">
+				<form>
+					<div class="row">
+						<div class="col-md-2">
+							<i class="fas fa-hot-tub fa-7x icon-light"></i>
+						</div>
+						<div class="col-md-10" id="conso">
+							<div class="row">
+								<i class="mr-2 fas fa-exclamation-triangle fa-2x"></i>
+								<h4>J'ai des travaux prioritaires (reportez-vous aux
+									diagnostics réalisés)</h4>
+							</div>
+							<hr class="ml-0 col-md-2" />
+
+							<div class="row">
+								<label class="col-md-4 col-form-label">- Installation
+									électrique</label>
+								<div class="col-md-3 mt-2">
+									<input type="checkbox"
+										aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-md-4 col-form-label">- Installation
+									gaz</label>
+								<div class="col-md-3 mt-2">
+									<input type="checkbox"
+										aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-md-4 col-form-label">- Problèmes
+									d'humidité</label>
+								<div class="col-md-3 mt-2">
+									<input type="checkbox"
+										aria-label="Checkbox for following text input">
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-md-4 col-form-label">- Portes ou
+									fenêtres fuyardes</label>
+								<div class="col-md-3 mt-2">
+									<input type="checkbox"
+										aria-label="Checkbox for following text input">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-10" id="conso">
+							<div class="row">
+								<i class="mr-2 fas fa-thermometer-half fa-2x"></i>
+								<h4>Chauffage</h4>
+							</div>
+							<hr class="ml-0 col-md-2" />
+							<div class="row mt-3">
+								<label>En hiver, je chauffe toutes les pièces à vivre </label>
+								<div class="col-md-7">
+									<div
+										class="col-md-1 custom-control custom-radio custom-control-inline">
+										<input type="radio" id="radioOuiChauffage"
+											name="radioOuiNonChauffage" class="custom-control-input"
+											checked> <label class="custom-control-label"
+											for="radioOuiChauffage">Oui</label>
+									</div>
+									<div
+										class="col-md-1 custom-control custom-radio custom-control-inline">
+										<input type="radio" id="radioNonChauffage"
+											name="radioOuiNonChauffage" class="custom-control-input">
+										<label class="custom-control-label" for="radioNonChauffage">Non</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<label class="col-md-3 col-form-label" for="surfaceChauffee">Surface
+									chauffée (m²)</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="surfaceChauffee"
+										value="">
+								</div>
+							</div>
+							<br /> <br />
+
+							<div class="row">
+								<h6>Température demandée dans les pièces</h6>
+							</div>
+							<br />
+							<div class="row">
+								<div class="col-md-2">
+									<label for="presentEte">Séjour/cuisine</label>
+								</div>
+								<div class="col-md-3">
+									<input data-suffix="�C" value="20" min="0" max="100"
+										type="number" id="presentHiver" />
+								</div>
+							</div>
+							<div class="mt-2 row">
+								<div class="col-md-2">
+									<label for="presentEte">Chambres</label>
+								</div>
+								<div class="col-md-3">
+									<input data-suffix="�C" value="18" min="0" max="100"
+										type="number" id="presentHiver" />
+								</div>
+							</div>
+							<br /> <br />
+							<div class="row">
+								<i class="fas fa-snowflake fa-2x mr-2"></i>
+								<h4>Refroidissement</h4>
+							</div>
+							<hr class="ml-0 col-md-2" />
+							<div class="row mt-3">
+								<label for="presentEte">L'été, je refroidis les pièces</label>
+								<div class="col-md-7">
+									<div
+										class="col-md-1 custom-control custom-radio custom-control-inline">
+										<input type="radio" id="radioOuiClim" name="radioOuiNonClim"
+											class="custom-control-input"> <label
+											class="custom-control-label" for="radioOuiClim">Oui</label>
+									</div>
+									<div
+										class="col-md-1 custom-control custom-radio custom-control-inline">
+										<input type="radio" id="radioNonClim" name="radioOuiNonClim"
+											class="custom-control-input" checked> <label
+											class="custom-control-label" for="radioNonClim">Non</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									<label for="presentEte">Séjour/cuisine</label>
+								</div>
+								<div class="col-md-3">
+									<input data-suffix="�C" value="20" min="0" max="100"
+										type="number" id="presentHiver" />
+								</div>
+							</div>
+							<div class="mt-2 row">
+								<div class="col-md-2">
+									<label for="presentEte">Chambres</label>
+								</div>
+								<div class="col-md-3">
+									<input data-suffix="�C" value="20" min="0" max="100"
+										type="number" id="presentHiver" />
+								</div>
+							</div>
+
+							<br /> <br />
+							<div class="row">
+								<i class="fas fa-bolt fa-2x mr-2"></i>
+								<h4>Electroménager</h4>
+							</div>
+							<hr class="col-md-3 ml-0" />
+							<div class="card-text col-md-12">
+								<form>
+									<div class="row">
+										<div class="col-md-2">
+											<i class="fas fa-bolt fa-7x icon-light"></i>
+										</div>
+										<div class="col-md-10" id="equip">
+											<div class="row">
+												<p>
+													<b>Ajouter un équipement électrique : </b>
+												</p>
+											</div>
+											<div class="row">
+												<label class="col-md-2 col-form-label" for="materiel">Matériel</label>
+												<div class="col-md-3">
+													<select id="inputState" class="form-control">
+														<option>Aspirateur</option>
+														<option>Box Internet WIFI</option>
+														<option>Bouilloire</option>
+														<option selected>Cafetière</option>
+														<option>Climatiseur mobile (usage 30 jours)</option>
+														<option>Congélateur A+++</option>
+														<option>Congélateur ancien</option>
+														<option>Cuisinière (gaz)</option>
+														<option>Décodeur Canal +</option>
+														<option>Démodulateur parabole</option>
+														<option>Fer à repasser</option>
+														<option>Four de cuisine</option>
+														<option>Friteuse</option>
+														<option>Grille pain</option>
+														<option>HiFi</option>
+													</select>
+												</div>
+												<div class="col-md-2">
+													<button type="button" class="btn btn-primary">Ajouter</button>
+												</div>
+											</div>
+											<div class="row"></div>
+
+											<div class="row">
+												<div class="col-md-12">
+													<div class="row">
+														<table
+															class="col-md-8 table table-striped table-bordered electro">
+															<thead>
+																<tr>
+																	<th scope="col">Electroménager</th>
+																	<th scope="col">Note</th>
+																	<th scope="col"></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Aspirateur</td>
+																	<td><i class="far fa-smile fa-lg"></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Box Internet WIFI</td>
+																	<td><i class="far fa-smile fa-lg"></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Congélateur ancien</td>
+																	<td><i class="far fa-frown fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Fer à repasser</td>
+																	<td><i class="far fa-smile fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Four de cuisine</td>
+																	<td><i class="far fa-smile fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Grille pain</td>
+																	<td><i class="far fa-smile fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Lave linge ancien</td>
+																	<td><i class="far fa-frown fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Lave vaisselle ancien</td>
+																	<td><i class="far fa-frown fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Plaques vitro</td>
+																	<td><i class="far fa-smile fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Réfrigérateur A++</td>
+																	<td><i class="far fa-smile fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Sèche-linge</td>
+																	<td><i class="far fa-frown fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+																<tr>
+																	<td>Tv Ecran plat Plasma</td>
+																	<td><i class="far fa-frown fa-lg "></i></td>
+																	<td><i class="far fa-trash-alt"></i></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<div class="row">
+														<div class="row">
+															<div class="col-sm-9">
+																<h6>Ma consommation annuelle en électroménager est
+																	estimée à</h6>
+															</div>
+															<div class="col-sm-3">
+																<input type="text" class="form-control"
+																	id="adresseNumero" value="2712 kWh" readonly>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<div class="offset-md-8">
+				<button type="button" class="btn btn-primary">Enregistrer
+					mon profil</button>
+			</div>
+		</div>
+	</div>
+</div>

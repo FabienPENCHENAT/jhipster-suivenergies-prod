@@ -1,0 +1,90 @@
+<div>
+    <h2 id="page-heading">
+        <span>Info DPES</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-info-dpe" [routerLink]="['/info-dpe/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Info DPE
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="infoDPES?.length === 0">
+        <span>No infoDPES found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="infoDPES && infoDPES.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Numero</span></th>
+                    <th scope="col" ><span>Adresse</span></th>
+                    <th scope="col" ><span>Type Batiment</span></th>
+                    <th scope="col" ><span>Annee Construction</span></th>
+                    <th scope="col" ><span>Surface Habitable</span></th>
+                    <th scope="col" ><span>Energie Chauffage</span></th>
+                    <th scope="col" ><span>Energie Eau Chaude</span></th>
+                    <th scope="col" ><span>Energie Photovoltaique</span></th>
+                    <th scope="col" ><span>Date DPE</span></th>
+                    <th scope="col" ><span>Classe Conso Energie</span></th>
+                    <th scope="col" ><span>Dpe Json</span></th>
+                    <th scope="col" ><span>Client</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let infoDPE of infoDPES ;trackBy: trackId">
+                    <td><a [routerLink]="['/info-dpe', infoDPE.id, 'view']">{{ infoDPE.id }}</a></td>
+                    <td>{{ infoDPE.numero }}</td>
+                    <td>{{ infoDPE.adresse }}</td>
+                    <td>{{ infoDPE.typeBatiment }}</td>
+                    <td>{{ infoDPE.anneeConstruction }}</td>
+                    <td>{{ infoDPE.surfaceHabitable }}</td>
+                    <td>{{ infoDPE.energieChauffage }}</td>
+                    <td>{{ infoDPE.energieEauChaude }}</td>
+                    <td>{{ infoDPE.energiePhotovoltaique }}</td>
+                    <td>{{ infoDPE.dateDPE | date:'mediumDate' }}</td>
+                    <td>{{ infoDPE.classeConsoEnergie }}</td>
+                    <td>
+                        <a *ngIf="infoDPE.dpeJson" (click)="openFile(infoDPE.dpeJsonContentType, infoDPE.dpeJson)">open</a>
+                        <span *ngIf="infoDPE.dpeJson">{{ infoDPE.dpeJsonContentType }}, {{ byteSize(infoDPE.dpeJson) }}</span>
+                    </td>
+                    <td>
+                        <div *ngIf="infoDPE.client">
+                            <a [routerLink]="['/client', infoDPE.client?.id, 'view']" >{{ infoDPE.client?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/info-dpe', infoDPE.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/info-dpe', infoDPE.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(infoDPE)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

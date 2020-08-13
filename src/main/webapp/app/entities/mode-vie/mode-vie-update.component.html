@@ -1,0 +1,100 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-mode-vie-heading">Create or edit a Mode Vie</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nbPersonnes">Nb Personnes</label>
+                    <input type="number" class="form-control" name="nbPersonnes" id="field_nbPersonnes"
+                           formControlName="nbPersonnes"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_presenceMatinSemaine">Presence Matin Semaine</label>
+                    <input type="checkbox" class="form-control" name="presenceMatinSemaine" id="field_presenceMatinSemaine"
+                           formControlName="presenceMatinSemaine"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_presenceMatinWE">Presence Matin WE</label>
+                    <input type="checkbox" class="form-control" name="presenceMatinWE" id="field_presenceMatinWE"
+                           formControlName="presenceMatinWE"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_presenceAMSemaine">Presence AM Semaine</label>
+                    <input type="checkbox" class="form-control" name="presenceAMSemaine" id="field_presenceAMSemaine"
+                           formControlName="presenceAMSemaine"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_presenceAMWE">Presence AMWE</label>
+                    <input type="checkbox" class="form-control" name="presenceAMWE" id="field_presenceAMWE"
+                           formControlName="presenceAMWE"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_presenceSoirSemaine">Presence Soir Semaine</label>
+                    <input type="checkbox" class="form-control" name="presenceSoirSemaine" id="field_presenceSoirSemaine"
+                           formControlName="presenceSoirSemaine"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_presenceSoirWE">Presence Soir WE</label>
+                    <input type="checkbox" class="form-control" name="presenceSoirWE" id="field_presenceSoirWE"
+                           formControlName="presenceSoirWE"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_presenceNuitSemaine">Presence Nuit Semaine</label>
+                    <input type="checkbox" class="form-control" name="presenceNuitSemaine" id="field_presenceNuitSemaine"
+                           formControlName="presenceNuitSemaine"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_presenceNuitWE">Presence Nuit WE</label>
+                    <input type="checkbox" class="form-control" name="presenceNuitWE" id="field_presenceNuitWE"
+                           formControlName="presenceNuitWE"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_semainesAbsenceHiver">Semaines Absence Hiver</label>
+                    <input type="number" class="form-control" name="semainesAbsenceHiver" id="field_semainesAbsenceHiver"
+                           formControlName="semainesAbsenceHiver"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_semainesAbsenceEte">Semaines Absence Ete</label>
+                    <input type="number" class="form-control" name="semainesAbsenceEte" id="field_semainesAbsenceEte"
+                           formControlName="semainesAbsenceEte"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_client">Client</label>
+                    <select class="form-control" id="field_client" name="client" formControlName="client">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption" *ngFor="let clientOption of clients; trackBy: trackById">{{ clientOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

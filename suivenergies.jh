@@ -1,0 +1,63 @@
+entity Client {
+
+}
+
+entity InfoDPE {
+    numero String,
+    adresse String,
+    typeBatiment String,
+    anneeConstruction Long,
+    surfaceHabitable Long,
+    energieChauffage String,
+    energieEauChaude String,
+    energiePhotovoltaique Long,
+    
+    dateDPE LocalDate,
+    classeConsoEnergie String,
+    dpeJson Blob
+}
+
+enum EnergiesFacture {
+  ELEC("Electricité (kWh)"),
+  GAZ("Gaz (kWh)"),
+  FIOUL("Fioul (l)"),
+  BOIS("Bois (m3)")
+}
+
+entity Facture {
+   id Integer
+   type EnergiesFacture
+   annee Integer
+   quantite Integer
+}
+
+entity ModeVie {
+   id Integer
+   nbPersonnes Integer
+   presenceMatinSemaine Boolean
+   presenceMatinWE Boolean
+   presenceAMSemaine Boolean
+   presenceAMWE Boolean   
+   presenceSoirSemaine Boolean
+   presenceSoirWE Boolean   
+   presenceNuitSemaine Boolean
+   presenceNuitWE Boolean
+   semainesAbsenceHiver Integer
+   semainesAbsenceEte Integer
+}
+
+relationship ManyToMany {
+	Client to User
+}
+
+relationship OneToMany { 
+	Client{infoDpe} to InfoDPE{client}
+}
+
+relationship OneToMany {
+	Client{facture} to Facture{client}
+    }
+    
+relationship OneToMany {
+	Client{modeVie} to ModeVie{client}
+}

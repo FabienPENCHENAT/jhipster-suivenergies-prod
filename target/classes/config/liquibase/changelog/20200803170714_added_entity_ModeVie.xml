@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <property name="autoIncrement" value="true"/>
+
+    <!--
+        Added the entity ModeVie.
+    -->
+    <changeSet id="20200803170714-1" author="jhipster">
+        <createTable tableName="mode_vie">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nb_personnes" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="presence_matin_semaine" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="presence_matin_we" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="presence_am_semaine" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="presence_amwe" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="presence_soir_semaine" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="presence_soir_we" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="presence_nuit_semaine" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="presence_nuit_we" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="semaines_absence_hiver" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="semaines_absence_ete" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20200803170714-1-relations" author="jhipster">
+
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20200803170714-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/mode_vie.csv"
+                  separator=";"
+                  tableName="mode_vie">
+            <column name="id" type="numeric"/>
+            <column name="nb_personnes" type="numeric"/>
+            <column name="presence_matin_semaine" type="boolean"/>
+            <column name="presence_matin_we" type="boolean"/>
+            <column name="presence_am_semaine" type="boolean"/>
+            <column name="presence_amwe" type="boolean"/>
+            <column name="presence_soir_semaine" type="boolean"/>
+            <column name="presence_soir_we" type="boolean"/>
+            <column name="presence_nuit_semaine" type="boolean"/>
+            <column name="presence_nuit_we" type="boolean"/>
+            <column name="semaines_absence_hiver" type="numeric"/>
+            <column name="semaines_absence_ete" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

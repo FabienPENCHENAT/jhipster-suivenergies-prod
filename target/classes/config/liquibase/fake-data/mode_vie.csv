@@ -1,0 +1,3 @@
+id;nb_personnes;presence_matin_semaine;presence_matin_we;presence_am_semaine;presence_amwe;presence_soir_semaine;presence_soir_we;presence_nuit_semaine;presence_nuit_we;semaines_absence_hiver;semaines_absence_ete;client_id
+1;2;true;false;true;true;true;true;false;false;2;2;5
+2;3;false;true;true;true;true;false;false;true;1;3;5

@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="modeVie">
+            <h2><span>Mode Vie</span> {{ modeVie.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nb Personnes</span></dt>
+                <dd>
+                    <span>{{ modeVie.nbPersonnes }}</span>
+                </dd>
+                <dt><span>Presence Matin Semaine</span></dt>
+                <dd>
+                    <span>{{ modeVie.presenceMatinSemaine }}</span>
+                </dd>
+                <dt><span>Presence Matin WE</span></dt>
+                <dd>
+                    <span>{{ modeVie.presenceMatinWE }}</span>
+                </dd>
+                <dt><span>Presence AM Semaine</span></dt>
+                <dd>
+                    <span>{{ modeVie.presenceAMSemaine }}</span>
+                </dd>
+                <dt><span>Presence AMWE</span></dt>
+                <dd>
+                    <span>{{ modeVie.presenceAMWE }}</span>
+                </dd>
+                <dt><span>Presence Soir Semaine</span></dt>
+                <dd>
+                    <span>{{ modeVie.presenceSoirSemaine }}</span>
+                </dd>
+                <dt><span>Presence Soir WE</span></dt>
+                <dd>
+                    <span>{{ modeVie.presenceSoirWE }}</span>
+                </dd>
+                <dt><span>Presence Nuit Semaine</span></dt>
+                <dd>
+                    <span>{{ modeVie.presenceNuitSemaine }}</span>
+                </dd>
+                <dt><span>Presence Nuit WE</span></dt>
+                <dd>
+                    <span>{{ modeVie.presenceNuitWE }}</span>
+                </dd>
+                <dt><span>Semaines Absence Hiver</span></dt>
+                <dd>
+                    <span>{{ modeVie.semainesAbsenceHiver }}</span>
+                </dd>
+                <dt><span>Semaines Absence Ete</span></dt>
+                <dd>
+                    <span>{{ modeVie.semainesAbsenceEte }}</span>
+                </dd>
+                <dt><span>Client</span></dt>
+                <dd>
+                    <div *ngIf="modeVie.client">
+                        <a [routerLink]="['/client', modeVie.client?.id, 'view']">{{ modeVie.client?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/mode-vie', modeVie.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

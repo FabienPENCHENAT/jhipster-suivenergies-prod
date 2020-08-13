@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="infoDPE">
+            <h2><span>Info DPE</span> {{ infoDPE.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Numero</span></dt>
+                <dd>
+                    <span>{{ infoDPE.numero }}</span>
+                </dd>
+                <dt><span>Adresse</span></dt>
+                <dd>
+                    <span>{{ infoDPE.adresse }}</span>
+                </dd>
+                <dt><span>Type Batiment</span></dt>
+                <dd>
+                    <span>{{ infoDPE.typeBatiment }}</span>
+                </dd>
+                <dt><span>Annee Construction</span></dt>
+                <dd>
+                    <span>{{ infoDPE.anneeConstruction }}</span>
+                </dd>
+                <dt><span>Surface Habitable</span></dt>
+                <dd>
+                    <span>{{ infoDPE.surfaceHabitable }}</span>
+                </dd>
+                <dt><span>Energie Chauffage</span></dt>
+                <dd>
+                    <span>{{ infoDPE.energieChauffage }}</span>
+                </dd>
+                <dt><span>Energie Eau Chaude</span></dt>
+                <dd>
+                    <span>{{ infoDPE.energieEauChaude }}</span>
+                </dd>
+                <dt><span>Energie Photovoltaique</span></dt>
+                <dd>
+                    <span>{{ infoDPE.energiePhotovoltaique }}</span>
+                </dd>
+                <dt><span>Date DPE</span></dt>
+                <dd>
+                    <span>{{ infoDPE.dateDPE }}</span>
+                </dd>
+                <dt><span>Classe Conso Energie</span></dt>
+                <dd>
+                    <span>{{ infoDPE.classeConsoEnergie }}</span>
+                </dd>
+                <dt><span>Dpe Json</span></dt>
+                <dd>
+                    <div *ngIf="infoDPE.dpeJson">
+                        <a (click)="openFile(infoDPE.dpeJsonContentType, infoDPE.dpeJson)">open</a>
+                        {{ infoDPE.dpeJsonContentType }}, {{ byteSize(infoDPE.dpeJson) }}
+                    </div>
+                </dd>
+                <dt><span>Client</span></dt>
+                <dd>
+                    <div *ngIf="infoDPE.client">
+                        <a [routerLink]="['/client', infoDPE.client?.id, 'view']">{{ infoDPE.client?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/info-dpe', infoDPE.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

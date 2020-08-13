@@ -1,0 +1,4 @@
+id;numero;adresse;type_batiment;annee_construction;surface_habitable;energie_chauffage;energie_eau_chaude;energie_photovoltaique;date_dpe;classe_conso_energie;dpe_json;dpe_json_content_type;client_id
+1;8T6GoHIBo62Zliv2ffvH;3 Impasse du Tilleul 01430 Saint-Martin-du-Frêne;Maison individuelle;1998;145;;;;2020-07-24;D;;image/png;5
+2;eJiHoHIB8ksKYRwOt1lz;12 rue des courgettes 31000 TOULOUSE;Maison individuelle;2001;132;;;;2020-07-24;C;;image/png;5
+3;QkCOoHIBo62Zliv2emTB;65 bis route du soleil 41000 BLOIS;Maison individuelle;2005;98;;;;2020-07-24;C;;image/png;5

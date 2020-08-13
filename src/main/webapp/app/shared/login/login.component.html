@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h4 class="modal-title">Se connecter</h4>
+
+    <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')">
+        <span aria-hidden="true">x</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="alert alert-danger" *ngIf="authenticationError">
+                <strong>Impossible de se connecter !</strong> Merci de vérifier votre identifiant et mot de passe.
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+                <div class="form-group">
+                    <label class="username-label" for="username">Identifiant</label>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Votre login"
+                           formControlName="username" #username>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Votre mot de passe"
+                           formControlName="password">
+                </div>
+
+                <div class="form-check">
+                    <label class="form-check-label" for="rememberMe">
+                        <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe" formControlName="rememberMe">
+                        <span>Se souvenir</span>
+                    </label>
+                </div>
+
+				<div class="text-right">
+                	<button type="submit" class="btn btn-primary">Se connecter</button>
+                </div>
+            </form>
+            
+			<hr>
+
+            <div class="text-center mt-3">
+                <a class="alert-link" (click)="requestResetPassword()">Mot de passe oublié ?</a>
+            </div>
+
+            <div class="text-center">
+                <a class="alert-link" (click)="register()">S'inscrire ! </a>
+            </div>
+        </div>
+    </div>
+</div>

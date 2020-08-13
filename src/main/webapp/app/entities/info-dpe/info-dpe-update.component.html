@@ -1,0 +1,117 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-info-dpe-heading">Create or edit a Info DPE</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numero">Numero</label>
+                    <input type="text" class="form-control" name="numero" id="field_numero"
+                           formControlName="numero"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_adresse">Adresse</label>
+                    <input type="text" class="form-control" name="adresse" id="field_adresse"
+                           formControlName="adresse"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_typeBatiment">Type Batiment</label>
+                    <input type="text" class="form-control" name="typeBatiment" id="field_typeBatiment"
+                           formControlName="typeBatiment"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_anneeConstruction">Annee Construction</label>
+                    <input type="number" class="form-control" name="anneeConstruction" id="field_anneeConstruction"
+                           formControlName="anneeConstruction"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_surfaceHabitable">Surface Habitable</label>
+                    <input type="number" class="form-control" name="surfaceHabitable" id="field_surfaceHabitable"
+                           formControlName="surfaceHabitable"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_energieChauffage">Energie Chauffage</label>
+                    <input type="text" class="form-control" name="energieChauffage" id="field_energieChauffage"
+                           formControlName="energieChauffage"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_energieEauChaude">Energie Eau Chaude</label>
+                    <input type="text" class="form-control" name="energieEauChaude" id="field_energieEauChaude"
+                           formControlName="energieEauChaude"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_energiePhotovoltaique">Energie Photovoltaique</label>
+                    <input type="number" class="form-control" name="energiePhotovoltaique" id="field_energiePhotovoltaique"
+                           formControlName="energiePhotovoltaique"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateDPE">Date DPE</label>
+                    <div class="input-group">
+                        <input id="field_dateDPE" type="text" class="form-control" name="dateDPE" ngbDatepicker #dateDPEDp="ngbDatepicker" formControlName="dateDPE"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDPEDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_classeConsoEnergie">Classe Conso Energie</label>
+                    <input type="text" class="form-control" name="classeConsoEnergie" id="field_classeConsoEnergie"
+                           formControlName="classeConsoEnergie"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dpeJson">Dpe Json</label>
+                    <div>
+                        <div *ngIf="editForm.get('dpeJson')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('dpeJsonContentType')!.value, editForm.get('dpeJson')!.value)">open</a><br>
+                            <span class="pull-left">{{ editForm.get('dpeJsonContentType')!.value }}, {{ byteSize(editForm.get('dpeJson')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({dpeJson: null});editForm.patchValue({dpeJsonContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_dpeJson" (change)="setFileData($event, 'dpeJson', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="dpeJson" id="field_dpeJson"
+                           formControlName="dpeJson"/>
+                    <input type="hidden" class="form-control" name="dpeJsonContentType" id="field_dpeJsonContentType"
+                           formControlName="dpeJsonContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_client">Client</label>
+                    <select class="form-control" id="field_client" name="client" formControlName="client">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption" *ngFor="let clientOption of clients; trackBy: trackById">{{ clientOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
