@@ -59,7 +59,7 @@ public class InfoDPEResource {
     public ResponseEntity<User> downloadInfoDPE(@PathVariable String numeroDPE) throws URISyntaxException {
         log.debug("REST request to download DPE : {}", numeroDPE);
 
-        if (numeroDPE == null || numeroDPE.isBlank()) {
+        if (numeroDPE == null) {
             throw new BadRequestAlertException("Un numéro est requis pour télécharger le DPE", "InfoDPE", "numero");
         } else {
             // call api get dpe info
