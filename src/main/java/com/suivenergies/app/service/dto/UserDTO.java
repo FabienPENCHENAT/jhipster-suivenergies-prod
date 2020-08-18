@@ -1,12 +1,12 @@
 package com.suivenergies.app.service.dto;
 
-import com.suivenergies.app.config.Constants;
 import com.suivenergies.app.domain.Authority;
 import com.suivenergies.app.domain.User;
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 /**
  * A DTO representing a user, with his authorities.
@@ -14,20 +14,23 @@ import javax.validation.constraints.*;
 public class UserDTO {
     private Long id;
 
-    @NotBlank
-    @Pattern(regexp = Constants.LOGIN_REGEX)
-    @Size(min = 1, max = 50)
     private String login;
 
-    @Size(max = 50)
+    @Size(min = 1, max = 50)
     private String firstName;
 
-    @Size(max = 50)
+    @Size(min = 1, max = 50)
     private String lastName;
 
     @Email
     @Size(min = 5, max = 254)
     private String email;
+
+    private String address;
+
+    private Long codePostal;
+
+    private String dpe;
 
     @Size(max = 256)
     private String imageUrl;
@@ -171,6 +174,48 @@ public class UserDTO {
         this.authorities = authorities;
     }
 
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * @return the codePostal
+     */
+    public Long getCodePostal() {
+        return codePostal;
+    }
+
+    /**
+     * @param codePostal the codePostal to set
+     */
+    public void setCodePostal(Long codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    /**
+     * @return the dpe
+     */
+    public String getDpe() {
+        return dpe;
+    }
+
+    /**
+     * @param dpe the dpe to set
+     */
+    public void setDpe(String dpe) {
+        this.dpe = dpe;
+    }
+
     // prettier-ignore
     @Override
     public String toString() {
@@ -179,6 +224,9 @@ public class UserDTO {
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", email='" + email + '\'' +
+            ", address='" + address + '\'' +
+            ", codePostal='" + codePostal + '\'' +
+            ", dpe='" + dpe + '\'' +
             ", imageUrl='" + imageUrl + '\'' +
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +

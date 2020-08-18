@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div>
     <h2 id="page-heading">
         <span>Clients</span>
 
@@ -23,6 +23,8 @@
             <thead>
                 <tr>
                     <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Adresse</span></th>
+                    <th scope="col" ><span>Code Postal</span></th>
                     <th scope="col" ><span>User</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -30,6 +32,8 @@
             <tbody>
                 <tr *ngFor="let client of clients ;trackBy: trackId">
                     <td><a [routerLink]="['/client', client.id, 'view']">{{ client.id }}</a></td>
+                    <td>{{ client.adresse }}</td>
+                    <td>{{ client.codePostal }}</td>
                     <td>
                         <span *ngFor="let user of client.users; let last = last">
                             {{ user.id }}{{ last ? '' : ', ' }}

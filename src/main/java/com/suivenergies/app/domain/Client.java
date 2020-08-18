@@ -20,8 +20,14 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "adresse")
+    private String adresse;
+
+    @Column(name = "code_postal")
+    private Long codePostal;
+
     @OneToMany(mappedBy = "client")
-    private Set<InfoDPE> infoDpes = new HashSet<>();
+    private Set<InfoDPE> infoDPES = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
     private Set<Facture> factures = new HashSet<>();
@@ -44,29 +50,55 @@ public class Client implements Serializable {
         this.id = id;
     }
 
-    public Set<InfoDPE> getInfoDpes() {
-        return infoDpes;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public Client infoDpes(Set<InfoDPE> infoDPES) {
-        this.infoDpes = infoDPES;
+    public Client adresse(String adresse) {
+        this.adresse = adresse;
         return this;
     }
 
-    public Client addInfoDpe(InfoDPE infoDPE) {
-        this.infoDpes.add(infoDPE);
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public Long getCodePostal() {
+        return codePostal;
+    }
+
+    public Client codePostal(Long codePostal) {
+        this.codePostal = codePostal;
+        return this;
+    }
+
+    public void setCodePostal(Long codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public Set<InfoDPE> getInfoDPES() {
+        return infoDPES;
+    }
+
+    public Client infoDPES(Set<InfoDPE> infoDPES) {
+        this.infoDPES = infoDPES;
+        return this;
+    }
+
+    public Client addInfoDPE(InfoDPE infoDPE) {
+        this.infoDPES.add(infoDPE);
         infoDPE.setClient(this);
         return this;
     }
 
-    public Client removeInfoDpe(InfoDPE infoDPE) {
-        this.infoDpes.remove(infoDPE);
+    public Client removeInfoDPE(InfoDPE infoDPE) {
+        this.infoDPES.remove(infoDPE);
         infoDPE.setClient(null);
         return this;
     }
 
-    public void setInfoDpes(Set<InfoDPE> infoDPES) {
-        this.infoDpes = infoDPES;
+    public void setInfoDPES(Set<InfoDPE> infoDPES) {
+        this.infoDPES = infoDPES;
     }
 
     public Set<Facture> getFactures() {
@@ -164,6 +196,8 @@ public class Client implements Serializable {
     public String toString() {
         return "Client{" +
             "id=" + getId() +
+            ", adresse='" + getAdresse() + "'" +
+            ", codePostal=" + getCodePostal() +
             "}";
     }
 }

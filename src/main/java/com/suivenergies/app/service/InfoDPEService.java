@@ -3,6 +3,7 @@ package com.suivenergies.app.service;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.suivenergies.app.domain.Client;
 import com.suivenergies.app.domain.InfoDPE;
 import com.suivenergies.app.repository.InfoDPERepository;
 import com.suivenergies.app.service.dto.api.Dpe;
@@ -37,17 +38,47 @@ public class InfoDPEService {
 
     private InfoDPEMapper infoDpeMapper;
 
-    public InfoDPEService(InfoDPEMapper infoDpeMapper) {
+    private final InfoDPERepository infoDPERepository;
+
+    private final ClientService clientService;
+
+    public InfoDPEService(InfoDPEMapper infoDpeMapper, InfoDPERepository infoDPERepository, ClientService clientService) {
         this.infoDpeMapper = infoDpeMapper;
+        this.infoDPERepository = infoDPERepository;
+        this.clientService = clientService;
     }
 
     /**
-     * Download DPE by DPE number.
+     * Download DPE by DPE Number and save in DB with user connected.
      *
      * @param numeroDPE
-     * @return InfoDPE
      */
-    public InfoDPE downloadDPE(String numeroDPE) {
+    public void downlodAndSaveDPE(String numeroDPE) {
+        downlodAndSaveDPE(numeroDPE, null);
+    }
+
+    /**
+     * Download DPE by DPE Number and save in DB with new user.
+     *
+     * @param numeroDPE
+     * @param client just created
+     */
+    public void downlodAndSaveDPE(String numeroDPE, Client client) {
+        // call api get dpe info
+        InfoDPE infoDpe = downloadDPE(numeroDPE);
+
+        // Get client associated to the user connected
+        if (client != null) {
+            infoDpe.setClient(client);
+        } else {
+            infoDpe.setClient(clientService.getClientConnected());
+        }
+
+        // save info dpe in db
+        infoDPERepository.save(infoDpe);
+    }
+
+    private InfoDPE downloadDPE(String numeroDPE) {
         String dpeJson = null;
         try {
             // Call api with number

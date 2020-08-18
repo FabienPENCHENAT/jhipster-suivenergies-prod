@@ -38,6 +38,18 @@ export class InfoDPEService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  findLast(): Observable<EntityResponseType> {
+    return this.http
+      .get<IInfoDPE>(`${this.resourceUrl}/last`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  downloadInfoDPE(num: String): Observable<EntityResponseType> {
+    return this.http
+      .post<IInfoDPE>(this.resourceUrl, num, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

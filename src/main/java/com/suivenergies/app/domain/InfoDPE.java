@@ -58,7 +58,7 @@ public class InfoDPE implements Serializable {
     private String dpeJsonContentType;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = "infoDpes", allowSetters = true)
+    @JsonIgnoreProperties(value = "infoDPES", allowSetters = true)
     private Client client;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

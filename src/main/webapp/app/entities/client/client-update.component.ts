@@ -20,6 +20,8 @@ export class ClientUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
+    adresse: [],
+    codePostal: [],
     users: [],
   });
 
@@ -41,6 +43,8 @@ export class ClientUpdateComponent implements OnInit {
   updateForm(client: IClient): void {
     this.editForm.patchValue({
       id: client.id,
+      adresse: client.adresse,
+      codePostal: client.codePostal,
       users: client.users,
     });
   }
@@ -63,6 +67,8 @@ export class ClientUpdateComponent implements OnInit {
     return {
       ...new Client(),
       id: this.editForm.get(['id'])!.value,
+      adresse: this.editForm.get(['adresse'])!.value,
+      codePostal: this.editForm.get(['codePostal'])!.value,
       users: this.editForm.get(['users'])!.value,
     };
   }

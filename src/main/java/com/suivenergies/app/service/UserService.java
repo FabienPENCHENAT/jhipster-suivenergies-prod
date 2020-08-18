@@ -2,8 +2,10 @@ package com.suivenergies.app.service;
 
 import com.suivenergies.app.config.Constants;
 import com.suivenergies.app.domain.Authority;
+import com.suivenergies.app.domain.Client;
 import com.suivenergies.app.domain.User;
 import com.suivenergies.app.repository.AuthorityRepository;
+import com.suivenergies.app.repository.ClientRepository;
 import com.suivenergies.app.repository.UserRepository;
 import com.suivenergies.app.security.AuthoritiesConstants;
 import com.suivenergies.app.security.SecurityUtils;
@@ -11,7 +13,10 @@ import com.suivenergies.app.service.dto.UserDTO;
 import io.github.jhipster.security.RandomUtil;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,10 +41,22 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository) {
+    private final ClientRepository clientRepository;
+
+    private final InfoDPEService infoDPEService;
+
+    public UserService(
+        UserRepository userRepository,
+        PasswordEncoder passwordEncoder,
+        AuthorityRepository authorityRepository,
+        ClientRepository clientRepository,
+        InfoDPEService infoDPEService
+    ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+        this.clientRepository = clientRepository;
+        this.infoDPEService = infoDPEService;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -86,6 +103,8 @@ public class UserService {
     }
 
     public User registerUser(UserDTO userDTO, String password) {
+        userDTO.setLogin(userDTO.getFirstName().toLowerCase() + "." + userDTO.getLastName().charAt(0));
+
         userRepository
             .findOneByLogin(userDTO.getLogin().toLowerCase())
             .ifPresent(
@@ -108,7 +127,7 @@ public class UserService {
             );
         User newUser = new User();
         String encryptedPassword = passwordEncoder.encode(password);
-        newUser.setLogin(userDTO.getLogin().toLowerCase());
+        newUser.setLogin(userDTO.getFirstName().toLowerCase() + "." + userDTO.getLastName().charAt(0));
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(userDTO.getFirstName());
@@ -127,6 +146,23 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
+
+        // Create a client associated to the user
+        Client client = new Client();
+        if (userDTO.getAddress() != null && !userDTO.getAddress().isEmpty()) {
+            client.setAdresse(userDTO.getAddress());
+        }
+        if (userDTO.getCodePostal() != null) {
+            client.setCodePostal(userDTO.getCodePostal());
+        }
+        client.addUser(newUser);
+        Client newClient = clientRepository.save(client);
+
+        // Download DPE if the field is completed
+        if (userDTO.getDpe() != null && !userDTO.getDpe().isEmpty()) {
+            infoDPEService.downlodAndSaveDPE(userDTO.getDpe(), newClient);
+        }
+
         return newUser;
     }
 
@@ -141,7 +177,7 @@ public class UserService {
 
     public User createUser(UserDTO userDTO) {
         User user = new User();
-        user.setLogin(userDTO.getLogin().toLowerCase());
+        user.setLogin(userDTO.getLastName().toLowerCase() + "." + userDTO.getFirstName().charAt(0));
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         if (userDTO.getEmail() != null) {
@@ -168,8 +204,20 @@ public class UserService {
                 .collect(Collectors.toSet());
             user.setAuthorities(authorities);
         }
-        userRepository.save(user);
+        User userSaved = userRepository.save(user);
         log.debug("Created Information for User: {}", user);
+
+        // Create a client associated to the user
+        Client client = new Client();
+        if (userDTO.getAddress() != null && !userDTO.getAddress().isEmpty()) {
+            client.setAdresse(userDTO.getAddress());
+        }
+        if (userDTO.getCodePostal() != null) {
+            client.setCodePostal(userDTO.getCodePostal());
+        }
+        client.addUser(userSaved);
+        clientRepository.save(client);
+
         return user;
     }
 

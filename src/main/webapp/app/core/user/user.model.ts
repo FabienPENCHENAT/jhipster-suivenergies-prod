@@ -4,6 +4,9 @@ export interface IUser {
   firstName?: string;
   lastName?: string;
   email?: string;
+  address?: string;
+  codePostal?: any;
+  dpe?: string;
   activated?: boolean;
   langKey?: string;
   authorities?: string[];
@@ -21,6 +24,9 @@ export class User implements IUser {
     public firstName?: string,
     public lastName?: string,
     public email?: string,
+    public address?: string,
+    public codePostal?: any,
+    public dpe?: string,
     public activated?: boolean,
     public langKey?: string,
     public authorities?: string[],

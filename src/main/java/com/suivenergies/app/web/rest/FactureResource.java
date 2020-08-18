@@ -87,7 +87,7 @@ public class FactureResource {
     @GetMapping("/factures")
     public List<Facture> getAllFactures() {
         log.debug("REST request to get all Factures");
-        return factureRepository.findAll();
+        return factureRepository.findAllWithEagerRelationships();
     }
 
     /**

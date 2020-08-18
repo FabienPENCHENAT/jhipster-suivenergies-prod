@@ -8,9 +8,16 @@
     </a>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li *jhiHasAnyAuthority="'ROLE_USER'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="logement" (click)="collapseNavbar()">
                     <span>Mon Logement et moi</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+            <li *jhiHasAnyAuthority="'ROLE_USER'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="accompagnement" (click)="collapseNavbar()">
+                    <span>Mon accompagnement</span>
                 </a>
             </li>
         </ul>

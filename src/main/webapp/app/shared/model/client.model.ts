@@ -5,7 +5,9 @@ import { IUser } from 'app/core/user/user.model';
 
 export interface IClient {
   id?: number;
-  infoDpes?: IInfoDPE[];
+  adresse?: string;
+  codePostal?: number;
+  infoDPES?: IInfoDPE[];
   factures?: IFacture[];
   modeVies?: IModeVie[];
   users?: IUser[];
@@ -14,7 +16,9 @@ export interface IClient {
 export class Client implements IClient {
   constructor(
     public id?: number,
-    public infoDpes?: IInfoDPE[],
+    public adresse?: string,
+    public codePostal?: number,
+    public infoDPES?: IInfoDPE[],
     public factures?: IFacture[],
     public modeVies?: IModeVie[],
     public users?: IUser[]

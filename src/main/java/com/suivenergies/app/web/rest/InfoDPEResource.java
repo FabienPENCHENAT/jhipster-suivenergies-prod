@@ -1,5 +1,6 @@
 package com.suivenergies.app.web.rest;
 
+import com.suivenergies.app.domain.Client;
 import com.suivenergies.app.domain.InfoDPE;
 import com.suivenergies.app.domain.User;
 import com.suivenergies.app.repository.InfoDPERepository;
@@ -42,9 +43,9 @@ public class InfoDPEResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
-    private final InfoDPEService infoDPEService;
-
     private final InfoDPERepository infoDPERepository;
+
+    private final InfoDPEService infoDPEService;
 
     private final ClientService clientService;
 
@@ -59,17 +60,10 @@ public class InfoDPEResource {
     public ResponseEntity<User> downloadInfoDPE(@PathVariable String numeroDPE) throws URISyntaxException {
         log.debug("REST request to download DPE : {}", numeroDPE);
 
-        if (numeroDPE == null) {
+        if (numeroDPE == null || numeroDPE.isBlank()) {
             throw new BadRequestAlertException("Un numéro est requis pour télécharger le DPE", "InfoDPE", "numero");
         } else {
-            // call api get dpe info
-            InfoDPE infoDpe = infoDPEService.downloadDPE(numeroDPE);
-
-            // Get client associated to the user connected
-            infoDpe.setClient(clientService.getClientConnected());
-
-            // save info dpe in db
-            infoDPERepository.save(infoDpe);
+            infoDPEService.downlodAndSaveDPE(numeroDPE);
         }
         return null;
     }
@@ -137,6 +131,21 @@ public class InfoDPEResource {
     public ResponseEntity<InfoDPE> getInfoDPE(@PathVariable Long id) {
         log.debug("REST request to get InfoDPE : {}", id);
         Optional<InfoDPE> infoDPE = infoDPERepository.findById(id);
+        return ResponseUtil.wrapOrNotFound(infoDPE);
+    }
+
+    /**
+     * {@code GET  /info-dpes} : get by user connected.
+     *
+     * @param id the id of the infoDPE to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the infoDPE, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/info-dpes/last")
+    public ResponseEntity<InfoDPE> getInfoDPE() {
+        Client clientConnected = clientService.getClientConnected();
+
+        log.debug("REST request to get InfoDPE by client connected : {}", clientConnected.getId());
+        Optional<InfoDPE> infoDPE = infoDPERepository.findLastOneByClientId(clientConnected.getId());
         return ResponseUtil.wrapOrNotFound(infoDPE);
     }
 

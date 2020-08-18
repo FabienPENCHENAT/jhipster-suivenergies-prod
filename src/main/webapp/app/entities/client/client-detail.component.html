@@ -8,6 +8,14 @@
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
+                <dt><span>Adresse</span></dt>
+                <dd>
+                    <span>{{ client.adresse }}</span>
+                </dd>
+                <dt><span>Code Postal</span></dt>
+                <dd>
+                    <span>{{ client.codePostal }}</span>
+                </dd>
                 <dt><span>User</span></dt>
                 <dd>
                     <span *ngFor="let user of client.users; let last = last">

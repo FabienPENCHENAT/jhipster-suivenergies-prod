@@ -1,16 +1,17 @@
 <div class="offset-2 col-10 mr-0 mt-2">
 
+<jhi-alert-error></jhi-alert-error>
+
 	<div class="card" id="infos-dpe">
 		<div class="card-body">
 			<h1 class="card-title">Mon habitat</h1>
 			<hr class="col-md-3 ml-0" />
 			<div class="card-text col-md-12">
-				<form>
+				<form name="dpeForm" role="form" [formGroup]="dpeForm">
 					<div class="form-group row offset-md-1">
 						<label for="numDPE" class="col-md-2 col-form-label">Mon N°DPE</label>
 						<div class="col-md-5">
-							<input type="text" class="form-control" id="numDPE"
-								value="1370V1000XXX">
+							<input type="text" class="form-control" id="numDPE"	formControlName="numero" readonly>
 
 						</div>
 						<div class="col-md-1">
@@ -20,12 +21,12 @@
 								data-placement="right"> </i>
 						</div>
 						<div class="col-md-4">
-							<button type="button" class="btn btn-primary"
-								onclick="displayDonneesDPE()">Télécharger mes donn�es</button>
+							<button type="button" class="btn btn-primary" disabled="disabled"
+								onclick="displayDonneesDPE()">Télécharger mes données</button>
 						</div>
 					</div>
 					<hr />
-					<div class="row">
+					<div class="row" *ngIf="infoDPE">
 						<div class="col-md-2">
 							<i class="fas fa-home fa-7x icon-light"></i>
 						</div>
@@ -33,10 +34,11 @@
 							<div class="row">
 								<label class="col-md-2 col-form-label" for="adresseNumero">Adresse</label>
 								<div class="col-md-5">
-									<input type="text" class="form-control dpeInput"
-										id="adresseNumero" value="Rue de Grenoble" readonly> <input
+									<input
 										type="text" class="form-control dpeInput" id="dpt"
-										value="38000 GRENOBLE" readonly>
+										formControlName="adresse" readonly>
+									<input type="text" class="form-control dpeInput"
+										id="adresseNumero" readonly> 
 								</div>
 							</div>
 						</div>
@@ -46,7 +48,7 @@
 									de bâtiment</label>
 								<div class="col-md-4">
 									<input type="text" class="form-control dpeInput" id="batiment"
-										value="Maison individuelle" readonly>
+										formControlName="typeBatiment" readonly>
 								</div>
 							</div>
 							<div class="row">
@@ -54,12 +56,12 @@
 									de construction</label>
 								<div class="col-md-3">
 									<input type="text" class="form-control dpeInput"
-										id="construction" value="1981" readonly>
+										id="construction" formControlName="anneeConstruction" readonly>
 								</div>
 								<label class="col-md-2 col-form-label" for="surface">Surface(m²)</label>
 								<div class="col-md-3">
 									<input type="text" class="form-control dpeInput" id="surface"
-										value="123" readonly>
+										formControlName="surface"  readonly>
 								</div>
 							</div>
 						</div>
@@ -70,7 +72,7 @@
 									principale de chauffage</label>
 								<div class="col-md-3">
 									<input type="text" class="form-control dpeInput"
-										id="enerPrincpale" value="Chaudi�re � Gaz" readonly>
+										id="enerPrincpale" formControlName="energieChauffage" readonly>
 								</div>
 							</div>
 							<div class="row">
@@ -79,7 +81,7 @@
 									pour l'eau chaude sanitaire</label>
 								<div class="col-md-3">
 									<input type="text" class="form-control dpeInput"
-										id="enerPrincpaleEau" value="Chaudi�re � Gaz" readonly>
+										id="enerPrincpaleEau" formControlName="energieEauChaude" readonly>
 								</div>
 							</div>
 							<div class="row">
@@ -88,7 +90,7 @@
 									photovoltaïque</label>
 								<div class="col-md-3">
 									<input type="text" class="form-control dpeInput"
-										id="enerPrincpaleEau" value="0" readonly>
+										id="enerPrincpaleEau" formControlName="energiePhotovoltaique" readonly>
 								</div>
 							</div>
 						</div>
@@ -103,7 +105,7 @@
 			<h1 class="card-title">Mes consommations (à relever sur vos factures)</h1>
 			<hr class="col-md-3 ml-0" />
 			<div class="card-text col-md-12">
-				<form>
+				<form name="form" role="form" (ngSubmit)="saveConso()" [formGroup]="factureForm">
 					<div class="row">
 						<div class="col-md-2">
 							<i class="far fa-file-alt fa-7x icon-light"></i>
@@ -122,38 +124,38 @@
 									<tbody>
 										<tr>
 											<td>Electricité (kWh)</td>
-											<td><input type="text" class="form-control"
-												id="enerPrincpale" value="3 739"></td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
+												id="enerPrincpale" formControlName="elec2019"></td>
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value="3 894"></td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value="3 731"></td>
 										</tr>
 										<tr>
 											<td>Gaz (kWh)</td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value="29 050"></td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value="32 310"></td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value="29 570"></td>
 										</tr>
 										<tr>
 											<td>Fioul (l)</td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value=""></td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value=""></td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value=""></td>
 										</tr>
 										<tr>
 											<td>Bois (m3)</td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value=""></td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value=""></td>
-											<td><input type="text" class="form-control"
+											<td><input type="number" class="form-control"
 												id="enerPrincpale" value=""></td>
 										</tr>
 									</tbody>
@@ -161,6 +163,15 @@
 							</div>
 						</div>
 					</div>
+				<div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="factureForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
 				</form>
 			</div>
 		</div>
@@ -585,3 +596,23 @@
 		</div>
 	</div>
 </div>
+
+	<script>
+		$("input[type='number']").inputSpinner()
+				$('.popover-dismiss').popover({
+			  trigger: 'focus'
+			})
+			
+			$('[data-toggle="popover"]').popover({
+			  container: 'body',
+			  html: true,
+			  trigger: 'click',
+			  content: function () {
+			    return '<div class="card"><div class="card-body"><h3 class="card-title">Où trouver mon n° de DPE ?</h3><div class="col-md-12"><img src="../../content/images/ouTrouverDPE.jpg" style="width:100%;height:auto;" /><p>Votre DPE doit être à jour</p><div class="col-md-5 mt-2"><button type="button" class="btn btn-primary">Demander un accompagnement</button></div></div></div></div>';
+			  }
+			});
+		
+			$('.popover-dismiss').popover({
+				  trigger: 'focus'
+				});
+	</script>

@@ -37,6 +37,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class ClientResourceIT {
 
+    private static final String DEFAULT_ADRESSE = "AAAAAAAAAA";
+    private static final String UPDATED_ADRESSE = "BBBBBBBBBB";
+
+    private static final Long DEFAULT_CODE_POSTAL = 1L;
+    private static final Long UPDATED_CODE_POSTAL = 2L;
+
     @Autowired
     private ClientRepository clientRepository;
 
@@ -58,7 +64,9 @@ public class ClientResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Client createEntity(EntityManager em) {
-        Client client = new Client();
+        Client client = new Client()
+            .adresse(DEFAULT_ADRESSE)
+            .codePostal(DEFAULT_CODE_POSTAL);
         return client;
     }
     /**
@@ -68,7 +76,9 @@ public class ClientResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Client createUpdatedEntity(EntityManager em) {
-        Client client = new Client();
+        Client client = new Client()
+            .adresse(UPDATED_ADRESSE)
+            .codePostal(UPDATED_CODE_POSTAL);
         return client;
     }
 
@@ -91,6 +101,8 @@ public class ClientResourceIT {
         List<Client> clientList = clientRepository.findAll();
         assertThat(clientList).hasSize(databaseSizeBeforeCreate + 1);
         Client testClient = clientList.get(clientList.size() - 1);
+        assertThat(testClient.getAdresse()).isEqualTo(DEFAULT_ADRESSE);
+        assertThat(testClient.getCodePostal()).isEqualTo(DEFAULT_CODE_POSTAL);
     }
 
     @Test
@@ -123,7 +135,9 @@ public class ClientResourceIT {
         restClientMockMvc.perform(get("/api/clients?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(client.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(client.getId().intValue())))
+            .andExpect(jsonPath("$.[*].adresse").value(hasItem(DEFAULT_ADRESSE)))
+            .andExpect(jsonPath("$.[*].codePostal").value(hasItem(DEFAULT_CODE_POSTAL.intValue())));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -156,7 +170,9 @@ public class ClientResourceIT {
         restClientMockMvc.perform(get("/api/clients/{id}", client.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(client.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(client.getId().intValue()))
+            .andExpect(jsonPath("$.adresse").value(DEFAULT_ADRESSE))
+            .andExpect(jsonPath("$.codePostal").value(DEFAULT_CODE_POSTAL.intValue()));
     }
     @Test
     @Transactional
@@ -178,6 +194,9 @@ public class ClientResourceIT {
         Client updatedClient = clientRepository.findById(client.getId()).get();
         // Disconnect from session so that the updates on updatedClient are not directly saved in db
         em.detach(updatedClient);
+        updatedClient
+            .adresse(UPDATED_ADRESSE)
+            .codePostal(UPDATED_CODE_POSTAL);
 
         restClientMockMvc.perform(put("/api/clients")
             .contentType(MediaType.APPLICATION_JSON)
@@ -188,6 +207,8 @@ public class ClientResourceIT {
         List<Client> clientList = clientRepository.findAll();
         assertThat(clientList).hasSize(databaseSizeBeforeUpdate);
         Client testClient = clientList.get(clientList.size() - 1);
+        assertThat(testClient.getAdresse()).isEqualTo(UPDATED_ADRESSE);
+        assertThat(testClient.getCodePostal()).isEqualTo(UPDATED_CODE_POSTAL);
     }
 
     @Test

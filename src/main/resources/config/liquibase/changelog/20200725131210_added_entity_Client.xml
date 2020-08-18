@@ -16,6 +16,12 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="adresse" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="code_postal" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
@@ -50,14 +56,14 @@
                   separator=";"
                   tableName="client">
             <column name="id" type="numeric"/>
+            <column name="adresse" type="string"/>
+            <column name="code_postal" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
         <loadData
                   file="config/liquibase/fake-data/client_user.csv"
                   separator=";"
                   tableName="client_user">
-            <column name="id" type="numeric"/>
-            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
 

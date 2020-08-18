@@ -6,6 +6,7 @@ import { SuivEnergiesSharedModule } from 'app/shared/shared.module';
 import { SuivEnergiesCoreModule } from 'app/core/core.module';
 import { SuivEnergiesAppRoutingModule } from './app-routing.module';
 import { LogementModule } from './logement/logement.module';
+import { AccompagnementModule } from './accompagnement/accompagnement.module';
 import { SuivEnergiesHomeModule } from './home/home.module';
 import { SuivEnergiesEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
@@ -22,6 +23,7 @@ import { ErrorComponent } from './layouts/error/error.component';
     SuivEnergiesCoreModule,
     SuivEnergiesHomeModule,
     LogementModule,
+    AccompagnementModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     SuivEnergiesEntityModule,
     SuivEnergiesAppRoutingModule,
