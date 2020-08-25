@@ -1,0 +1,210 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-td-001-dpe-heading">Create or edit a TD 001 DPE</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numeroDpe">Numero Dpe</label>
+                    <input type="text" class="form-control" name="numeroDpe" id="field_numeroDpe"
+                           formControlName="numeroDpe"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tr001ModeleDpe">Tr 001 Modele Dpe</label>
+                    <input type="text" class="form-control" name="tr001ModeleDpe" id="field_tr001ModeleDpe"
+                           formControlName="tr001ModeleDpe"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nomMethodeDpe">Nom Methode Dpe</label>
+                    <input type="text" class="form-control" name="nomMethodeDpe" id="field_nomMethodeDpe"
+                           formControlName="nomMethodeDpe"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_consommationEnergie">Consommation Energie</label>
+                    <input type="number" class="form-control" name="consommationEnergie" id="field_consommationEnergie"
+                           formControlName="consommationEnergie"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_classeConsommationEnergie">Classe Consommation Energie</label>
+                    <input type="text" class="form-control" name="classeConsommationEnergie" id="field_classeConsommationEnergie"
+                           formControlName="classeConsommationEnergie"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_estimationGes">Estimation Ges</label>
+                    <input type="number" class="form-control" name="estimationGes" id="field_estimationGes"
+                           formControlName="estimationGes"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_classeEstimationGes">Classe Estimation Ges</label>
+                    <input type="text" class="form-control" name="classeEstimationGes" id="field_classeEstimationGes"
+                           formControlName="classeEstimationGes"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tr002TypeBatiment">Tr 002 Type Batiment</label>
+                    <input type="text" class="form-control" name="tr002TypeBatiment" id="field_tr002TypeBatiment"
+                           formControlName="tr002TypeBatiment"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_anneeConstruction">Annee Construction</label>
+                    <input type="number" class="form-control" name="anneeConstruction" id="field_anneeConstruction"
+                           formControlName="anneeConstruction"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_surfaceHabitable">Surface Habitable</label>
+                    <input type="number" class="form-control" name="surfaceHabitable" id="field_surfaceHabitable"
+                           formControlName="surfaceHabitable"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tv016Departement">Tv 016 Departement</label>
+                    <input type="text" class="form-control" name="tv016Departement" id="field_tv016Departement"
+                           formControlName="tv016Departement"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_commune">Commune</label>
+                    <input type="text" class="form-control" name="commune" id="field_commune"
+                           formControlName="commune"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_arrondissement">Arrondissement</label>
+                    <input type="text" class="form-control" name="arrondissement" id="field_arrondissement"
+                           formControlName="arrondissement"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_typeVoie">Type Voie</label>
+                    <input type="text" class="form-control" name="typeVoie" id="field_typeVoie"
+                           formControlName="typeVoie"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nomRue">Nom Rue</label>
+                    <input type="text" class="form-control" name="nomRue" id="field_nomRue"
+                           formControlName="nomRue"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numeroRue">Numero Rue</label>
+                    <input type="text" class="form-control" name="numeroRue" id="field_numeroRue"
+                           formControlName="numeroRue"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_batiment">Batiment</label>
+                    <input type="text" class="form-control" name="batiment" id="field_batiment"
+                           formControlName="batiment"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_escalier">Escalier</label>
+                    <input type="text" class="form-control" name="escalier" id="field_escalier"
+                           formControlName="escalier"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_etage">Etage</label>
+                    <input type="text" class="form-control" name="etage" id="field_etage"
+                           formControlName="etage"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_porte">Porte</label>
+                    <input type="text" class="form-control" name="porte" id="field_porte"
+                           formControlName="porte"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codePostal">Code Postal</label>
+                    <input type="text" class="form-control" name="codePostal" id="field_codePostal"
+                           formControlName="codePostal"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codeInseeCommune">Code Insee Commune</label>
+                    <input type="text" class="form-control" name="codeInseeCommune" id="field_codeInseeCommune"
+                           formControlName="codeInseeCommune"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codeInseeCommuneActualise">Code Insee Commune Actualise</label>
+                    <input type="text" class="form-control" name="codeInseeCommuneActualise" id="field_codeInseeCommuneActualise"
+                           formControlName="codeInseeCommuneActualise"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codeInseeCommuneCorrige">Code Insee Commune Corrige</label>
+                    <input type="text" class="form-control" name="codeInseeCommuneCorrige" id="field_codeInseeCommuneCorrige"
+                           formControlName="codeInseeCommuneCorrige"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_numeroLot">Numero Lot</label>
+                    <input type="text" class="form-control" name="numeroLot" id="field_numeroLot"
+                           formControlName="numeroLot"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateReceptionDpe">Date Reception Dpe</label>
+                    <div class="input-group">
+                        <input id="field_dateReceptionDpe" type="text" class="form-control" name="dateReceptionDpe" ngbDatepicker #dateReceptionDpeDp="ngbDatepicker" formControlName="dateReceptionDpe"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateReceptionDpeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td002Consommations">Td 002 Consommations</label>
+                    <select class="form-control" id="field_td002Consommations" name="td002Consommations" formControlName="td002Consommations">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD002ConsommationsOption.id === editForm.get('td002Consommations')!.value?.id ? editForm.get('td002Consommations')!.value : tD002ConsommationsOption" *ngFor="let tD002ConsommationsOption of td002consommations; trackBy: trackById">{{ tD002ConsommationsOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td006Batiment">Td 006 Batiment</label>
+                    <select class="form-control" id="field_td006Batiment" name="td006Batiment" formControlName="td006Batiment">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD006BatimentOption.id === editForm.get('td006Batiment')!.value?.id ? editForm.get('td006Batiment')!.value : tD006BatimentOption" *ngFor="let tD006BatimentOption of td006batiments; trackBy: trackById">{{ tD006BatimentOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td017ConsommationNeuf">Td 017 Consommation Neuf</label>
+                    <select class="form-control" id="field_td017ConsommationNeuf" name="td017ConsommationNeuf" formControlName="td017ConsommationNeuf">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD017ConsommationNeufOption.id === editForm.get('td017ConsommationNeuf')!.value?.id ? editForm.get('td017ConsommationNeuf')!.value : tD017ConsommationNeufOption" *ngFor="let tD017ConsommationNeufOption of td017consommationneufs; trackBy: trackById">{{ tD017ConsommationNeufOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

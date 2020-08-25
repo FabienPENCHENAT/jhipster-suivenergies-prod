@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>TD 008 Baies</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-td-008-baie" [routerLink]="['/td-008-baie/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new TD 008 Baie
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="tD008Baies?.length === 0">
+        <span>No tD008Baies found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="tD008Baies && tD008Baies.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Reference</span></th>
+                    <th scope="col" ><span>Td 008 Baie</span></th>
+                    <th scope="col" ><span>Deperdition</span></th>
+                    <th scope="col" ><span>Tv 009 Coefficient Transmission Thermique Vitrage</span></th>
+                    <th scope="col" ><span>Tv 012 Coef Transmission Thermique Baie Protection Solaire</span></th>
+                    <th scope="col" ><span>Surface</span></th>
+                    <th scope="col" ><span>Perimetre</span></th>
+                    <th scope="col" ><span>Tv 013 Valeur Pont Thermique</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tD008Baie of tD008Baies ;trackBy: trackId">
+                    <td><a [routerLink]="['/td-008-baie', tD008Baie.id, 'view']">{{ tD008Baie.id }}</a></td>
+                    <td>{{ tD008Baie.reference }}</td>
+                    <td>{{ tD008Baie.td008Baie }}</td>
+                    <td>{{ tD008Baie.deperdition }}</td>
+                    <td>{{ tD008Baie.tv009CoefficientTransmissionThermiqueVitrage }}</td>
+                    <td>{{ tD008Baie.tv012CoefTransmissionThermiqueBaieProtectionSolaire }}</td>
+                    <td>{{ tD008Baie.surface }}</td>
+                    <td>{{ tD008Baie.perimetre }}</td>
+                    <td>{{ tD008Baie.tv013ValeurPontThermique }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/td-008-baie', tD008Baie.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/td-008-baie', tD008Baie.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(tD008Baie)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>TD 017 Consommation Neufs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-td-017-consommation-neuf" [routerLink]="['/td-017-consommation-neuf/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new TD 017 Consommation Neuf
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="tD017ConsommationNeufs?.length === 0">
+        <span>No tD017ConsommationNeufs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="tD017ConsommationNeufs && tD017ConsommationNeufs.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Tr 004 Type Energie</span></th>
+                    <th scope="col" ><span>Tr 006 Type Usage</span></th>
+                    <th scope="col" ><span>Tv 044 Conversion Kwh Energies Relevees</span></th>
+                    <th scope="col" ><span>Tv 045 Conversion Kwh Co 2</span></th>
+                    <th scope="col" ><span>Tv 046 Evaluation Contenu Co 2 Reseaux</span></th>
+                    <th scope="col" ><span>Consommation Energie Finale</span></th>
+                    <th scope="col" ><span>Consommation Energie Primaire</span></th>
+                    <th scope="col" ><span>Frais Annuels Energie</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tD017ConsommationNeuf of tD017ConsommationNeufs ;trackBy: trackId">
+                    <td><a [routerLink]="['/td-017-consommation-neuf', tD017ConsommationNeuf.id, 'view']">{{ tD017ConsommationNeuf.id }}</a></td>
+                    <td>{{ tD017ConsommationNeuf.tr004TypeEnergie }}</td>
+                    <td>{{ tD017ConsommationNeuf.tr006TypeUsage }}</td>
+                    <td>{{ tD017ConsommationNeuf.tv044ConversionKwhEnergiesRelevees }}</td>
+                    <td>{{ tD017ConsommationNeuf.tv045ConversionKwhCo2 }}</td>
+                    <td>{{ tD017ConsommationNeuf.tv046EvaluationContenuCo2Reseaux }}</td>
+                    <td>{{ tD017ConsommationNeuf.consommationEnergieFinale }}</td>
+                    <td>{{ tD017ConsommationNeuf.consommationEnergiePrimaire }}</td>
+                    <td>{{ tD017ConsommationNeuf.fraisAnnuelsEnergie }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/td-017-consommation-neuf', tD017ConsommationNeuf.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/td-017-consommation-neuf', tD017ConsommationNeuf.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(tD017ConsommationNeuf)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

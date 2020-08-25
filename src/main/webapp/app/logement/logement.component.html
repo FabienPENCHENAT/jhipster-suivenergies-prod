@@ -7,11 +7,11 @@
 			<h1 class="card-title">Mon habitat</h1>
 			<hr class="col-md-3 ml-0" />
 			<div class="card-text col-md-12">
-				<form name="dpeForm" role="form" [formGroup]="dpeForm">
+				<form name="dpeForm" role="form"  (ngSubmit)="saveDPE()" [formGroup]="dpeForm">
 					<div class="form-group row offset-md-1">
 						<label for="numDPE" class="col-md-2 col-form-label">Mon N°DPE</label>
 						<div class="col-md-5">
-							<input type="text" class="form-control" id="numDPE"	formControlName="numero" readonly>
+							<input type="text" class="form-control" id="numDPE"	formControlName="numero">
 
 						</div>
 						<div class="col-md-1">
@@ -21,7 +21,7 @@
 								data-placement="right"> </i>
 						</div>
 						<div class="col-md-4">
-							<button type="button" class="btn btn-primary" disabled="disabled"
+							<button type="submit" [disabled]="dpeForm.invalid || isSaving" class="btn btn-primary" disabled="disabled"
 								onclick="displayDonneesDPE()">Télécharger mes données</button>
 						</div>
 					</div>
@@ -102,7 +102,7 @@
 
 	<div class="card" id="factures">
 		<div class="card-body">
-			<h1 class="card-title">Mes consommations (à relever sur vos factures)</h1>
+			<h1 class="card-title">Mes consommations  et productions annuelles d’énergie (à relever sur mes factures)</h1>
 			<hr class="col-md-3 ml-0" />
 			<div class="card-text col-md-12">
 				<form name="form" role="form" (ngSubmit)="saveConso()" [formGroup]="factureForm">
@@ -165,11 +165,10 @@
 					</div>
 				<div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
                 </button>
-
                 <button type="submit" id="save-entity" [disabled]="factureForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Enregistrer</span>
                 </button>
             </div>
 				</form>
@@ -249,15 +248,6 @@
 												name="inlineRadioOptions33" id="inlineRadio33" checked
 												value="option1"></td>
 										</tr>
-										<tr>
-											<td><p>Nuit</p>
-											<td><input class="form-check-input" type="radio"
-												name="inlineRadioOptions4" id="inlineRadio3" checked
-												value="option3"></td>
-											<td><input class="form-check-input" type="radio"
-												name="inlineRadioOptions44" id="inlineRadio33" checked
-												value="option1"></td>
-										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -304,8 +294,7 @@
 						<div class="col-md-10" id="conso">
 							<div class="row">
 								<i class="mr-2 fas fa-exclamation-triangle fa-2x"></i>
-								<h4>J'ai des travaux prioritaires (reportez-vous aux
-									diagnostics réalisés)</h4>
+								<h4>J'ai des travaux prioritaires</h4>
 							</div>
 							<hr class="ml-0 col-md-2" />
 
@@ -387,7 +376,7 @@
 									<label for="presentEte">Séjour/cuisine</label>
 								</div>
 								<div class="col-md-3">
-									<input data-suffix="�C" value="20" min="0" max="100"
+									<input data-suffix="�C" value="19" min="0" max="100"
 										type="number" id="presentHiver" />
 								</div>
 							</div>
@@ -396,7 +385,7 @@
 									<label for="presentEte">Chambres</label>
 								</div>
 								<div class="col-md-3">
-									<input data-suffix="�C" value="18" min="0" max="100"
+									<input data-suffix="�C" value="16" min="0" max="100"
 										type="number" id="presentHiver" />
 								</div>
 							</div>
@@ -428,7 +417,7 @@
 									<label for="presentEte">Séjour/cuisine</label>
 								</div>
 								<div class="col-md-3">
-									<input data-suffix="�C" value="20" min="0" max="100"
+									<input data-suffix="�C" value="26" min="0" max="100"
 										type="number" id="presentHiver" />
 								</div>
 							</div>
@@ -437,7 +426,7 @@
 									<label for="presentEte">Chambres</label>
 								</div>
 								<div class="col-md-3">
-									<input data-suffix="�C" value="20" min="0" max="100"
+									<input data-suffix="�C" value="26" min="0" max="100"
 										type="number" id="presentHiver" />
 								</div>
 							</div>

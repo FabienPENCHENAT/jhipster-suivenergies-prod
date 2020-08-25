@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD006Batiment">
+            <h2><span>TD 006 Batiment</span> {{ tD006Batiment.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Besoin Chauffage</span></dt>
+                <dd>
+                    <span>{{ tD006Batiment.besoinChauffage }}</span>
+                </dd>
+                <dt><span>Deperdition Enveloppe</span></dt>
+                <dd>
+                    <span>{{ tD006Batiment.deperditionEnveloppe }}</span>
+                </dd>
+                <dt><span>Deperdition Renouvellement Air</span></dt>
+                <dd>
+                    <span>{{ tD006Batiment.deperditionRenouvellementAir }}</span>
+                </dd>
+                <dt><span>Altitude</span></dt>
+                <dd>
+                    <span>{{ tD006Batiment.altitude }}</span>
+                </dd>
+                <dt><span>Nombre Niveau</span></dt>
+                <dd>
+                    <span>{{ tD006Batiment.nombreNiveau }}</span>
+                </dd>
+                <dt><span>Hsp Moyenne</span></dt>
+                <dd>
+                    <span>{{ tD006Batiment.hspMoyenne }}</span>
+                </dd>
+                <dt><span>Td 007 Paroi Opaque</span></dt>
+                <dd>
+                    <div *ngIf="tD006Batiment.td007ParoiOpaque">
+                        <a [routerLink]="['/td-007-paroi-opaque', tD006Batiment.td007ParoiOpaque?.id, 'view']">{{ tD006Batiment.td007ParoiOpaque?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Td 010 Ponts Thermiques</span></dt>
+                <dd>
+                    <div *ngIf="tD006Batiment.td010PontsThermiques">
+                        <a [routerLink]="['/td-010-ponts-thermiques', tD006Batiment.td010PontsThermiques?.id, 'view']">{{ tD006Batiment.td010PontsThermiques?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Td 011 Instalation Chauffage</span></dt>
+                <dd>
+                    <div *ngIf="tD006Batiment.td011InstalationChauffage">
+                        <a [routerLink]="['/td-011-instalation-chauffage', tD006Batiment.td011InstalationChauffage?.id, 'view']">{{ tD006Batiment.td011InstalationChauffage?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Td 013 Instalation ECS</span></dt>
+                <dd>
+                    <div *ngIf="tD006Batiment.td013InstalationECS">
+                        <a [routerLink]="['/td-013-instalation-ecs', tD006Batiment.td013InstalationECS?.id, 'view']">{{ tD006Batiment.td013InstalationECS?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Td 015 Production Energies</span></dt>
+                <dd>
+                    <div *ngIf="tD006Batiment.td015ProductionEnergies">
+                        <a [routerLink]="['/td-015-production-energies', tD006Batiment.td015ProductionEnergies?.id, 'view']">{{ tD006Batiment.td015ProductionEnergies?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-006-batiment', tD006Batiment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

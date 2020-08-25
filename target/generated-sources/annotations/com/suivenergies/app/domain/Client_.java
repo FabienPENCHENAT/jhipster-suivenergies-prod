@@ -10,15 +10,19 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Client_ {
 
 	public static volatile SetAttribute<Client, ModeVie> modeVies;
+	public static volatile SingularAttribute<Client, String> adresse;
 	public static volatile SetAttribute<Client, Facture> factures;
 	public static volatile SingularAttribute<Client, Long> id;
-	public static volatile SetAttribute<Client, InfoDPE> infoDpes;
+	public static volatile SingularAttribute<Client, Long> codePostal;
+	public static volatile SetAttribute<Client, InfoDPE> infoDPES;
 	public static volatile SetAttribute<Client, User> users;
 
 	public static final String MODE_VIES = "modeVies";
+	public static final String ADRESSE = "adresse";
 	public static final String FACTURES = "factures";
 	public static final String ID = "id";
-	public static final String INFO_DPES = "infoDpes";
+	public static final String CODE_POSTAL = "codePostal";
+	public static final String INFO_DP_ES = "infoDPES";
 	public static final String USERS = "users";
 
 }

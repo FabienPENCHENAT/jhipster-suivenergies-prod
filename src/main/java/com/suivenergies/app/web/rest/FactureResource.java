@@ -1,22 +1,29 @@
 package com.suivenergies.app.web.rest;
 
+import com.suivenergies.app.domain.Client;
 import com.suivenergies.app.domain.Facture;
 import com.suivenergies.app.repository.FactureRepository;
+import com.suivenergies.app.service.ClientService;
 import com.suivenergies.app.web.rest.errors.BadRequestAlertException;
-
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * REST controller for managing {@link com.suivenergies.app.domain.Facture}.
@@ -25,7 +32,6 @@ import java.util.Optional;
 @RequestMapping("/api")
 @Transactional
 public class FactureResource {
-
     private final Logger log = LoggerFactory.getLogger(FactureResource.class);
 
     private static final String ENTITY_NAME = "facture";
@@ -35,8 +41,11 @@ public class FactureResource {
 
     private final FactureRepository factureRepository;
 
-    public FactureResource(FactureRepository factureRepository) {
+    private final ClientService clientService;
+
+    public FactureResource(FactureRepository factureRepository, ClientService clientService) {
         this.factureRepository = factureRepository;
+        this.clientService = clientService;
     }
 
     /**
@@ -53,7 +62,8 @@ public class FactureResource {
             throw new BadRequestAlertException("A new facture cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Facture result = factureRepository.save(facture);
-        return ResponseEntity.created(new URI("/api/factures/" + result.getId()))
+        return ResponseEntity
+            .created(new URI("/api/factures/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -74,7 +84,8 @@ public class FactureResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Facture result = factureRepository.save(facture);
-        return ResponseEntity.ok()
+        return ResponseEntity
+            .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, facture.getId().toString()))
             .body(result);
     }
@@ -113,6 +124,23 @@ public class FactureResource {
     public ResponseEntity<Void> deleteFacture(@PathVariable Long id) {
         log.debug("REST request to delete Facture : {}", id);
         factureRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity
+            .noContent()
+            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
+            .build();
+    }
+
+    /**
+     * {@code GET  /factures/client} : get by user connected.
+     *
+     * @param id the id of the infoDPE to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the infoDPE, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/factures/client")
+    public ResponseEntity<List<Facture>> getAllClientFactures() {
+        Client clientConnected = clientService.getClientConnected();
+        log.debug("REST request to get factures by client connected : {}", clientConnected.getId());
+        Optional<List<Facture>> factures = factureRepository.findAllByClientId(clientConnected.getId());
+        return ResponseUtil.wrapOrNotFound(factures);
     }
 }

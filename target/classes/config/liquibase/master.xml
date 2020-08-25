@@ -18,11 +18,28 @@
     <include file="config/liquibase/changelog/20200725103158_added_entity_Facture.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200725131210_added_entity_Client.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200803170714_added_entity_ModeVie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145240_added_entity_TD001DPE.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145340_added_entity_TD002Consommations.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145440_added_entity_TD006Batiment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145540_added_entity_TD007ParoiOpaque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145640_added_entity_TD008Baie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145740_added_entity_TD010PontsThermiques.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145840_added_entity_TD011InstalationChauffage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145940_added_entity_TD012GenerateurChauffage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824150040_added_entity_TD013InstalationECS.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824150140_added_entity_TD014GenerateurECS.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824150240_added_entity_TD015ProductionEnergies.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824150340_added_entity_TD017ConsommationNeuf.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200725082309_added_entity_constraints_InfoDPE.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200725103158_added_entity_constraints_Facture.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200725131210_added_entity_constraints_Client.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200803170714_added_entity_constraints_ModeVie.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145240_added_entity_constraints_TD001DPE.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145440_added_entity_constraints_TD006Batiment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145540_added_entity_constraints_TD007ParoiOpaque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824145840_added_entity_constraints_TD011InstalationChauffage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200824150040_added_entity_constraints_TD013InstalationECS.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

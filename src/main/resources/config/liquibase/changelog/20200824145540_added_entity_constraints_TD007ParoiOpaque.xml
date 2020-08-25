@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity TD007ParoiOpaque.
+    -->
+    <changeSet id="20200824145540-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="td008baie_id"
+                                 baseTableName="td_007_paroi_opaque"
+                                 constraintName="fk_td_007_paroi_opaque_td008baie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="td_008_baie"/>
+
+    </changeSet>
+</databaseChangeLog>

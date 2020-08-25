@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-td-008-baie-heading">Create or edit a TD 008 Baie</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reference">Reference</label>
+                    <input type="text" class="form-control" name="reference" id="field_reference"
+                           formControlName="reference"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td008Baie">Td 008 Baie</label>
+                    <input type="text" class="form-control" name="td008Baie" id="field_td008Baie"
+                           formControlName="td008Baie"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_deperdition">Deperdition</label>
+                    <input type="number" class="form-control" name="deperdition" id="field_deperdition"
+                           formControlName="deperdition"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tv009CoefficientTransmissionThermiqueVitrage">Tv 009 Coefficient Transmission Thermique Vitrage</label>
+                    <input type="number" class="form-control" name="tv009CoefficientTransmissionThermiqueVitrage" id="field_tv009CoefficientTransmissionThermiqueVitrage"
+                           formControlName="tv009CoefficientTransmissionThermiqueVitrage"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tv012CoefTransmissionThermiqueBaieProtectionSolaire">Tv 012 Coef Transmission Thermique Baie Protection Solaire</label>
+                    <input type="number" class="form-control" name="tv012CoefTransmissionThermiqueBaieProtectionSolaire" id="field_tv012CoefTransmissionThermiqueBaieProtectionSolaire"
+                           formControlName="tv012CoefTransmissionThermiqueBaieProtectionSolaire"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_surface">Surface</label>
+                    <input type="number" class="form-control" name="surface" id="field_surface"
+                           formControlName="surface"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_perimetre">Perimetre</label>
+                    <input type="number" class="form-control" name="perimetre" id="field_perimetre"
+                           formControlName="perimetre"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tv013ValeurPontThermique">Tv 013 Valeur Pont Thermique</label>
+                    <input type="number" class="form-control" name="tv013ValeurPontThermique" id="field_tv013ValeurPontThermique"
+                           formControlName="tv013ValeurPontThermique"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD013InstalationECS">
+            <h2><span>TD 013 Instalation ECS</span> {{ tD013InstalationECS.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Tr 005 Type Installation Ecs</span></dt>
+                <dd>
+                    <span>{{ tD013InstalationECS.tr005TypeInstallationEcs }}</span>
+                </dd>
+                <dt><span>Becs</span></dt>
+                <dd>
+                    <span>{{ tD013InstalationECS.becs }}</span>
+                </dd>
+                <dt><span>Tv 039 Formule Becs</span></dt>
+                <dd>
+                    <span>{{ tD013InstalationECS.tv039FormuleBecs }}</span>
+                </dd>
+                <dt><span>Surface Alimentee</span></dt>
+                <dd>
+                    <span>{{ tD013InstalationECS.surfaceAlimentee }}</span>
+                </dd>
+                <dt><span>Td 014 Generateur ECS</span></dt>
+                <dd>
+                    <div *ngIf="tD013InstalationECS.td014GenerateurECS">
+                        <a [routerLink]="['/td-014-generateur-ecs', tD013InstalationECS.td014GenerateurECS?.id, 'view']">{{ tD013InstalationECS.td014GenerateurECS?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-013-instalation-ecs', tD013InstalationECS.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

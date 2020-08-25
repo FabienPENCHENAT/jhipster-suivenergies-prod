@@ -35,4 +35,8 @@ export class FactureService {
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+
+  findAllByClientId(): Observable<EntityArrayResponseType> {
+    return this.http.get<IFacture[]>(`${this.resourceUrl}/client`, { observe: 'response' });
+  }
 }

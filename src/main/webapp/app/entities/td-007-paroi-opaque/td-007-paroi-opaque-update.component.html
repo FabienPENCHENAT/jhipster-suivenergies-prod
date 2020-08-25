@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-td-007-paroi-opaque-heading">Create or edit a TD 007 Paroi Opaque</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tr014TypeParoisOpaque">Tr 014 Type Parois Opaque</label>
+                    <input type="text" class="form-control" name="tr014TypeParoisOpaque" id="field_tr014TypeParoisOpaque"
+                           formControlName="tr014TypeParoisOpaque"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_reference">Reference</label>
+                    <input type="text" class="form-control" name="reference" id="field_reference"
+                           formControlName="reference"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_deperditionThermique">Deperdition Thermique</label>
+                    <input type="number" class="form-control" name="deperditionThermique" id="field_deperditionThermique"
+                           formControlName="deperditionThermique"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_coefficientTransmissionThermiqueParoi">Coefficient Transmission Thermique Paroi</label>
+                    <input type="number" class="form-control" name="coefficientTransmissionThermiqueParoi" id="field_coefficientTransmissionThermiqueParoi"
+                           formControlName="coefficientTransmissionThermiqueParoi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_resistanceThermiqueIsolation">Resistance Thermique Isolation</label>
+                    <input type="number" class="form-control" name="resistanceThermiqueIsolation" id="field_resistanceThermiqueIsolation"
+                           formControlName="resistanceThermiqueIsolation"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_epaisseurIsolation">Epaisseur Isolation</label>
+                    <input type="number" class="form-control" name="epaisseurIsolation" id="field_epaisseurIsolation"
+                           formControlName="epaisseurIsolation"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_surfaceParoi">Surface Paroi</label>
+                    <input type="number" class="form-control" name="surfaceParoi" id="field_surfaceParoi"
+                           formControlName="surfaceParoi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td008Baie">Td 008 Baie</label>
+                    <select class="form-control" id="field_td008Baie" name="td008Baie" formControlName="td008Baie">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD008BaieOption.id === editForm.get('td008Baie')!.value?.id ? editForm.get('td008Baie')!.value : tD008BaieOption" *ngFor="let tD008BaieOption of td008baies; trackBy: trackById">{{ tD008BaieOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

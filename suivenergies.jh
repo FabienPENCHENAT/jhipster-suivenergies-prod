@@ -1,5 +1,166 @@
-entity Client {
+entity TD001DPE {
+	numeroDpe String,
+    tr001ModeleDpe String,
+    nomMethodeDpe String,
+    consommationEnergie Long,
+    classeConsommationEnergie String,
+    estimationGes Long,
+    classeEstimationGes String,
+    tr002TypeBatiment String,
+    anneeConstruction Long,
+    surfaceHabitable Double,
+    tv016Departement String,
+    commune String,
+    arrondissement String,
+    typeVoie String,
+    nomRue String,
+    numeroRue String,
+    batiment String,
+    escalier String,
+    etage String,
+    porte String,
+    codePostal String,
+    codeInseeCommune String,
+    codeInseeCommuneActualise String,
+    codeInseeCommuneCorrige String,
+    numeroLot String,
+    dateReceptionDpe LocalDate
+}
+entity TD002Consommations {
+	tr006TypeUsage String,
+    tr004TypEnergie String,
+    tv042TarifEnergie Double,
+    consommationEnergieFinale Double,
+    consommationEnergiePrimaire Double,
+    fraisAnnuelsEnergie Double,
+    estEfface Boolean
+}
 
+relationship OneToOne {
+	TD001DPE{td002Consommations} to TD002Consommations{td001DPE}
+}
+
+entity TD006Batiment {
+	besoinChauffage Double,
+    deperditionEnveloppe Double,
+    deperditionRenouvellementAir Double,
+    altitude Double,
+    nombreNiveau Double,
+    hspMoyenne Double
+}
+
+relationship OneToOne {
+	TD001DPE{td006Batiment} to TD006Batiment{td001DPE}
+}
+
+entity TD007ParoiOpaque {
+	tr014TypeParoisOpaque String,
+    reference String,
+    deperditionThermique Double,
+    coefficientTransmissionThermiqueParoi Double,
+    resistanceThermiqueIsolation Double,
+    epaisseurIsolation Double,
+    surfaceParoi Double
+}
+
+relationship OneToOne {
+	TD006Batiment{td007ParoiOpaque} to TD007ParoiOpaque{td006Batiment}
+}
+
+entity TD008Baie {
+	reference String,
+    td008Baie String,
+    deperdition Double,
+    tv009CoefficientTransmissionThermiqueVitrage Double,
+    tv012CoefTransmissionThermiqueBaieProtectionSolaire Double,
+    surface Double,
+    perimetre Double,
+    tv013ValeurPontThermique Double
+}
+
+relationship OneToOne {
+	TD007ParoiOpaque{td008Baie} to TD008Baie{td007ParoiOpaque}
+}
+
+entity TD010PontsThermiques {
+	longueur Long,
+    tv013ValeurPontThermique Double
+}
+
+relationship OneToOne {
+	TD006Batiment{td010PontsThermiques} to TD010PontsThermiques{td006Batiment}
+}
+
+entity TD011InstalationChauffage {
+	tr003TypeInstallationChauffage String,
+    surfaceChauffee Double
+}
+
+relationship OneToOne {
+	TD006Batiment{td011InstalationChauffage} to TD011InstalationChauffage{td006Batiment}
+}
+
+entity TD012GenerateurChauffage {
+	systemeChauffageCogeneration String,
+    td011InstallationChauffage String,
+    tr004TypeEnergie String,
+    consommationChauffage Double
+}
+
+relationship OneToOne {
+	TD011InstalationChauffage{td012GenerateurChauffage} to TD012GenerateurChauffage{td011InstalationChauffage}
+}
+
+entity TD013InstalationECS {
+	tr005TypeInstallationEcs String,
+    becs Double,
+    tv039FormuleBecs String,
+    surfaceAlimentee Double
+}
+
+relationship OneToOne {
+	TD006Batiment{td013InstalationECS} to TD013InstalationECS{td006Batiment}
+}
+
+entity TD014GenerateurECS {
+	td013InstallationEcs String,
+    tr004TypeEnergie String,
+    volumeStockage Double
+}
+
+relationship OneToOne {
+	TD013InstalationECS{td014GenerateurECS} to TD014GenerateurECS{td013InstalationECS}
+}
+
+entity TD015ProductionEnergies {
+	tr004TypeEnergie String,
+    productionElectriciteCapteursPhotovoltaiques Double,
+    productionleEctriciteMicroEolienne Boolean,
+    productionCogeneration Double
+}
+
+relationship OneToOne {
+	TD006Batiment{td015ProductionEnergies} to TD015ProductionEnergies{td006Batiment}
+}
+
+entity TD017ConsommationNeuf {
+	tr004TypeEnergie String,
+    tr006TypeUsage String,
+    tv044ConversionKwhEnergiesRelevees String,
+    tv045ConversionKwhCo2 String,
+    tv046EvaluationContenuCo2Reseaux String,
+    consommationEnergieFinale Double,
+    consommationEnergiePrimaire Double,
+    fraisAnnuelsEnergie Double
+}
+
+relationship OneToOne {
+	TD001DPE{td017ConsommationNeuf} to TD017ConsommationNeuf{td001DPE}
+}
+
+entity Client {
+	adresse String,
+    codePostal Long
 }
 
 entity InfoDPE {
@@ -51,12 +212,12 @@ relationship ManyToMany {
 }
 
 relationship OneToMany { 
-	Client{infoDpe} to InfoDPE{client}
+	Client to InfoDPE
 }
 
 relationship OneToMany {
 	Client{facture} to Facture{client}
-    }
+}
     
 relationship OneToMany {
 	Client{modeVie} to ModeVie{client}

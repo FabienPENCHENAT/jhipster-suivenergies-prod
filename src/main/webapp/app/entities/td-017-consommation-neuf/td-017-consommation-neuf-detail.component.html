@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD017ConsommationNeuf">
+            <h2><span>TD 017 Consommation Neuf</span> {{ tD017ConsommationNeuf.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Tr 004 Type Energie</span></dt>
+                <dd>
+                    <span>{{ tD017ConsommationNeuf.tr004TypeEnergie }}</span>
+                </dd>
+                <dt><span>Tr 006 Type Usage</span></dt>
+                <dd>
+                    <span>{{ tD017ConsommationNeuf.tr006TypeUsage }}</span>
+                </dd>
+                <dt><span>Tv 044 Conversion Kwh Energies Relevees</span></dt>
+                <dd>
+                    <span>{{ tD017ConsommationNeuf.tv044ConversionKwhEnergiesRelevees }}</span>
+                </dd>
+                <dt><span>Tv 045 Conversion Kwh Co 2</span></dt>
+                <dd>
+                    <span>{{ tD017ConsommationNeuf.tv045ConversionKwhCo2 }}</span>
+                </dd>
+                <dt><span>Tv 046 Evaluation Contenu Co 2 Reseaux</span></dt>
+                <dd>
+                    <span>{{ tD017ConsommationNeuf.tv046EvaluationContenuCo2Reseaux }}</span>
+                </dd>
+                <dt><span>Consommation Energie Finale</span></dt>
+                <dd>
+                    <span>{{ tD017ConsommationNeuf.consommationEnergieFinale }}</span>
+                </dd>
+                <dt><span>Consommation Energie Primaire</span></dt>
+                <dd>
+                    <span>{{ tD017ConsommationNeuf.consommationEnergiePrimaire }}</span>
+                </dd>
+                <dt><span>Frais Annuels Energie</span></dt>
+                <dd>
+                    <span>{{ tD017ConsommationNeuf.fraisAnnuelsEnergie }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-017-consommation-neuf', tD017ConsommationNeuf.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

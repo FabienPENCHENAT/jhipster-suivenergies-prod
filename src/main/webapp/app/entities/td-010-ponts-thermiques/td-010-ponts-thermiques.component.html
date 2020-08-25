@@ -1,0 +1,63 @@
+<div>
+    <h2 id="page-heading">
+        <span>TD 010 Ponts Thermiques</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-td-010-ponts-thermiques" [routerLink]="['/td-010-ponts-thermiques/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new TD 010 Ponts Thermiques
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="tD010PontsThermiques?.length === 0">
+        <span>No tD010PontsThermiques found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="tD010PontsThermiques && tD010PontsThermiques.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Longueur</span></th>
+                    <th scope="col" ><span>Tv 013 Valeur Pont Thermique</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tD010PontsThermiques of tD010PontsThermiques ;trackBy: trackId">
+                    <td><a [routerLink]="['/td-010-ponts-thermiques', tD010PontsThermiques.id, 'view']">{{ tD010PontsThermiques.id }}</a></td>
+                    <td>{{ tD010PontsThermiques.longueur }}</td>
+                    <td>{{ tD010PontsThermiques.tv013ValeurPontThermique }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/td-010-ponts-thermiques', tD010PontsThermiques.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/td-010-ponts-thermiques', tD010PontsThermiques.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(tD010PontsThermiques)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

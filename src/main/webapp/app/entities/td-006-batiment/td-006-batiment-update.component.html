@@ -1,0 +1,102 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-td-006-batiment-heading">Create or edit a TD 006 Batiment</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_besoinChauffage">Besoin Chauffage</label>
+                    <input type="number" class="form-control" name="besoinChauffage" id="field_besoinChauffage"
+                           formControlName="besoinChauffage"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_deperditionEnveloppe">Deperdition Enveloppe</label>
+                    <input type="number" class="form-control" name="deperditionEnveloppe" id="field_deperditionEnveloppe"
+                           formControlName="deperditionEnveloppe"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_deperditionRenouvellementAir">Deperdition Renouvellement Air</label>
+                    <input type="number" class="form-control" name="deperditionRenouvellementAir" id="field_deperditionRenouvellementAir"
+                           formControlName="deperditionRenouvellementAir"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_altitude">Altitude</label>
+                    <input type="number" class="form-control" name="altitude" id="field_altitude"
+                           formControlName="altitude"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nombreNiveau">Nombre Niveau</label>
+                    <input type="number" class="form-control" name="nombreNiveau" id="field_nombreNiveau"
+                           formControlName="nombreNiveau"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_hspMoyenne">Hsp Moyenne</label>
+                    <input type="number" class="form-control" name="hspMoyenne" id="field_hspMoyenne"
+                           formControlName="hspMoyenne"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td007ParoiOpaque">Td 007 Paroi Opaque</label>
+                    <select class="form-control" id="field_td007ParoiOpaque" name="td007ParoiOpaque" formControlName="td007ParoiOpaque">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD007ParoiOpaqueOption.id === editForm.get('td007ParoiOpaque')!.value?.id ? editForm.get('td007ParoiOpaque')!.value : tD007ParoiOpaqueOption" *ngFor="let tD007ParoiOpaqueOption of td007paroiopaques; trackBy: trackById">{{ tD007ParoiOpaqueOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td010PontsThermiques">Td 010 Ponts Thermiques</label>
+                    <select class="form-control" id="field_td010PontsThermiques" name="td010PontsThermiques" formControlName="td010PontsThermiques">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD010PontsThermiquesOption.id === editForm.get('td010PontsThermiques')!.value?.id ? editForm.get('td010PontsThermiques')!.value : tD010PontsThermiquesOption" *ngFor="let tD010PontsThermiquesOption of td010pontsthermiques; trackBy: trackById">{{ tD010PontsThermiquesOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td011InstalationChauffage">Td 011 Instalation Chauffage</label>
+                    <select class="form-control" id="field_td011InstalationChauffage" name="td011InstalationChauffage" formControlName="td011InstalationChauffage">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD011InstalationChauffageOption.id === editForm.get('td011InstalationChauffage')!.value?.id ? editForm.get('td011InstalationChauffage')!.value : tD011InstalationChauffageOption" *ngFor="let tD011InstalationChauffageOption of td011instalationchauffages; trackBy: trackById">{{ tD011InstalationChauffageOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td013InstalationECS">Td 013 Instalation ECS</label>
+                    <select class="form-control" id="field_td013InstalationECS" name="td013InstalationECS" formControlName="td013InstalationECS">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD013InstalationECSOption.id === editForm.get('td013InstalationECS')!.value?.id ? editForm.get('td013InstalationECS')!.value : tD013InstalationECSOption" *ngFor="let tD013InstalationECSOption of td013instalationecs; trackBy: trackById">{{ tD013InstalationECSOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td015ProductionEnergies">Td 015 Production Energies</label>
+                    <select class="form-control" id="field_td015ProductionEnergies" name="td015ProductionEnergies" formControlName="td015ProductionEnergies">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD015ProductionEnergiesOption.id === editForm.get('td015ProductionEnergies')!.value?.id ? editForm.get('td015ProductionEnergies')!.value : tD015ProductionEnergiesOption" *ngFor="let tD015ProductionEnergiesOption of td015productionenergies; trackBy: trackById">{{ tD015ProductionEnergiesOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

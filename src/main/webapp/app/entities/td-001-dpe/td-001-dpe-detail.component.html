@@ -1,0 +1,148 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD001DPE">
+            <h2><span>TD 001 DPE</span> {{ tD001DPE.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Numero Dpe</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.numeroDpe }}</span>
+                </dd>
+                <dt><span>Tr 001 Modele Dpe</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.tr001ModeleDpe }}</span>
+                </dd>
+                <dt><span>Nom Methode Dpe</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.nomMethodeDpe }}</span>
+                </dd>
+                <dt><span>Consommation Energie</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.consommationEnergie }}</span>
+                </dd>
+                <dt><span>Classe Consommation Energie</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.classeConsommationEnergie }}</span>
+                </dd>
+                <dt><span>Estimation Ges</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.estimationGes }}</span>
+                </dd>
+                <dt><span>Classe Estimation Ges</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.classeEstimationGes }}</span>
+                </dd>
+                <dt><span>Tr 002 Type Batiment</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.tr002TypeBatiment }}</span>
+                </dd>
+                <dt><span>Annee Construction</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.anneeConstruction }}</span>
+                </dd>
+                <dt><span>Surface Habitable</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.surfaceHabitable }}</span>
+                </dd>
+                <dt><span>Tv 016 Departement</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.tv016Departement }}</span>
+                </dd>
+                <dt><span>Commune</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.commune }}</span>
+                </dd>
+                <dt><span>Arrondissement</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.arrondissement }}</span>
+                </dd>
+                <dt><span>Type Voie</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.typeVoie }}</span>
+                </dd>
+                <dt><span>Nom Rue</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.nomRue }}</span>
+                </dd>
+                <dt><span>Numero Rue</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.numeroRue }}</span>
+                </dd>
+                <dt><span>Batiment</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.batiment }}</span>
+                </dd>
+                <dt><span>Escalier</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.escalier }}</span>
+                </dd>
+                <dt><span>Etage</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.etage }}</span>
+                </dd>
+                <dt><span>Porte</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.porte }}</span>
+                </dd>
+                <dt><span>Code Postal</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.codePostal }}</span>
+                </dd>
+                <dt><span>Code Insee Commune</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.codeInseeCommune }}</span>
+                </dd>
+                <dt><span>Code Insee Commune Actualise</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.codeInseeCommuneActualise }}</span>
+                </dd>
+                <dt><span>Code Insee Commune Corrige</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.codeInseeCommuneCorrige }}</span>
+                </dd>
+                <dt><span>Numero Lot</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.numeroLot }}</span>
+                </dd>
+                <dt><span>Date Reception Dpe</span></dt>
+                <dd>
+                    <span>{{ tD001DPE.dateReceptionDpe }}</span>
+                </dd>
+                <dt><span>Td 002 Consommations</span></dt>
+                <dd>
+                    <div *ngIf="tD001DPE.td002Consommations">
+                        <a [routerLink]="['/td-002-consommations', tD001DPE.td002Consommations?.id, 'view']">{{ tD001DPE.td002Consommations?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Td 006 Batiment</span></dt>
+                <dd>
+                    <div *ngIf="tD001DPE.td006Batiment">
+                        <a [routerLink]="['/td-006-batiment', tD001DPE.td006Batiment?.id, 'view']">{{ tD001DPE.td006Batiment?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Td 017 Consommation Neuf</span></dt>
+                <dd>
+                    <div *ngIf="tD001DPE.td017ConsommationNeuf">
+                        <a [routerLink]="['/td-017-consommation-neuf', tD001DPE.td017ConsommationNeuf?.id, 'view']">{{ tD001DPE.td017ConsommationNeuf?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-001-dpe', tD001DPE.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

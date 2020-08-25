@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity TD013InstalationECS.
+    -->
+    <changeSet id="20200824150040-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="td014generateurecs_id"
+                                 baseTableName="td_013_instalation_ecs"
+                                 constraintName="fk_td_013_instalation_ecs_td014generateurecs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="td_014_generateur_ecs"/>
+
+    </changeSet>
+</databaseChangeLog>

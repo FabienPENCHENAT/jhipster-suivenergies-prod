@@ -18,6 +18,7 @@ export class LogementComponent implements OnInit {
   isSaving = false;
   idDPE?: number;
   infoDPE?: IInfoDPE;
+  factures?: IFacture[];
 
   dpeForm = this.fb.group({
     numero: [''],
@@ -53,10 +54,11 @@ export class LogementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.infoDPEService.findLast().subscribe((dpe: HttpResponse<IInfoDPE>) => this.completeForm(dpe));
+    this.infoDPEService.findLast().subscribe((dpe: HttpResponse<IInfoDPE>) => this.completeDpeForm(dpe));
+    // this.factureService.findAllByClientId.subscribe((res: HttpResponse<IFacture[]>) => (this.factures = res.body || []));
   }
 
-  completeForm(dpe: HttpResponse<IInfoDPE>): void {
+  completeDpeForm(dpe: HttpResponse<IInfoDPE>): void {
     if (dpe && dpe.body) {
       this.infoDPE = dpe.body;
     }
@@ -73,10 +75,18 @@ export class LogementComponent implements OnInit {
       });
     }
   }
-
-  saveDPE(numDPEToLoad: String): void {
+  
+  completeFacturesForm(factures: HttpResponse<IFacture[]>): void {
+	    if (factures && factures.body) {
+	      this.factureForm.patchValue({
+	    	  elec2019: '55555',
+	      });
+	    }
+	  }
+  
+  saveDPE(): void {
     this.isSaving = true;
-    this.subscribeToSaveResponse(this.infoDPEService.downloadInfoDPE(numDPEToLoad));
+    this.subscribeToSaveResponse(this.infoDPEService.downloadInfoDPE(this.dpeForm.get(['numero'])!.value));
   }
 
   saveConso(): void {

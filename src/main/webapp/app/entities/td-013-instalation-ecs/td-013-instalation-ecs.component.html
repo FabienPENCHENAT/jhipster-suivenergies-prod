@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>TD 013 Instalation ECS</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-td-013-instalation-ecs" [routerLink]="['/td-013-instalation-ecs/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new TD 013 Instalation ECS
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="tD013InstalationECS?.length === 0">
+        <span>No tD013InstalationECS found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="tD013InstalationECS && tD013InstalationECS.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Tr 005 Type Installation Ecs</span></th>
+                    <th scope="col" ><span>Becs</span></th>
+                    <th scope="col" ><span>Tv 039 Formule Becs</span></th>
+                    <th scope="col" ><span>Surface Alimentee</span></th>
+                    <th scope="col" ><span>Td 014 Generateur ECS</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tD013InstalationECS of tD013InstalationECS ;trackBy: trackId">
+                    <td><a [routerLink]="['/td-013-instalation-ecs', tD013InstalationECS.id, 'view']">{{ tD013InstalationECS.id }}</a></td>
+                    <td>{{ tD013InstalationECS.tr005TypeInstallationEcs }}</td>
+                    <td>{{ tD013InstalationECS.becs }}</td>
+                    <td>{{ tD013InstalationECS.tv039FormuleBecs }}</td>
+                    <td>{{ tD013InstalationECS.surfaceAlimentee }}</td>
+                    <td>
+                        <div *ngIf="tD013InstalationECS.td014GenerateurECS">
+                            <a [routerLink]="['/td-014-generateur-ecs', tD013InstalationECS.td014GenerateurECS?.id, 'view']" >{{ tD013InstalationECS.td014GenerateurECS?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/td-013-instalation-ecs', tD013InstalationECS.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/td-013-instalation-ecs', tD013InstalationECS.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(tD013InstalationECS)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

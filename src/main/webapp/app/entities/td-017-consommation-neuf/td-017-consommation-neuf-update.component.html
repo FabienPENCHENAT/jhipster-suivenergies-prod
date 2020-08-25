@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-td-017-consommation-neuf-heading">Create or edit a TD 017 Consommation Neuf</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tr004TypeEnergie">Tr 004 Type Energie</label>
+                    <input type="text" class="form-control" name="tr004TypeEnergie" id="field_tr004TypeEnergie"
+                           formControlName="tr004TypeEnergie"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tr006TypeUsage">Tr 006 Type Usage</label>
+                    <input type="text" class="form-control" name="tr006TypeUsage" id="field_tr006TypeUsage"
+                           formControlName="tr006TypeUsage"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tv044ConversionKwhEnergiesRelevees">Tv 044 Conversion Kwh Energies Relevees</label>
+                    <input type="text" class="form-control" name="tv044ConversionKwhEnergiesRelevees" id="field_tv044ConversionKwhEnergiesRelevees"
+                           formControlName="tv044ConversionKwhEnergiesRelevees"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tv045ConversionKwhCo2">Tv 045 Conversion Kwh Co 2</label>
+                    <input type="text" class="form-control" name="tv045ConversionKwhCo2" id="field_tv045ConversionKwhCo2"
+                           formControlName="tv045ConversionKwhCo2"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tv046EvaluationContenuCo2Reseaux">Tv 046 Evaluation Contenu Co 2 Reseaux</label>
+                    <input type="text" class="form-control" name="tv046EvaluationContenuCo2Reseaux" id="field_tv046EvaluationContenuCo2Reseaux"
+                           formControlName="tv046EvaluationContenuCo2Reseaux"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_consommationEnergieFinale">Consommation Energie Finale</label>
+                    <input type="number" class="form-control" name="consommationEnergieFinale" id="field_consommationEnergieFinale"
+                           formControlName="consommationEnergieFinale"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_consommationEnergiePrimaire">Consommation Energie Primaire</label>
+                    <input type="number" class="form-control" name="consommationEnergiePrimaire" id="field_consommationEnergiePrimaire"
+                           formControlName="consommationEnergiePrimaire"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fraisAnnuelsEnergie">Frais Annuels Energie</label>
+                    <input type="number" class="form-control" name="fraisAnnuelsEnergie" id="field_fraisAnnuelsEnergie"
+                           formControlName="fraisAnnuelsEnergie"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

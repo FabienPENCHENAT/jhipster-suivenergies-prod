@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity TD001DPE.
+    -->
+    <changeSet id="20200824145240-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="td002consommations_id"
+                                 baseTableName="td_001_dpe"
+                                 constraintName="fk_td_001_dpe_td002consommations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="td_002_consommations"/>
+
+        <addForeignKeyConstraint baseColumnNames="td006batiment_id"
+                                 baseTableName="td_001_dpe"
+                                 constraintName="fk_td_001_dpe_td006batiment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="td_006_batiment"/>
+
+        <addForeignKeyConstraint baseColumnNames="td017consommation_neuf_id"
+                                 baseTableName="td_001_dpe"
+                                 constraintName="fk_td_001_dpe_td017consommation_neuf_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="td_017_consommation_neuf"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -21,6 +21,13 @@
                 </a>
             </li>
         </ul>
+        <ul class="navbar-nav mr-auto">
+            <li *jhiHasAnyAuthority="'ROLE_USER'" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="consommation" (click)="collapseNavbar()">
+                    <span>Mes dépenses d'énergie</span>
+                </a>
+            </li>
+        </ul>
         <ul class="navbar-nav ml-auto">
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
@@ -55,6 +62,78 @@
                         <a class="dropdown-item" routerLink="mode-vie" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                             <span>Mode Vie</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-001-dpe" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 001 Dpe</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-002-consommations" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 002 Consommations</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-006-batiment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 006 Batiment</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-007-paroi-opaque" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 007 Paroi Opaque</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-008-baie" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 008 Baie</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-010-ponts-thermiques" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 010 Ponts Thermiques</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-011-instalation-chauffage" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 011 Instalation Chauffage</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-012-generateur-chauffage" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 012 Generateur Chauffage</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-013-instalation-ecs" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 013 Instalation Ecs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-014-generateur-ecs" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 014 Generateur Ecs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-015-production-energies" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 015 Production Energies</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="td-017-consommation-neuf" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
+                            <span>Td 017 Consommation Neuf</span>
                         </a>
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->

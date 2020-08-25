@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD007ParoiOpaque">
+            <h2><span>TD 007 Paroi Opaque</span> {{ tD007ParoiOpaque.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Tr 014 Type Parois Opaque</span></dt>
+                <dd>
+                    <span>{{ tD007ParoiOpaque.tr014TypeParoisOpaque }}</span>
+                </dd>
+                <dt><span>Reference</span></dt>
+                <dd>
+                    <span>{{ tD007ParoiOpaque.reference }}</span>
+                </dd>
+                <dt><span>Deperdition Thermique</span></dt>
+                <dd>
+                    <span>{{ tD007ParoiOpaque.deperditionThermique }}</span>
+                </dd>
+                <dt><span>Coefficient Transmission Thermique Paroi</span></dt>
+                <dd>
+                    <span>{{ tD007ParoiOpaque.coefficientTransmissionThermiqueParoi }}</span>
+                </dd>
+                <dt><span>Resistance Thermique Isolation</span></dt>
+                <dd>
+                    <span>{{ tD007ParoiOpaque.resistanceThermiqueIsolation }}</span>
+                </dd>
+                <dt><span>Epaisseur Isolation</span></dt>
+                <dd>
+                    <span>{{ tD007ParoiOpaque.epaisseurIsolation }}</span>
+                </dd>
+                <dt><span>Surface Paroi</span></dt>
+                <dd>
+                    <span>{{ tD007ParoiOpaque.surfaceParoi }}</span>
+                </dd>
+                <dt><span>Td 008 Baie</span></dt>
+                <dd>
+                    <div *ngIf="tD007ParoiOpaque.td008Baie">
+                        <a [routerLink]="['/td-008-baie', tD007ParoiOpaque.td008Baie?.id, 'view']">{{ tD007ParoiOpaque.td008Baie?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-007-paroi-opaque', tD007ParoiOpaque.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD010PontsThermiques">
+            <h2><span>TD 010 Ponts Thermiques</span> {{ tD010PontsThermiques.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Longueur</span></dt>
+                <dd>
+                    <span>{{ tD010PontsThermiques.longueur }}</span>
+                </dd>
+                <dt><span>Tv 013 Valeur Pont Thermique</span></dt>
+                <dd>
+                    <span>{{ tD010PontsThermiques.tv013ValeurPontThermique }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-010-ponts-thermiques', tD010PontsThermiques.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

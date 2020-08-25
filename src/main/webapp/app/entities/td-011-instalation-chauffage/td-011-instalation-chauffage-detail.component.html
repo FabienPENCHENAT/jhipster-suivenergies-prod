@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD011InstalationChauffage">
+            <h2><span>TD 011 Instalation Chauffage</span> {{ tD011InstalationChauffage.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Tr 003 Type Installation Chauffage</span></dt>
+                <dd>
+                    <span>{{ tD011InstalationChauffage.tr003TypeInstallationChauffage }}</span>
+                </dd>
+                <dt><span>Surface Chauffee</span></dt>
+                <dd>
+                    <span>{{ tD011InstalationChauffage.surfaceChauffee }}</span>
+                </dd>
+                <dt><span>Td 012 Generateur Chauffage</span></dt>
+                <dd>
+                    <div *ngIf="tD011InstalationChauffage.td012GenerateurChauffage">
+                        <a [routerLink]="['/td-012-generateur-chauffage', tD011InstalationChauffage.td012GenerateurChauffage?.id, 'view']">{{ tD011InstalationChauffage.td012GenerateurChauffage?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-011-instalation-chauffage', tD011InstalationChauffage.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

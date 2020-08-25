@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD008Baie">
+            <h2><span>TD 008 Baie</span> {{ tD008Baie.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Reference</span></dt>
+                <dd>
+                    <span>{{ tD008Baie.reference }}</span>
+                </dd>
+                <dt><span>Td 008 Baie</span></dt>
+                <dd>
+                    <span>{{ tD008Baie.td008Baie }}</span>
+                </dd>
+                <dt><span>Deperdition</span></dt>
+                <dd>
+                    <span>{{ tD008Baie.deperdition }}</span>
+                </dd>
+                <dt><span>Tv 009 Coefficient Transmission Thermique Vitrage</span></dt>
+                <dd>
+                    <span>{{ tD008Baie.tv009CoefficientTransmissionThermiqueVitrage }}</span>
+                </dd>
+                <dt><span>Tv 012 Coef Transmission Thermique Baie Protection Solaire</span></dt>
+                <dd>
+                    <span>{{ tD008Baie.tv012CoefTransmissionThermiqueBaieProtectionSolaire }}</span>
+                </dd>
+                <dt><span>Surface</span></dt>
+                <dd>
+                    <span>{{ tD008Baie.surface }}</span>
+                </dd>
+                <dt><span>Perimetre</span></dt>
+                <dd>
+                    <span>{{ tD008Baie.perimetre }}</span>
+                </dd>
+                <dt><span>Tv 013 Valeur Pont Thermique</span></dt>
+                <dd>
+                    <span>{{ tD008Baie.tv013ValeurPontThermique }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-008-baie', tD008Baie.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

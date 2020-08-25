@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD014GenerateurECS">
+            <h2><span>TD 014 Generateur ECS</span> {{ tD014GenerateurECS.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Td 013 Installation Ecs</span></dt>
+                <dd>
+                    <span>{{ tD014GenerateurECS.td013InstallationEcs }}</span>
+                </dd>
+                <dt><span>Tr 004 Type Energie</span></dt>
+                <dd>
+                    <span>{{ tD014GenerateurECS.tr004TypeEnergie }}</span>
+                </dd>
+                <dt><span>Volume Stockage</span></dt>
+                <dd>
+                    <span>{{ tD014GenerateurECS.volumeStockage }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-014-generateur-ecs', tD014GenerateurECS.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

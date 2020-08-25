@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-td-013-instalation-ecs-heading">Create or edit a TD 013 Instalation ECS</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tr005TypeInstallationEcs">Tr 005 Type Installation Ecs</label>
+                    <input type="text" class="form-control" name="tr005TypeInstallationEcs" id="field_tr005TypeInstallationEcs"
+                           formControlName="tr005TypeInstallationEcs"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_becs">Becs</label>
+                    <input type="number" class="form-control" name="becs" id="field_becs"
+                           formControlName="becs"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tv039FormuleBecs">Tv 039 Formule Becs</label>
+                    <input type="text" class="form-control" name="tv039FormuleBecs" id="field_tv039FormuleBecs"
+                           formControlName="tv039FormuleBecs"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_surfaceAlimentee">Surface Alimentee</label>
+                    <input type="number" class="form-control" name="surfaceAlimentee" id="field_surfaceAlimentee"
+                           formControlName="surfaceAlimentee"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_td014GenerateurECS">Td 014 Generateur ECS</label>
+                    <select class="form-control" id="field_td014GenerateurECS" name="td014GenerateurECS" formControlName="td014GenerateurECS">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="tD014GenerateurECSOption.id === editForm.get('td014GenerateurECS')!.value?.id ? editForm.get('td014GenerateurECS')!.value : tD014GenerateurECSOption" *ngFor="let tD014GenerateurECSOption of td014generateurecs; trackBy: trackById">{{ tD014GenerateurECSOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

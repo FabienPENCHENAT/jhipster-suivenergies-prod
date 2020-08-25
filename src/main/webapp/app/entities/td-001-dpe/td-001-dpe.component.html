@@ -1,0 +1,129 @@
+<div>
+    <h2 id="page-heading">
+        <span>TD 001 DPES</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-td-001-dpe" [routerLink]="['/td-001-dpe/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new TD 001 DPE
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="tD001DPES?.length === 0">
+        <span>No tD001DPES found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="tD001DPES && tD001DPES.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Numero Dpe</span></th>
+                    <th scope="col" ><span>Tr 001 Modele Dpe</span></th>
+                    <th scope="col" ><span>Nom Methode Dpe</span></th>
+                    <th scope="col" ><span>Consommation Energie</span></th>
+                    <th scope="col" ><span>Classe Consommation Energie</span></th>
+                    <th scope="col" ><span>Estimation Ges</span></th>
+                    <th scope="col" ><span>Classe Estimation Ges</span></th>
+                    <th scope="col" ><span>Tr 002 Type Batiment</span></th>
+                    <th scope="col" ><span>Annee Construction</span></th>
+                    <th scope="col" ><span>Surface Habitable</span></th>
+                    <th scope="col" ><span>Tv 016 Departement</span></th>
+                    <th scope="col" ><span>Commune</span></th>
+                    <th scope="col" ><span>Arrondissement</span></th>
+                    <th scope="col" ><span>Type Voie</span></th>
+                    <th scope="col" ><span>Nom Rue</span></th>
+                    <th scope="col" ><span>Numero Rue</span></th>
+                    <th scope="col" ><span>Batiment</span></th>
+                    <th scope="col" ><span>Escalier</span></th>
+                    <th scope="col" ><span>Etage</span></th>
+                    <th scope="col" ><span>Porte</span></th>
+                    <th scope="col" ><span>Code Postal</span></th>
+                    <th scope="col" ><span>Code Insee Commune</span></th>
+                    <th scope="col" ><span>Code Insee Commune Actualise</span></th>
+                    <th scope="col" ><span>Code Insee Commune Corrige</span></th>
+                    <th scope="col" ><span>Numero Lot</span></th>
+                    <th scope="col" ><span>Date Reception Dpe</span></th>
+                    <th scope="col" ><span>Td 002 Consommations</span></th>
+                    <th scope="col" ><span>Td 006 Batiment</span></th>
+                    <th scope="col" ><span>Td 017 Consommation Neuf</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tD001DPE of tD001DPES ;trackBy: trackId">
+                    <td><a [routerLink]="['/td-001-dpe', tD001DPE.id, 'view']">{{ tD001DPE.id }}</a></td>
+                    <td>{{ tD001DPE.numeroDpe }}</td>
+                    <td>{{ tD001DPE.tr001ModeleDpe }}</td>
+                    <td>{{ tD001DPE.nomMethodeDpe }}</td>
+                    <td>{{ tD001DPE.consommationEnergie }}</td>
+                    <td>{{ tD001DPE.classeConsommationEnergie }}</td>
+                    <td>{{ tD001DPE.estimationGes }}</td>
+                    <td>{{ tD001DPE.classeEstimationGes }}</td>
+                    <td>{{ tD001DPE.tr002TypeBatiment }}</td>
+                    <td>{{ tD001DPE.anneeConstruction }}</td>
+                    <td>{{ tD001DPE.surfaceHabitable }}</td>
+                    <td>{{ tD001DPE.tv016Departement }}</td>
+                    <td>{{ tD001DPE.commune }}</td>
+                    <td>{{ tD001DPE.arrondissement }}</td>
+                    <td>{{ tD001DPE.typeVoie }}</td>
+                    <td>{{ tD001DPE.nomRue }}</td>
+                    <td>{{ tD001DPE.numeroRue }}</td>
+                    <td>{{ tD001DPE.batiment }}</td>
+                    <td>{{ tD001DPE.escalier }}</td>
+                    <td>{{ tD001DPE.etage }}</td>
+                    <td>{{ tD001DPE.porte }}</td>
+                    <td>{{ tD001DPE.codePostal }}</td>
+                    <td>{{ tD001DPE.codeInseeCommune }}</td>
+                    <td>{{ tD001DPE.codeInseeCommuneActualise }}</td>
+                    <td>{{ tD001DPE.codeInseeCommuneCorrige }}</td>
+                    <td>{{ tD001DPE.numeroLot }}</td>
+                    <td>{{ tD001DPE.dateReceptionDpe | date:'mediumDate' }}</td>
+                    <td>
+                        <div *ngIf="tD001DPE.td002Consommations">
+                            <a [routerLink]="['/td-002-consommations', tD001DPE.td002Consommations?.id, 'view']" >{{ tD001DPE.td002Consommations?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="tD001DPE.td006Batiment">
+                            <a [routerLink]="['/td-006-batiment', tD001DPE.td006Batiment?.id, 'view']" >{{ tD001DPE.td006Batiment?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="tD001DPE.td017ConsommationNeuf">
+                            <a [routerLink]="['/td-017-consommation-neuf', tD001DPE.td017ConsommationNeuf?.id, 'view']" >{{ tD001DPE.td017ConsommationNeuf?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/td-001-dpe', tD001DPE.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/td-001-dpe', tD001DPE.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(tD001DPE)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

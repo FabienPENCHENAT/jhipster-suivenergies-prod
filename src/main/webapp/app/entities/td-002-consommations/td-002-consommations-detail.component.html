@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD002Consommations">
+            <h2><span>TD 002 Consommations</span> {{ tD002Consommations.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Tr 006 Type Usage</span></dt>
+                <dd>
+                    <span>{{ tD002Consommations.tr006TypeUsage }}</span>
+                </dd>
+                <dt><span>Tr 004 Typ Energie</span></dt>
+                <dd>
+                    <span>{{ tD002Consommations.tr004TypEnergie }}</span>
+                </dd>
+                <dt><span>Tv 042 Tarif Energie</span></dt>
+                <dd>
+                    <span>{{ tD002Consommations.tv042TarifEnergie }}</span>
+                </dd>
+                <dt><span>Consommation Energie Finale</span></dt>
+                <dd>
+                    <span>{{ tD002Consommations.consommationEnergieFinale }}</span>
+                </dd>
+                <dt><span>Consommation Energie Primaire</span></dt>
+                <dd>
+                    <span>{{ tD002Consommations.consommationEnergiePrimaire }}</span>
+                </dd>
+                <dt><span>Frais Annuels Energie</span></dt>
+                <dd>
+                    <span>{{ tD002Consommations.fraisAnnuelsEnergie }}</span>
+                </dd>
+                <dt><span>Est Efface</span></dt>
+                <dd>
+                    <span>{{ tD002Consommations.estEfface }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-002-consommations', tD002Consommations.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

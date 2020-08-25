@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tD015ProductionEnergies">
+            <h2><span>TD 015 Production Energies</span> {{ tD015ProductionEnergies.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Tr 004 Type Energie</span></dt>
+                <dd>
+                    <span>{{ tD015ProductionEnergies.tr004TypeEnergie }}</span>
+                </dd>
+                <dt><span>Production Electricite Capteurs Photovoltaiques</span></dt>
+                <dd>
+                    <span>{{ tD015ProductionEnergies.productionElectriciteCapteursPhotovoltaiques }}</span>
+                </dd>
+                <dt><span>Productionle Ectricite Micro Eolienne</span></dt>
+                <dd>
+                    <span>{{ tD015ProductionEnergies.productionleEctriciteMicroEolienne }}</span>
+                </dd>
+                <dt><span>Production Cogeneration</span></dt>
+                <dd>
+                    <span>{{ tD015ProductionEnergies.productionCogeneration }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/td-015-production-energies', tD015ProductionEnergies.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

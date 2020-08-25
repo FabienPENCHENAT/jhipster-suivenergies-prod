@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity TD011InstalationChauffage.
+    -->
+    <changeSet id="20200824145840-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="td012generateur_chauffage_id"
+                                 baseTableName="td_011_instalation_chauffage"
+                                 constraintName="fk_td_011_instalation_chauffage_td012generateur_chauffage_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="td_012_generateur_chauffage"/>
+
+    </changeSet>
+</databaseChangeLog>

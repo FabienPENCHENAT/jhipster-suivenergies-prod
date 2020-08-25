@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span>TD 012 Generateur Chauffages</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-td-012-generateur-chauffage" [routerLink]="['/td-012-generateur-chauffage/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new TD 012 Generateur Chauffage
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="tD012GenerateurChauffages?.length === 0">
+        <span>No tD012GenerateurChauffages found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="tD012GenerateurChauffages && tD012GenerateurChauffages.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Systeme Chauffage Cogeneration</span></th>
+                    <th scope="col" ><span>Td 011 Installation Chauffage</span></th>
+                    <th scope="col" ><span>Tr 004 Type Energie</span></th>
+                    <th scope="col" ><span>Consommation Chauffage</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tD012GenerateurChauffage of tD012GenerateurChauffages ;trackBy: trackId">
+                    <td><a [routerLink]="['/td-012-generateur-chauffage', tD012GenerateurChauffage.id, 'view']">{{ tD012GenerateurChauffage.id }}</a></td>
+                    <td>{{ tD012GenerateurChauffage.systemeChauffageCogeneration }}</td>
+                    <td>{{ tD012GenerateurChauffage.td011InstallationChauffage }}</td>
+                    <td>{{ tD012GenerateurChauffage.tr004TypeEnergie }}</td>
+                    <td>{{ tD012GenerateurChauffage.consommationChauffage }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/td-012-generateur-chauffage', tD012GenerateurChauffage.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/td-012-generateur-chauffage', tD012GenerateurChauffage.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(tD012GenerateurChauffage)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
