@@ -15,6 +15,7 @@ type EntityArrayResponseType = HttpResponse<IInfoDPE[]>;
 @Injectable({ providedIn: 'root' })
 export class InfoDPEService {
   public resourceUrl = SERVER_API_URL + 'api/info-dpes';
+  public resourceUrlDownload = SERVER_API_URL + 'api/info-dpe';
 
   constructor(protected http: HttpClient) {}
 
@@ -44,9 +45,9 @@ export class InfoDPEService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  downloadInfoDPE(num: String): Observable<EntityResponseType> {
+  downloadInfoDPE(number: String): Observable<EntityResponseType> {
     return this.http
-      .post<IInfoDPE>(this.resourceUrl, num, { observe: 'response' })
+      .post<IInfoDPE>(`${this.resourceUrlDownload}/${number}`, null, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

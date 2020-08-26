@@ -15,16 +15,20 @@ export class InfoDPEResolve implements Resolve<IInfoDPE> {
   constructor(private service: InfoDPEService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<IInfoDPE> | Observable<never> {
-    return this.service.findLast().pipe(
-      flatMap((infoDPE: HttpResponse<InfoDPE>) => {
-        if (infoDPE.body) {
-          return of(infoDPE.body);
-        } else {
-          this.router.navigate(['404']);
-          return EMPTY;
-        }
-      })
-    );
+    const id = route.params['id'];
+    if (id) {
+      return this.service.find(id).pipe(
+        flatMap((infoDPE: HttpResponse<InfoDPE>) => {
+          if (infoDPE.body) {
+            return of(infoDPE.body);
+          } else {
+            this.router.navigate(['404']);
+            return EMPTY;
+          }
+        })
+      );
+    }
+    return of(new InfoDPE());
   }
 }
 

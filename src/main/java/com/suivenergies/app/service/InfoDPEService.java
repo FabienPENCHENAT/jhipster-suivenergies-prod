@@ -52,9 +52,10 @@ public class InfoDPEService {
      * Download DPE by DPE Number and save in DB with user connected.
      *
      * @param numeroDPE
+     * @return InfoDPE
      */
-    public void downlodAndSaveDPE(String numeroDPE) {
-        downlodAndSaveDPE(numeroDPE, null);
+    public InfoDPE downlodAndSaveDPE(String numeroDPE) {
+        return downlodAndSaveDPE(numeroDPE, null);
     }
 
     /**
@@ -62,8 +63,9 @@ public class InfoDPEService {
      *
      * @param numeroDPE
      * @param client just created
+     * @return InfoDPE
      */
-    public void downlodAndSaveDPE(String numeroDPE, Client client) {
+    public InfoDPE downlodAndSaveDPE(String numeroDPE, Client client) {
         // call api get dpe info
         InfoDPE infoDpe = downloadDPE(numeroDPE);
 
@@ -75,7 +77,7 @@ public class InfoDPEService {
         }
 
         // save info dpe in db
-        infoDPERepository.save(infoDpe);
+        return infoDPERepository.save(infoDpe);
     }
 
     private InfoDPE downloadDPE(String numeroDPE) {

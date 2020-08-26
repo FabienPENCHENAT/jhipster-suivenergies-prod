@@ -14,10 +14,10 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_type">Type</label>
                     <select class="form-control" name="type" formControlName="type" id="field_type">
-                        <option value="ELEC">Electricité (kWh</option>
-                        <option value="GAZ">Gaz (kWh</option>
-                        <option value="FIOUL">Fioul (l</option>
-                        <option value="BOIS">Bois (m3</option>
+                        <option value="ELEC">Electricité (kWh)</option>
+                        <option value="GAZ">Gaz (kWh)</option>
+                        <option value="FIOUL">Fioul (l)</option>
+                        <option value="BOIS">Bois (m3)</option>
                     </select>
                 </div>
 
@@ -33,7 +33,7 @@
                            formControlName="quantite"/>
                 </div>
 
-                <div class="form-group">
+                <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="form-group">
                     <label class="form-control-label" for="field_client">Client</label>
                     <select class="form-control" id="field_client" name="client" formControlName="client">
                         <option [ngValue]="null"></option>

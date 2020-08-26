@@ -2,6 +2,8 @@ package com.suivenergies.app.web.rest;
 
 import com.suivenergies.app.domain.Client;
 import com.suivenergies.app.domain.Facture;
+import com.suivenergies.app.domain.FacturesByType;
+import com.suivenergies.app.domain.enumeration.EnergiesFacture;
 import com.suivenergies.app.repository.FactureRepository;
 import com.suivenergies.app.service.ClientService;
 import com.suivenergies.app.web.rest.errors.BadRequestAlertException;
@@ -9,7 +11,10 @@ import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +66,11 @@ public class FactureResource {
         if (facture.getId() != null) {
             throw new BadRequestAlertException("A new facture cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        if (facture != null && facture.getClient() == null) {
+            facture.setClient(clientService.getClientConnected());
+        }
+
         Facture result = factureRepository.save(facture);
         return ResponseEntity
             .created(new URI("/api/factures/" + result.getId()))
@@ -137,10 +147,29 @@ public class FactureResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the infoDPE, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/factures/client")
-    public ResponseEntity<List<Facture>> getAllClientFactures() {
+    public ResponseEntity<List<FacturesByType>> getAllClientFactures() {
         Client clientConnected = clientService.getClientConnected();
         log.debug("REST request to get factures by client connected : {}", clientConnected.getId());
         Optional<List<Facture>> factures = factureRepository.findAllByClientId(clientConnected.getId());
-        return ResponseUtil.wrapOrNotFound(factures);
+
+        List<FacturesByType> result = new ArrayList<FacturesByType>();
+
+        Map<EnergiesFacture, List<Facture>> facturesByType = new HashMap<>();
+        for (Facture facture : factures.get()) {
+            EnergiesFacture type = facture.getType();
+            if (!facturesByType.containsKey(type)) {
+                List<Facture> facturesInstance = new ArrayList<>();
+                facturesInstance.add(facture);
+                facturesByType.put(type, facturesInstance);
+            } else {
+                facturesByType.get(type).add(facture);
+            }
+        }
+
+        for (Map.Entry tmp : facturesByType.entrySet()) {
+            result.add(new FacturesByType((EnergiesFacture) tmp.getKey(), (ArrayList) tmp.getValue()));
+        }
+
+        return ResponseUtil.wrapOrNotFound(Optional.of(result));
     }
 }

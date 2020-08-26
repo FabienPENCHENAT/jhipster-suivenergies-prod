@@ -2,7 +2,6 @@ package com.suivenergies.app.web.rest;
 
 import com.suivenergies.app.domain.Client;
 import com.suivenergies.app.domain.InfoDPE;
-import com.suivenergies.app.domain.User;
 import com.suivenergies.app.repository.InfoDPERepository;
 import com.suivenergies.app.security.AuthoritiesConstants;
 import com.suivenergies.app.service.ClientService;
@@ -57,7 +56,7 @@ public class InfoDPEResource {
 
     @PostMapping("/info-dpe/{numeroDPE}")
     @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.USER + "\")")
-    public ResponseEntity<User> downloadInfoDPE(@PathVariable String numeroDPE) throws URISyntaxException {
+    public ResponseEntity<InfoDPE> downloadInfoDPE(@PathVariable String numeroDPE) throws URISyntaxException {
         log.debug("REST request to download DPE : {}", numeroDPE);
 
         if (numeroDPE == null) {
@@ -65,7 +64,7 @@ public class InfoDPEResource {
         } else {
             infoDPEService.downlodAndSaveDPE(numeroDPE);
         }
-        return null;
+        return getInfoDPE();
     }
 
     /**

@@ -21,8 +21,7 @@
 								data-placement="right"> </i>
 						</div>
 						<div class="col-md-4">
-							<button type="submit" [disabled]="dpeForm.invalid || isSaving" class="btn btn-primary" disabled="disabled"
-								onclick="displayDonneesDPE()">Télécharger mes données</button>
+							<button type="submit" [disabled]="dpeForm.invalid || isSaving" class="btn btn-primary" disabled="disabled" >Télécharger mes données</button>
 						</div>
 					</div>
 					<hr />
@@ -112,65 +111,26 @@
 						</div>
 						<div class="col-md-10" id="conso">
 							<div class="row">
-								<table class="col-md-6 table table-striped table-bordered">
-									<thead>
-										<tr>
-											<th style="width: 30%" scope="col"></th>
-											<th style="text-align: center;" scope="col">2019</th>
-											<th style="text-align: center;" scope="col">2018</th>
-											<th style="text-align: center;" scope="col">2017</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Electricité (kWh)</td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" formControlName="elec2019"></td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value="3 894"></td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value="3 731"></td>
-										</tr>
-										<tr>
-											<td>Gaz (kWh)</td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value="29 050"></td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value="32 310"></td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value="29 570"></td>
-										</tr>
-										<tr>
-											<td>Fioul (l)</td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value=""></td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value=""></td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value=""></td>
-										</tr>
-										<tr>
-											<td>Bois (m3)</td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value=""></td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value=""></td>
-											<td><input type="number" class="form-control"
-												id="enerPrincpale" value=""></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+								<div class="col-md-5 mb-4" *ngFor="let facturesByType of facturesByTypes">
+									<div class="row">
+										<h4 *ngIf="facturesByType.type == 'ELEC'">Electricité (kWh)</h4>
+										<h4 *ngIf="facturesByType.type == 'GAZ'">Gaz (kWh)</h4>
+										<h4 *ngIf="facturesByType.type == 'FIOUL'">Fioul (l)</h4>
+										<h4 *ngIf="facturesByType.type == 'BOIS'">Bois (m3)</h4>
+									</div>
+									<div>
+										<div class="row" *ngFor="let facture of facturesByType.factures">
+											<label class="ml-2">- {{ facture.annee }} : {{ facture.quantite }}</label>
+										</div>
+									</div>
+								</div>
+							</div> 
 						</div>
 					</div>
-				<div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
-                </button>
-                <button type="submit" id="save-entity" [disabled]="factureForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Enregistrer</span>
-                </button>
-            </div>
+					<button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-facture" [routerLink]="['/facture/new']">
+			            <fa-icon icon="plus"></fa-icon>
+			            <span>Ajouter une facture</span>
+			        </button>
 				</form>
 			</div>
 		</div>

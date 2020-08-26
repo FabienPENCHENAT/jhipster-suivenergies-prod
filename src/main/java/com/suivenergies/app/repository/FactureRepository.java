@@ -18,6 +18,8 @@ public interface FactureRepository extends JpaRepository<Facture, Long> {
     @Query("select distinct facture from Facture facture left join fetch facture.client")
     List<Facture> findAllWithEagerRelationships();
 
-    @Query("select distinct facture from Facture facture left join fetch facture.client client where client.id =:id ORDER BY facture.annee")
+    @Query(
+        "select distinct facture from Facture facture left join fetch facture.client client where client.id =:id ORDER BY facture.type, facture.annee"
+    )
     Optional<List<Facture>> findAllByClientId(@Param("id") Long id);
 }

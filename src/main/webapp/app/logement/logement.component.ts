@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 
 import { IInfoDPE } from 'app/shared/model/info-dpe.model';
 import { IFacture, Facture } from 'app/shared/model/facture.model';
+import { IFacturesByType, FacturesByType } from 'app/shared/model/facturesByType.model';
 import { EnergiesFacture } from 'app/shared/model/enumerations/energies-facture.model';
 import { LogementService } from './logement.service';
 import { InfoDPEService } from '../entities/info-dpe/info-dpe.service';
@@ -18,7 +19,7 @@ export class LogementComponent implements OnInit {
   isSaving = false;
   idDPE?: number;
   infoDPE?: IInfoDPE;
-  factures?: IFacture[];
+  facturesByTypes?: FacturesByType[];
 
   dpeForm = this.fb.group({
     numero: [''],
@@ -55,7 +56,7 @@ export class LogementComponent implements OnInit {
 
   ngOnInit(): void {
     this.infoDPEService.findLast().subscribe((dpe: HttpResponse<IInfoDPE>) => this.completeDpeForm(dpe));
-    // this.factureService.findAllByClientId.subscribe((res: HttpResponse<IFacture[]>) => (this.factures = res.body || []));
+    this.factureService.findAllByClientId().subscribe((res: HttpResponse<FacturesByType[]>) => (this.facturesByTypes = res.body || []));
   }
 
   completeDpeForm(dpe: HttpResponse<IInfoDPE>): void {
@@ -75,18 +76,13 @@ export class LogementComponent implements OnInit {
       });
     }
   }
-  
-  completeFacturesForm(factures: HttpResponse<IFacture[]>): void {
-	    if (factures && factures.body) {
-	      this.factureForm.patchValue({
-	    	  elec2019: '55555',
-	      });
-	    }
-	  }
-  
+
   saveDPE(): void {
     this.isSaving = true;
-    this.subscribeToSaveResponse(this.infoDPEService.downloadInfoDPE(this.dpeForm.get(['numero'])!.value));
+    const numDpe = this.dpeForm.get(['numero'])!.value;
+    if (numDpe) {
+      this.subscribeToSaveResponse(this.infoDPEService.downloadInfoDPE(numDpe));
+    }
   }
 
   saveConso(): void {
