@@ -8,9 +8,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IInfoDPE } from 'app/shared/model/info-dpe.model';
 import { IModeVie, ModeVie } from 'app/shared/model/mode-vie.model';
-import { IFacture, Facture } from 'app/shared/model/facture.model';
+import { IFacture } from 'app/shared/model/facture.model';
 import { FacturesByType } from 'app/shared/model/facturesByType.model';
-import { EnergiesFacture } from 'app/shared/model/enumerations/energies-facture.model';
 import { LogementService } from './logement.service';
 import { InfoDPEService } from '../entities/info-dpe/info-dpe.service';
 import { FactureService } from '../entities/facture/facture.service';
@@ -40,7 +39,7 @@ export class LogementComponent implements OnInit, OnDestroy {
     energieEauChaude: [''],
     energiePhotovoltaique: [''],
   });
-  
+
   modeVieForm = this.fb.group({
     id: [],
     nbPersonnes: [],
@@ -120,26 +119,26 @@ export class LogementComponent implements OnInit, OnDestroy {
       });
     }
   }
-  
+
   completeModeVie(res: HttpResponse<IModeVie>): void {
-  	if (res && res.body) {
+    if (res && res.body) {
       this.modeVie = res.body;
     }
     if (this.modeVie) {
       this.modeVieForm.patchValue({
-          id: this.modeVie.id,
-	      nbPersonnes: this.modeVie.nbPersonnes,
-	      presenceMatinSemaine: this.modeVie.presenceMatinSemaine,
-	      presenceMatinWE: this.modeVie.presenceMatinWE,
-	      presenceAMSemaine: this.modeVie.presenceAMSemaine,
-	      presenceAMWE: this.modeVie.presenceAMWE,
-	      presenceSoirSemaine: this.modeVie.presenceSoirSemaine,
-	      presenceSoirWE: this.modeVie.presenceSoirWE,
-	      presenceNuitSemaine: this.modeVie.presenceNuitSemaine,
-	      presenceNuitWE: this.modeVie.presenceNuitWE,
-	      semainesAbsenceHiver: this.modeVie.semainesAbsenceHiver,
-	      semainesAbsenceEte: this.modeVie.semainesAbsenceEte,
-	      client: this.modeVie.client,
+        id: this.modeVie.id,
+        nbPersonnes: this.modeVie.nbPersonnes,
+        presenceMatinSemaine: this.modeVie.presenceMatinSemaine,
+        presenceMatinWE: this.modeVie.presenceMatinWE,
+        presenceAMSemaine: this.modeVie.presenceAMSemaine,
+        presenceAMWE: this.modeVie.presenceAMWE,
+        presenceSoirSemaine: this.modeVie.presenceSoirSemaine,
+        presenceSoirWE: this.modeVie.presenceSoirWE,
+        presenceNuitSemaine: this.modeVie.presenceNuitSemaine,
+        presenceNuitWE: this.modeVie.presenceNuitWE,
+        semainesAbsenceHiver: this.modeVie.semainesAbsenceHiver,
+        semainesAbsenceEte: this.modeVie.semainesAbsenceEte,
+        client: this.modeVie.client,
       });
     }
   }
@@ -160,7 +159,7 @@ export class LogementComponent implements OnInit, OnDestroy {
   previousState(): void {
     window.history.back();
   }
-  
+
   saveModeVie(): void {
     this.isSaving = true;
     const modeVie = this.createFromModeVieForm();
@@ -177,8 +176,8 @@ export class LogementComponent implements OnInit, OnDestroy {
       () => this.onSaveError()
     );
   }
-  
-   protected subscribeToSaveResponseModeVie(result: Observable<HttpResponse<IModeVie>>): void {
+
+  protected subscribeToSaveResponseModeVie(result: Observable<HttpResponse<IModeVie>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
       () => this.onSaveError()
@@ -193,7 +192,7 @@ export class LogementComponent implements OnInit, OnDestroy {
   protected onSaveError(): void {
     this.isSaving = false;
   }
-  
+
   private createFromModeVieForm(): IModeVie {
     return {
       ...new ModeVie(),

@@ -27,7 +27,7 @@ export class ModeVieService {
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IModeVie>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
-  
+
   findOneByClient(): Observable<EntityResponseType> {
     return this.http.get<IModeVie>(`${this.resourceSimpleUrl}`, { observe: 'response' });
   }

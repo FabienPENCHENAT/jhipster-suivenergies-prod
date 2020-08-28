@@ -6,20 +6,18 @@ import com.suivenergies.app.domain.ModeVie;
 import com.suivenergies.app.repository.ModeVieRepository;
 import com.suivenergies.app.service.ClientService;
 import com.suivenergies.app.web.rest.errors.BadRequestAlertException;
-
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * REST controller for managing {@link com.suivenergies.app.domain.ModeVie}.
@@ -28,7 +26,6 @@ import java.util.Optional;
 @RequestMapping("/api")
 @Transactional
 public class ModeVieResource {
-
     private final Logger log = LoggerFactory.getLogger(ModeVieResource.class);
 
     private static final String ENTITY_NAME = "modeVie";
@@ -37,7 +34,7 @@ public class ModeVieResource {
     private String applicationName;
 
     private final ModeVieRepository modeVieRepository;
-    
+
     private final ClientService clientService;
 
     public ModeVieResource(ModeVieRepository modeVieRepository, ClientService clientService) {
@@ -53,7 +50,7 @@ public class ModeVieResource {
         Optional<ModeVie> modeVie = modeVieRepository.findOneByClientId(clientConnected.getId());
         return ResponseUtil.wrapOrNotFound(modeVie);
     }
-    
+
     /**
      * {@code POST  /mode-vies} : Create a new modeVie.
      *
@@ -68,7 +65,8 @@ public class ModeVieResource {
             throw new BadRequestAlertException("A new modeVie cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ModeVie result = modeVieRepository.save(modeVie);
-        return ResponseEntity.created(new URI("/api/mode-vies/" + result.getId()))
+        return ResponseEntity
+            .created(new URI("/api/mode-vies/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -89,7 +87,8 @@ public class ModeVieResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         ModeVie result = modeVieRepository.save(modeVie);
-        return ResponseEntity.ok()
+        return ResponseEntity
+            .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, modeVie.getId().toString()))
             .body(result);
     }
@@ -128,6 +127,9 @@ public class ModeVieResource {
     public ResponseEntity<Void> deleteModeVie(@PathVariable Long id) {
         log.debug("REST request to delete ModeVie : {}", id);
         modeVieRepository.deleteById(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity
+            .noContent()
+            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
+            .build();
     }
 }
