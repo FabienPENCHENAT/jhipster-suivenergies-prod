@@ -104,34 +104,35 @@
 			<h1 class="card-title">Mes consommations  et productions annuelles d’énergie (à relever sur mes factures)</h1>
 			<hr class="col-md-3 ml-0" />
 			<div class="card-text col-md-12">
-				<form name="form" role="form" (ngSubmit)="saveConso()" [formGroup]="factureForm">
-					<div class="row">
-						<div class="col-md-2">
-							<i class="far fa-file-alt fa-7x icon-light"></i>
-						</div>
-						<div class="col-md-10" id="conso">
-							<div class="row">
-								<div class="col-md-5 mb-4" *ngFor="let facturesByType of facturesByTypes">
-									<div class="row">
-										<h4 *ngIf="facturesByType.type == 'ELEC'">Electricité (kWh)</h4>
-										<h4 *ngIf="facturesByType.type == 'GAZ'">Gaz (kWh)</h4>
-										<h4 *ngIf="facturesByType.type == 'FIOUL'">Fioul (l)</h4>
-										<h4 *ngIf="facturesByType.type == 'BOIS'">Bois (m3)</h4>
-									</div>
-									<div>
-										<div class="row" *ngFor="let facture of facturesByType.factures">
-											<label class="ml-2">- {{ facture.annee }} : {{ facture.quantite }}</label>
-										</div>
+				<div class="row">
+					<div class="col-md-2">
+						<i class="far fa-file-alt fa-7x icon-light"></i>
+					</div>
+					<div class="col-md-10" id="conso">
+						<div class="row">
+							<div class="col-md-5 mb-4" *ngFor="let facturesByType of facturesByTypes">
+								<div class="row">
+									<h4 *ngIf="facturesByType.type == 'ELEC'">Electricité (kWh)</h4>
+									<h4 *ngIf="facturesByType.type == 'GAZ'">Gaz (kWh)</h4>
+									<h4 *ngIf="facturesByType.type == 'FIOUL'">Fioul (l)</h4>
+									<h4 *ngIf="facturesByType.type == 'BOIS'">Bois (m3)</h4>
+								</div>
+								<div>
+									<div class="row" *ngFor="let facture of facturesByType.factures">
+										<label class="ml-2">- {{ facture.annee }} : {{ facture.quantite }}</label>
+										<button type="submit" (click)="delete(facture)" class="btn btn-sm" style="margin-top: -5px;">
+			                               <fa-icon icon="times"></fa-icon>
+			                           </button>
 									</div>
 								</div>
-							</div> 
-						</div>
+							</div>
+						</div> 
 					</div>
-					<button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-facture" [routerLink]="['/facture/new']">
-			            <fa-icon icon="plus"></fa-icon>
-			            <span>Ajouter une facture</span>
-			        </button>
-				</form>
+				</div>
+				<button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-facture" [routerLink]="['/facture/new']">
+		            <fa-icon icon="plus"></fa-icon>
+		            <span>Ajouter une facture</span>
+		        </button>
 			</div>
 		</div>
 	</div>
@@ -142,7 +143,7 @@
 			<h1 class="card-title">Mon mode de vie</h1>
 			<hr class="col-md-3 ml-0" />
 			<div class="card-text col-md-12">
-				<form>
+				<form name="modeVie" role="form" (ngSubmit)="saveModeVie()" [formGroup]="modeVieForm">
 					<div class="row">
 						<div class="col-md-1">
 							<i class="fas fa-lock fa-3x mr-5"></i>
@@ -164,8 +165,7 @@
 								<label class="col-md-4 col-form-label" for="nbPersonnes">Nombre
 									de personnes au domicile</label>
 								<div class="col-md-3">
-									<input type="number" class="form-control" id="nbPersonnes"
-										value="4">
+									<input type="String" class="form-control modeVieInput" formControlName="nbPersonnes">
 								</div>
 							</div>
 							<br />
@@ -186,53 +186,64 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td><p>Matin</p>
-											<td><input class="form-check-input" type="radio"
-												name="inlineRadioOptions1" id="inlineRadio1"></td>
-											<td><input class="form-check-input" type="radio"
-												name="inlineRadioOptions11" id="inlineRadio11" checked></td>
+											<td><p>Matin</p></td>
+											<td>
+												<input class="form-check-input" type="checkbox"
+													name="presenceMatinSemaine" id="presenceMatinSemaine" formControlName="presenceMatinSemaine"></td>
+											<td>
+												<input class="form-check-input" type="checkbox"
+													name="presenceMatinWE" id="presenceMatinWE" formControlName="presenceMatinWE"></td>
 										</tr>
 										<tr>
-											<td><p>Après-midi</p>
-											<td><input class="form-check-input" type="radio"
-												name="inlineRadioOptions2" id="inlineRadio2" value="option2"></td>
-											<td><input class="form-check-input" type="radio"
-												name="inlineRadioOptions22" id="inlineRadio22"
-												value="option2"></td>
+											<td><p>Après-midi</p></td>
+											<td>
+												<input class="form-check-input" type="checkbox"
+													name="presenceAMSemaine" id="presenceAMSemaine" formControlName="presenceAMSemaine">
+											</td>
+											<td>
+												<input class="form-check-input" type="checkbox"
+													name="presenceAMWE" id="presenceAMWE" formControlName="presenceAMWE">
+												</td>
 										</tr>
 										<tr>
-											<td><p>Soir</p>
-											<td><input class="form-check-input" type="radio"
-												name="inlineRadioOptions3" id="inlineRadio3" value="option3"></td>
-											<td><input class="form-check-input" type="radio"
-												name="inlineRadioOptions33" id="inlineRadio33" checked
-												value="option1"></td>
+											<td><p>Soir</p></td>
+											<td>
+												<input class="form-check-input" type="checkbox"
+													name="presenceSoirSemaine" id="presenceSoirSemaine" formControlName="presenceSoirSemaine">
+											</td>
+											<td>
+												<input class="form-check-input" type="checkbox"
+													name="presenceSoirWE" id="presenceSoirWE" formControlName="presenceSoirWE">
+											</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 
-
-
 							<div class="row">
 								<h5>Mon temps d'absence sur l'année</h5>
 							</div>
 							<div class="row">
-								<label class="col-md-4 col-form-label" for="nbPersonnes">Semaines
+								<label class="col-md-4 col-form-label" for="semainesAbsenceHiver">Semaines
 									d'absence en hiver</label>
 								<div class="col-md-3">
-									<input value="1" min="0" type="number" id="presentEte" />
+									<input value="1" min="0" type="number" formControlName="semainesAbsenceHiver" />
 								</div>
 							</div>
 							<div class="row">
-								<label class="col-md-4 col-form-label" for="nbPersonnes">Semaines
+								<label class="col-md-4 col-form-label" for="semainesAbsenceEte">Semaines
 									d'absence en été</label>
 								<div class="col-md-3">
-									<input value="2" min="0" type="number" id="presentEte" />
+									<input value="2" min="0" type="number" formControlName="semainesAbsenceEte" />
 								</div>
 							</div>
 						</div>
 					</div>
+					<div>
+		                <button type="submit" id="save-entity" [disabled]="isSaving" class="btn btn-primary">
+		                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+		                </button>
+		            </div>
 				</form>
 			</div>
 

@@ -1,7 +1,10 @@
 package com.suivenergies.app.web.rest;
 
+import com.suivenergies.app.domain.Client;
+import com.suivenergies.app.domain.InfoDPE;
 import com.suivenergies.app.domain.ModeVie;
 import com.suivenergies.app.repository.ModeVieRepository;
+import com.suivenergies.app.service.ClientService;
 import com.suivenergies.app.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -34,11 +37,23 @@ public class ModeVieResource {
     private String applicationName;
 
     private final ModeVieRepository modeVieRepository;
+    
+    private final ClientService clientService;
 
-    public ModeVieResource(ModeVieRepository modeVieRepository) {
+    public ModeVieResource(ModeVieRepository modeVieRepository, ClientService clientService) {
         this.modeVieRepository = modeVieRepository;
+        this.clientService = clientService;
     }
 
+    @GetMapping("/mode-vie")
+    public ResponseEntity<ModeVie> getModeDeVie() {
+        Client clientConnected = clientService.getClientConnected();
+
+        log.debug("REST request to get ModeVie by client connected : {}", clientConnected.getId());
+        Optional<ModeVie> modeVie = modeVieRepository.findOneByClientId(clientConnected.getId());
+        return ResponseUtil.wrapOrNotFound(modeVie);
+    }
+    
     /**
      * {@code POST  /mode-vies} : Create a new modeVie.
      *

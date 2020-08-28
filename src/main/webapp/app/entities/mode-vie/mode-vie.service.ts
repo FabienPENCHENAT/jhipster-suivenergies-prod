@@ -12,6 +12,7 @@ type EntityArrayResponseType = HttpResponse<IModeVie[]>;
 @Injectable({ providedIn: 'root' })
 export class ModeVieService {
   public resourceUrl = SERVER_API_URL + 'api/mode-vies';
+  public resourceSimpleUrl = SERVER_API_URL + 'api/mode-vie';
 
   constructor(protected http: HttpClient) {}
 
@@ -25,6 +26,10 @@ export class ModeVieService {
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IModeVie>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+  
+  findOneByClient(): Observable<EntityResponseType> {
+    return this.http.get<IModeVie>(`${this.resourceSimpleUrl}`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

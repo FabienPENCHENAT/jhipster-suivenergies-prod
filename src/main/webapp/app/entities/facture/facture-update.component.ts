@@ -42,13 +42,23 @@ export class FactureUpdateComponent implements OnInit {
   }
 
   updateForm(facture: IFacture): void {
-    this.editForm.patchValue({
-      id: facture.id,
-      type: facture.type,
-      annee: facture.annee,
-      quantite: facture.quantite,
-      client: facture.client,
-    });
+    if (facture.id !== undefined) {
+      this.editForm.patchValue({
+        id: facture.id,
+        type: facture.type,
+        annee: facture.annee,
+        quantite: facture.quantite,
+        client: facture.client,
+      });
+    } else {
+      this.editForm.patchValue({
+        id: facture.id,
+        type: facture.type,
+        annee: 2020,
+        quantite: facture.quantite,
+        client: facture.client,
+      });
+    }
   }
 
   previousState(): void {
