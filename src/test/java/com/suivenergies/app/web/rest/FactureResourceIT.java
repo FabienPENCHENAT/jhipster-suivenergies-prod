@@ -39,6 +39,9 @@ public class FactureResourceIT {
     private static final Integer DEFAULT_QUANTITE = 1;
     private static final Integer UPDATED_QUANTITE = 2;
 
+    private static final Double DEFAULT_MONTANT = 1D;
+    private static final Double UPDATED_MONTANT = 2D;
+
     @Autowired
     private FactureRepository factureRepository;
 
@@ -60,7 +63,8 @@ public class FactureResourceIT {
         Facture facture = new Facture()
             .type(DEFAULT_TYPE)
             .annee(DEFAULT_ANNEE)
-            .quantite(DEFAULT_QUANTITE);
+            .quantite(DEFAULT_QUANTITE)
+            .montant(DEFAULT_MONTANT);
         return facture;
     }
     /**
@@ -73,7 +77,8 @@ public class FactureResourceIT {
         Facture facture = new Facture()
             .type(UPDATED_TYPE)
             .annee(UPDATED_ANNEE)
-            .quantite(UPDATED_QUANTITE);
+            .quantite(UPDATED_QUANTITE)
+            .montant(UPDATED_MONTANT);
         return facture;
     }
 
@@ -99,6 +104,7 @@ public class FactureResourceIT {
         assertThat(testFacture.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testFacture.getAnnee()).isEqualTo(DEFAULT_ANNEE);
         assertThat(testFacture.getQuantite()).isEqualTo(DEFAULT_QUANTITE);
+        assertThat(testFacture.getMontant()).isEqualTo(DEFAULT_MONTANT);
     }
 
     @Test
@@ -134,7 +140,8 @@ public class FactureResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(facture.getId().intValue())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
             .andExpect(jsonPath("$.[*].annee").value(hasItem(DEFAULT_ANNEE)))
-            .andExpect(jsonPath("$.[*].quantite").value(hasItem(DEFAULT_QUANTITE)));
+            .andExpect(jsonPath("$.[*].quantite").value(hasItem(DEFAULT_QUANTITE)))
+            .andExpect(jsonPath("$.[*].montant").value(hasItem(DEFAULT_MONTANT.doubleValue())));
     }
     
     @Test
@@ -150,7 +157,8 @@ public class FactureResourceIT {
             .andExpect(jsonPath("$.id").value(facture.getId().intValue()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
             .andExpect(jsonPath("$.annee").value(DEFAULT_ANNEE))
-            .andExpect(jsonPath("$.quantite").value(DEFAULT_QUANTITE));
+            .andExpect(jsonPath("$.quantite").value(DEFAULT_QUANTITE))
+            .andExpect(jsonPath("$.montant").value(DEFAULT_MONTANT.doubleValue()));
     }
     @Test
     @Transactional
@@ -175,7 +183,8 @@ public class FactureResourceIT {
         updatedFacture
             .type(UPDATED_TYPE)
             .annee(UPDATED_ANNEE)
-            .quantite(UPDATED_QUANTITE);
+            .quantite(UPDATED_QUANTITE)
+            .montant(UPDATED_MONTANT);
 
         restFactureMockMvc.perform(put("/api/factures")
             .contentType(MediaType.APPLICATION_JSON)
@@ -189,6 +198,7 @@ public class FactureResourceIT {
         assertThat(testFacture.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testFacture.getAnnee()).isEqualTo(UPDATED_ANNEE);
         assertThat(testFacture.getQuantite()).isEqualTo(UPDATED_QUANTITE);
+        assertThat(testFacture.getMontant()).isEqualTo(UPDATED_MONTANT);
     }
 
     @Test

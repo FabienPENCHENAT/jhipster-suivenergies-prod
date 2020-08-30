@@ -1,7 +1,6 @@
 package com.suivenergies.app.web.rest;
 
 import com.suivenergies.app.domain.Client;
-import com.suivenergies.app.domain.InfoDPE;
 import com.suivenergies.app.domain.ModeVie;
 import com.suivenergies.app.repository.ModeVieRepository;
 import com.suivenergies.app.service.ClientService;
@@ -17,7 +16,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * REST controller for managing {@link com.suivenergies.app.domain.ModeVie}.

@@ -25,13 +25,13 @@
             <column name="nom_methode_dpe" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="consommation_energie" type="bigint">
+            <column name="consommation_energie" type="double">
                 <constraints nullable="true" />
             </column>
             <column name="classe_consommation_energie" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="estimation_ges" type="bigint">
+            <column name="estimation_ges" type="double">
                 <constraints nullable="true" />
             </column>
             <column name="classe_estimation_ges" type="varchar(255)">

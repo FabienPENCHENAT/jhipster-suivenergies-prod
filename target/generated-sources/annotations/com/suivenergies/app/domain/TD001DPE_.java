@@ -12,7 +12,7 @@ public abstract class TD001DPE_ {
 	public static volatile SingularAttribute<TD001DPE, String> commune;
 	public static volatile SingularAttribute<TD001DPE, String> arrondissement;
 	public static volatile SingularAttribute<TD001DPE, String> classeConsommationEnergie;
-	public static volatile SingularAttribute<TD001DPE, Long> estimationGes;
+	public static volatile SingularAttribute<TD001DPE, Double> estimationGes;
 	public static volatile SingularAttribute<TD001DPE, String> escalier;
 	public static volatile SingularAttribute<TD001DPE, String> batiment;
 	public static volatile SingularAttribute<TD001DPE, String> tr001ModeleDpe;
@@ -36,7 +36,7 @@ public abstract class TD001DPE_ {
 	public static volatile SingularAttribute<TD001DPE, String> numeroDpe;
 	public static volatile SingularAttribute<TD001DPE, String> tr002TypeBatiment;
 	public static volatile SingularAttribute<TD001DPE, String> numeroLot;
-	public static volatile SingularAttribute<TD001DPE, Long> consommationEnergie;
+	public static volatile SingularAttribute<TD001DPE, Double> consommationEnergie;
 	public static volatile SingularAttribute<TD001DPE, String> codeInseeCommune;
 	public static volatile SingularAttribute<TD001DPE, TD002Consommations> td002Consommations;
 

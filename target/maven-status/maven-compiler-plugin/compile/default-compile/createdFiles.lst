@@ -23,11 +23,9 @@ com/suivenergies/app/ApplicationWebXml.class
 com/suivenergies/app/domain/enumeration/EnergiesFacture.class
 com/suivenergies/app/web/rest/vm/LoginVM.class
 com/suivenergies/app/repository/AuthorityRepository.class
-com/suivenergies/app/service/package-info.class
 com/suivenergies/app/repository/UserRepository.class
 com/suivenergies/app/domain/ModeVie.class
 com/suivenergies/app/service/UserService.class
-com/suivenergies/app/service/mapper/package-info.class
 com/suivenergies/app/repository/TD015ProductionEnergiesRepository.class
 com/suivenergies/app/config/DateTimeFormatConfiguration.class
 com/suivenergies/app/repository/TD011InstalationChauffageRepository.class
@@ -61,7 +59,6 @@ com/suivenergies/app/web/rest/TD002ConsommationsResource.class
 com/suivenergies/app/web/rest/TD007ParoiOpaqueResource.class
 com/suivenergies/app/security/UserNotActivatedException.class
 com/suivenergies/app/repository/TD007ParoiOpaqueRepository.class
-com/suivenergies/app/security/package-info.class
 com/suivenergies/app/repository/TD013InstalationECSRepository.class
 com/suivenergies/app/domain/TD015ProductionEnergies.class
 com/suivenergies/app/service/mapper/InfoDPEMapper.class
@@ -69,8 +66,6 @@ com/suivenergies/app/domain/Authority.class
 com/suivenergies/app/domain/InfoDPE.class
 com/suivenergies/app/security/jwt/JWTConfigurer.class
 com/suivenergies/app/web/rest/TD010PontsThermiquesResource.class
-com/suivenergies/app/web/rest/errors/package-info.class
-com/suivenergies/app/service/dto/package-info.class
 com/suivenergies/app/web/rest/TD015ProductionEnergiesResource.class
 com/suivenergies/app/service/dto/api/DpeApi.class
 com/suivenergies/app/service/EmailAlreadyUsedException.class
@@ -80,6 +75,7 @@ com/suivenergies/app/domain/Facture.class
 com/suivenergies/app/repository/InfoDPERepository.class
 com/suivenergies/app/repository/ClientRepository.class
 com/suivenergies/app/domain/AbstractAuditingEntity.class
+com/suivenergies/app/domain/FacturesByType.class
 com/suivenergies/app/web/rest/TD014GenerateurECSResource.class
 com/suivenergies/app/config/AsyncConfiguration.class
 com/suivenergies/app/config/LoggingAspectConfiguration.class
@@ -98,7 +94,6 @@ com/suivenergies/app/web/rest/FactureResource.class
 com/suivenergies/app/domain/TD008Baie.class
 com/suivenergies/app/web/rest/errors/ErrorConstants.class
 com/suivenergies/app/config/StaticResourcesWebConfiguration.class
-com/suivenergies/app/repository/package-info.class
 com/suivenergies/app/domain/TD001DPE.class
 com/suivenergies/app/web/rest/TD006BatimentResource.class
 com/suivenergies/app/service/AuditEventService.class
@@ -117,7 +112,6 @@ com/suivenergies/app/domain/TD017ConsommationNeuf_.class
 com/suivenergies/app/domain/TD006Batiment_.class
 com/suivenergies/app/repository/ModeVieRepository.class
 com/suivenergies/app/service/MailService.class
-com/suivenergies/app/domain/package-info.class
 com/suivenergies/app/service/dto/api/Dpe.class
 com/suivenergies/app/web/rest/AuditResource.class
 com/suivenergies/app/config/WebConfigurer.class
@@ -135,12 +129,9 @@ com/suivenergies/app/repository/TD002ConsommationsRepository.class
 com/suivenergies/app/domain/TD014GenerateurECS.class
 com/suivenergies/app/repository/TD010PontsThermiquesRepository.class
 com/suivenergies/app/repository/FactureRepository.class
-com/suivenergies/app/web/rest/package-info.class
 com/suivenergies/app/web/rest/errors/ExceptionTranslator.class
 com/suivenergies/app/domain/Client.class
 com/suivenergies/app/web/rest/errors/FieldErrorVM.class
-com/suivenergies/app/config/package-info.class
 com/suivenergies/app/domain/TD015ProductionEnergies_.class
 com/suivenergies/app/web/rest/UserJWTController$JWTToken.class
 com/suivenergies/app/service/ClientService.class
-com/suivenergies/app/config/audit/package-info.class

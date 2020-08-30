@@ -31,6 +31,9 @@ public class Facture implements Serializable {
     @Column(name = "quantite")
     private Integer quantite;
 
+    @Column(name = "montant")
+    private Double montant;
+
     @ManyToOne
     @JsonIgnoreProperties(value = "factures", allowSetters = true)
     private Client client;
@@ -83,6 +86,19 @@ public class Facture implements Serializable {
         this.quantite = quantite;
     }
 
+    public Double getMontant() {
+        return montant;
+    }
+
+    public Facture montant(Double montant) {
+        this.montant = montant;
+        return this;
+    }
+
+    public void setMontant(Double montant) {
+        this.montant = montant;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -121,6 +137,7 @@ public class Facture implements Serializable {
             ", type='" + getType() + "'" +
             ", annee=" + getAnnee() +
             ", quantite=" + getQuantite() +
+            ", montant=" + getMontant() +
             "}";
     }
 }

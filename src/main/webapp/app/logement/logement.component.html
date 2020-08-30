@@ -119,7 +119,7 @@
 								</div>
 								<div>
 									<div class="row" *ngFor="let facture of facturesByType.factures">
-										<label class="ml-2">- {{ facture.annee }} : {{ facture.quantite }}</label>
+										<label class="ml-2">- {{ facture.annee }} : {{ facture.quantite }} ({{ facture.montant }}€)</label>
 										<button type="submit" (click)="delete(facture)" class="btn btn-sm" style="margin-top: -5px;">
 			                               <fa-icon icon="times"></fa-icon>
 			                           </button>

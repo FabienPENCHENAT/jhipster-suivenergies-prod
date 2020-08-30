@@ -21,7 +21,7 @@ describe('Service Tests', () => {
       service = injector.get(FactureService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Facture(0, EnergiesFacture.ELEC, 0, 0);
+      elemDefault = new Facture(0, EnergiesFacture.ELEC, 0, 0, 0);
     });
 
     describe('Service methods', () => {
@@ -58,6 +58,7 @@ describe('Service Tests', () => {
             type: 'BBBBBB',
             annee: 1,
             quantite: 1,
+            montant: 1,
           },
           elemDefault
         );
@@ -77,6 +78,7 @@ describe('Service Tests', () => {
             type: 'BBBBBB',
             annee: 1,
             quantite: 1,
+            montant: 1,
           },
           elemDefault
         );

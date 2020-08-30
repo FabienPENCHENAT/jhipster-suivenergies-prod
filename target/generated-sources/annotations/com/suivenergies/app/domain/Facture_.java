@@ -10,12 +10,14 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Facture_ {
 
 	public static volatile SingularAttribute<Facture, Client> client;
+	public static volatile SingularAttribute<Facture, Double> montant;
 	public static volatile SingularAttribute<Facture, Long> id;
 	public static volatile SingularAttribute<Facture, Integer> annee;
 	public static volatile SingularAttribute<Facture, EnergiesFacture> type;
 	public static volatile SingularAttribute<Facture, Integer> quantite;
 
 	public static final String CLIENT = "client";
+	public static final String MONTANT = "montant";
 	public static final String ID = "id";
 	public static final String ANNEE = "annee";
 	public static final String TYPE = "type";

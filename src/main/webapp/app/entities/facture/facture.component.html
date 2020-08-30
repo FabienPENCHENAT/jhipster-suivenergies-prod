@@ -26,6 +26,7 @@
                     <th scope="col" ><span>Type</span></th>
                     <th scope="col" ><span>Annee</span></th>
                     <th scope="col" ><span>Quantite</span></th>
+                    <th scope="col" ><span>Montant</span></th>
                     <th scope="col" ><span>Client</span></th>
                     <th scope="col"></th>
                 </tr>
@@ -36,6 +37,7 @@
                     <td>{{ facture.type }}</td>
                     <td>{{ facture.annee }}</td>
                     <td>{{ facture.quantite }}</td>
+                    <td>{{ facture.montant }}</td>
                     <td>
                         <div *ngIf="facture.client">
                             <a [routerLink]="['/client', facture.client?.id, 'view']" >{{ facture.client?.id }}</a>

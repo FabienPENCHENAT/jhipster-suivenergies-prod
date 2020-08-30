@@ -29,13 +29,13 @@ public class TD001DPE implements Serializable {
     private String nomMethodeDpe;
 
     @Column(name = "consommation_energie")
-    private Long consommationEnergie;
+    private Double consommationEnergie;
 
     @Column(name = "classe_consommation_energie")
     private String classeConsommationEnergie;
 
     @Column(name = "estimation_ges")
-    private Long estimationGes;
+    private Double estimationGes;
 
     @Column(name = "classe_estimation_ges")
     private String classeEstimationGes;
@@ -157,16 +157,16 @@ public class TD001DPE implements Serializable {
         this.nomMethodeDpe = nomMethodeDpe;
     }
 
-    public Long getConsommationEnergie() {
+    public Double getConsommationEnergie() {
         return consommationEnergie;
     }
 
-    public TD001DPE consommationEnergie(Long consommationEnergie) {
+    public TD001DPE consommationEnergie(Double consommationEnergie) {
         this.consommationEnergie = consommationEnergie;
         return this;
     }
 
-    public void setConsommationEnergie(Long consommationEnergie) {
+    public void setConsommationEnergie(Double consommationEnergie) {
         this.consommationEnergie = consommationEnergie;
     }
 
@@ -183,16 +183,16 @@ public class TD001DPE implements Serializable {
         this.classeConsommationEnergie = classeConsommationEnergie;
     }
 
-    public Long getEstimationGes() {
+    public Double getEstimationGes() {
         return estimationGes;
     }
 
-    public TD001DPE estimationGes(Long estimationGes) {
+    public TD001DPE estimationGes(Double estimationGes) {
         this.estimationGes = estimationGes;
         return this;
     }
 
-    public void setEstimationGes(Long estimationGes) {
+    public void setEstimationGes(Double estimationGes) {
         this.estimationGes = estimationGes;
     }
 

@@ -14,10 +14,10 @@
                 <div class="form-group">
                     <label class="form-control-label" for="field_type">Type</label>
                     <select class="form-control" name="type" formControlName="type" id="field_type">
-                        <option value="ELEC">Electricité (kWh)</option>
-                        <option value="GAZ">Gaz (kWh)</option>
-                        <option value="FIOUL">Fioul (l)</option>
-                        <option value="BOIS">Bois (m3)</option>
+                        <option value="ELEC">Electricité (kWh</option>
+                        <option value="GAZ">Gaz (kWh</option>
+                        <option value="FIOUL">Fioul (l</option>
+                        <option value="BOIS">Bois (m3</option>
                     </select>
                 </div>
 
@@ -31,6 +31,12 @@
                     <label class="form-control-label" for="field_quantite">Quantite</label>
                     <input type="number" class="form-control" name="quantite" id="field_quantite"
                            formControlName="quantite"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_montant">Montant</label>
+                    <input type="number" class="form-control" name="montant" id="field_montant"
+                           formControlName="montant"/>
                 </div>
 
                 <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="form-group">

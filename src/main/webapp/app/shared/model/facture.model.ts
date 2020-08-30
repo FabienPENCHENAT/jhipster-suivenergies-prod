@@ -6,6 +6,7 @@ export interface IFacture {
   type?: EnergiesFacture;
   annee?: number;
   quantite?: number;
+  montant?: number;
   client?: IClient;
 }
 
@@ -15,6 +16,7 @@ export class Facture implements IFacture {
     public type?: EnergiesFacture,
     public annee?: number,
     public quantite?: number,
+    public montant?: number,
     public client?: IClient
   ) {}
 }

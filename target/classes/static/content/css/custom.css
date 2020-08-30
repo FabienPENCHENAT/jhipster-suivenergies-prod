@@ -1,0 +1,12 @@
+body {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 40%, rgba(120, 194, 173, 1) 100%);
+  background-attachment: fixed;
+  height: 100%;
+}
+
+/************* FOOTER *************/
+.footer-copyright {
+  color: white;
+  font-size: 0.75rem;
+}

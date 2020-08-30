@@ -1,9 +1,9 @@
 export const enum EnergiesFacture {
-  ELEC = 'Electricité (kWh)',
+  ELEC = 'Electricité (kWh',
 
-  GAZ = 'Gaz (kWh)',
+  GAZ = 'Gaz (kWh',
 
-  FIOUL = 'Fioul (l)',
+  FIOUL = 'Fioul (l',
 
-  BOIS = 'Bois (m3)',
+  BOIS = 'Bois (m3',
 }

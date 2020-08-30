@@ -67,6 +67,7 @@
 /Users/gostat.fr/Documents/pro/jhipster-suivenergies/src/main/java/com/suivenergies/app/web/rest/ClientForwardController.java
 /Users/gostat.fr/Documents/pro/jhipster-suivenergies/src/main/java/com/suivenergies/app/domain/TD010PontsThermiques.java
 /Users/gostat.fr/Documents/pro/jhipster-suivenergies/src/main/java/com/suivenergies/app/repository/package-info.java
+/Users/gostat.fr/Documents/pro/jhipster-suivenergies/src/main/java/com/suivenergies/app/domain/FacturesByType.java
 /Users/gostat.fr/Documents/pro/jhipster-suivenergies/src/main/java/com/suivenergies/app/service/EmailAlreadyUsedException.java
 /Users/gostat.fr/Documents/pro/jhipster-suivenergies/src/main/java/com/suivenergies/app/config/LiquibaseConfiguration.java
 /Users/gostat.fr/Documents/pro/jhipster-suivenergies/src/main/java/com/suivenergies/app/web/rest/ModeVieResource.java

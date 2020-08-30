@@ -23,6 +23,7 @@ export class FactureUpdateComponent implements OnInit {
     type: [],
     annee: [],
     quantite: [],
+    montant: [],
     client: [],
   });
 
@@ -42,23 +43,14 @@ export class FactureUpdateComponent implements OnInit {
   }
 
   updateForm(facture: IFacture): void {
-    if (facture.id !== undefined) {
-      this.editForm.patchValue({
-        id: facture.id,
-        type: facture.type,
-        annee: facture.annee,
-        quantite: facture.quantite,
-        client: facture.client,
-      });
-    } else {
-      this.editForm.patchValue({
-        id: facture.id,
-        type: facture.type,
-        annee: 2020,
-        quantite: facture.quantite,
-        client: facture.client,
-      });
-    }
+    this.editForm.patchValue({
+      id: facture.id,
+      type: facture.type,
+      annee: facture.annee,
+      quantite: facture.quantite,
+      montant: facture.montant,
+      client: facture.client,
+    });
   }
 
   previousState(): void {
@@ -82,6 +74,7 @@ export class FactureUpdateComponent implements OnInit {
       type: this.editForm.get(['type'])!.value,
       annee: this.editForm.get(['annee'])!.value,
       quantite: this.editForm.get(['quantite'])!.value,
+      montant: this.editForm.get(['montant'])!.value,
       client: this.editForm.get(['client'])!.value,
     };
   }

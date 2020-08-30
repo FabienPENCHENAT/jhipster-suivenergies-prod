@@ -2,9 +2,9 @@ entity TD001DPE {
 	numeroDpe String,
     tr001ModeleDpe String,
     nomMethodeDpe String,
-    consommationEnergie Long,
+    consommationEnergie Double,
     classeConsommationEnergie String,
-    estimationGes Long,
+    estimationGes Double,
     classeEstimationGes String,
     tr002TypeBatiment String,
     anneeConstruction Long,
@@ -186,10 +186,11 @@ enum EnergiesFacture {
 }
 
 entity Facture {
-   id Integer
-   type EnergiesFacture
-   annee Integer
-   quantite Integer
+   id Integer,
+   type EnergiesFacture,
+   annee Integer,
+   quantite Integer,
+   montant Double
 }
 
 entity ModeVie {

@@ -40,14 +40,14 @@ public class TD001DPEResourceIT {
     private static final String DEFAULT_NOM_METHODE_DPE = "AAAAAAAAAA";
     private static final String UPDATED_NOM_METHODE_DPE = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_CONSOMMATION_ENERGIE = 1L;
-    private static final Long UPDATED_CONSOMMATION_ENERGIE = 2L;
+    private static final Double DEFAULT_CONSOMMATION_ENERGIE = 1D;
+    private static final Double UPDATED_CONSOMMATION_ENERGIE = 2D;
 
     private static final String DEFAULT_CLASSE_CONSOMMATION_ENERGIE = "AAAAAAAAAA";
     private static final String UPDATED_CLASSE_CONSOMMATION_ENERGIE = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_ESTIMATION_GES = 1L;
-    private static final Long UPDATED_ESTIMATION_GES = 2L;
+    private static final Double DEFAULT_ESTIMATION_GES = 1D;
+    private static final Double UPDATED_ESTIMATION_GES = 2D;
 
     private static final String DEFAULT_CLASSE_ESTIMATION_GES = "AAAAAAAAAA";
     private static final String UPDATED_CLASSE_ESTIMATION_GES = "BBBBBBBBBB";
@@ -274,9 +274,9 @@ public class TD001DPEResourceIT {
             .andExpect(jsonPath("$.[*].numeroDpe").value(hasItem(DEFAULT_NUMERO_DPE)))
             .andExpect(jsonPath("$.[*].tr001ModeleDpe").value(hasItem(DEFAULT_TR_001_MODELE_DPE)))
             .andExpect(jsonPath("$.[*].nomMethodeDpe").value(hasItem(DEFAULT_NOM_METHODE_DPE)))
-            .andExpect(jsonPath("$.[*].consommationEnergie").value(hasItem(DEFAULT_CONSOMMATION_ENERGIE.intValue())))
+            .andExpect(jsonPath("$.[*].consommationEnergie").value(hasItem(DEFAULT_CONSOMMATION_ENERGIE.doubleValue())))
             .andExpect(jsonPath("$.[*].classeConsommationEnergie").value(hasItem(DEFAULT_CLASSE_CONSOMMATION_ENERGIE)))
-            .andExpect(jsonPath("$.[*].estimationGes").value(hasItem(DEFAULT_ESTIMATION_GES.intValue())))
+            .andExpect(jsonPath("$.[*].estimationGes").value(hasItem(DEFAULT_ESTIMATION_GES.doubleValue())))
             .andExpect(jsonPath("$.[*].classeEstimationGes").value(hasItem(DEFAULT_CLASSE_ESTIMATION_GES)))
             .andExpect(jsonPath("$.[*].tr002TypeBatiment").value(hasItem(DEFAULT_TR_002_TYPE_BATIMENT)))
             .andExpect(jsonPath("$.[*].anneeConstruction").value(hasItem(DEFAULT_ANNEE_CONSTRUCTION.intValue())))
@@ -313,9 +313,9 @@ public class TD001DPEResourceIT {
             .andExpect(jsonPath("$.numeroDpe").value(DEFAULT_NUMERO_DPE))
             .andExpect(jsonPath("$.tr001ModeleDpe").value(DEFAULT_TR_001_MODELE_DPE))
             .andExpect(jsonPath("$.nomMethodeDpe").value(DEFAULT_NOM_METHODE_DPE))
-            .andExpect(jsonPath("$.consommationEnergie").value(DEFAULT_CONSOMMATION_ENERGIE.intValue()))
+            .andExpect(jsonPath("$.consommationEnergie").value(DEFAULT_CONSOMMATION_ENERGIE.doubleValue()))
             .andExpect(jsonPath("$.classeConsommationEnergie").value(DEFAULT_CLASSE_CONSOMMATION_ENERGIE))
-            .andExpect(jsonPath("$.estimationGes").value(DEFAULT_ESTIMATION_GES.intValue()))
+            .andExpect(jsonPath("$.estimationGes").value(DEFAULT_ESTIMATION_GES.doubleValue()))
             .andExpect(jsonPath("$.classeEstimationGes").value(DEFAULT_CLASSE_ESTIMATION_GES))
             .andExpect(jsonPath("$.tr002TypeBatiment").value(DEFAULT_TR_002_TYPE_BATIMENT))
             .andExpect(jsonPath("$.anneeConstruction").value(DEFAULT_ANNEE_CONSTRUCTION.intValue()))
