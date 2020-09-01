@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-confort-heading">Create or edit a Confort</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_installationElectrique">Installation Electrique</label>
+                    <input type="checkbox" class="form-control" name="installationElectrique" id="field_installationElectrique"
+                           formControlName="installationElectrique"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_installationGaz">Installation Gaz</label>
+                    <input type="checkbox" class="form-control" name="installationGaz" id="field_installationGaz"
+                           formControlName="installationGaz"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_installationHumidite">Installation Humidite</label>
+                    <input type="checkbox" class="form-control" name="installationHumidite" id="field_installationHumidite"
+                           formControlName="installationHumidite"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_installationPortesFenetres">Installation Portes Fenetres</label>
+                    <input type="checkbox" class="form-control" name="installationPortesFenetres" id="field_installationPortesFenetres"
+                           formControlName="installationPortesFenetres"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_chauffageHiver">Chauffage Hiver</label>
+                    <input type="checkbox" class="form-control" name="chauffageHiver" id="field_chauffageHiver"
+                           formControlName="chauffageHiver"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_surfaceChauffee">Surface Chauffee</label>
+                    <input type="number" class="form-control" name="surfaceChauffee" id="field_surfaceChauffee"
+                           formControlName="surfaceChauffee"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_temperatureHiverSejour">Temperature Hiver Sejour</label>
+                    <input type="number" class="form-control" name="temperatureHiverSejour" id="field_temperatureHiverSejour"
+                           formControlName="temperatureHiverSejour"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_temperatureHiverChambres">Temperature Hiver Chambres</label>
+                    <input type="number" class="form-control" name="temperatureHiverChambres" id="field_temperatureHiverChambres"
+                           formControlName="temperatureHiverChambres"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_climEte">Clim Ete</label>
+                    <input type="checkbox" class="form-control" name="climEte" id="field_climEte"
+                           formControlName="climEte"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_temperatureEteSejour">Temperature Ete Sejour</label>
+                    <input type="number" class="form-control" name="temperatureEteSejour" id="field_temperatureEteSejour"
+                           formControlName="temperatureEteSejour"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_temperatureEteChambres">Temperature Ete Chambres</label>
+                    <input type="number" class="form-control" name="temperatureEteChambres" id="field_temperatureEteChambres"
+                           formControlName="temperatureEteChambres"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_electromenagers">Electromenager</label>
+                    <select class="form-control" id="field_electromenagers" multiple name="electromenagers" formControlName="electromenagers">
+                        <option [ngValue]="getSelected(editForm.get('electromenagers')!.value, electromenagerOption)" *ngFor="let electromenagerOption of electromenagers; trackBy: trackById">{{ electromenagerOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_client">Client</label>
+                    <select class="form-control" id="field_client" name="client" formControlName="client">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="clientOption.id === editForm.get('client')!.value?.id ? editForm.get('client')!.value : clientOption" *ngFor="let clientOption of clients; trackBy: trackById">{{ clientOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

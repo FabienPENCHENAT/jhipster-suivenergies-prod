@@ -208,6 +208,37 @@ entity ModeVie {
    semainesAbsenceEte Integer
 }
 
+entity Confort {
+	id Integer,
+    installationElectrique Boolean,
+    installationGaz Boolean,
+    installationHumidite Boolean,
+    installationPortesFenetres Boolean,
+    chauffageHiver Boolean,
+    surfaceChauffee Double,
+    temperatureHiverSejour Double,
+    temperatureHiverChambres Double,
+    climEte Boolean,
+	temperatureEteSejour Double,
+    temperatureEteChambres Double,
+}
+
+entity Electromenager {
+	id Integer,
+    nom String,
+    note String,
+    byDefault Boolean,
+    consoAnnuelle Double,
+}
+
+relationship OneToMany {
+	Client to Confort
+}
+
+relationship ManyToMany {
+	Confort to Electromenager
+}
+
 relationship ManyToMany {
 	Client to User
 }

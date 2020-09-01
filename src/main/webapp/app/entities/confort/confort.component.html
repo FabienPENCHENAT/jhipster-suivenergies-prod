@@ -1,0 +1,93 @@
+<div>
+    <h2 id="page-heading">
+        <span>Conforts</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-confort" [routerLink]="['/confort/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Confort
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="conforts?.length === 0">
+        <span>No conforts found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="conforts && conforts.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Installation Electrique</span></th>
+                    <th scope="col" ><span>Installation Gaz</span></th>
+                    <th scope="col" ><span>Installation Humidite</span></th>
+                    <th scope="col" ><span>Installation Portes Fenetres</span></th>
+                    <th scope="col" ><span>Chauffage Hiver</span></th>
+                    <th scope="col" ><span>Surface Chauffee</span></th>
+                    <th scope="col" ><span>Temperature Hiver Sejour</span></th>
+                    <th scope="col" ><span>Temperature Hiver Chambres</span></th>
+                    <th scope="col" ><span>Clim Ete</span></th>
+                    <th scope="col" ><span>Temperature Ete Sejour</span></th>
+                    <th scope="col" ><span>Temperature Ete Chambres</span></th>
+                    <th scope="col" ><span>Electromenager</span></th>
+                    <th scope="col" ><span>Client</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let confort of conforts ;trackBy: trackId">
+                    <td><a [routerLink]="['/confort', confort.id, 'view']">{{ confort.id }}</a></td>
+                    <td>{{ confort.installationElectrique }}</td>
+                    <td>{{ confort.installationGaz }}</td>
+                    <td>{{ confort.installationHumidite }}</td>
+                    <td>{{ confort.installationPortesFenetres }}</td>
+                    <td>{{ confort.chauffageHiver }}</td>
+                    <td>{{ confort.surfaceChauffee }}</td>
+                    <td>{{ confort.temperatureHiverSejour }}</td>
+                    <td>{{ confort.temperatureHiverChambres }}</td>
+                    <td>{{ confort.climEte }}</td>
+                    <td>{{ confort.temperatureEteSejour }}</td>
+                    <td>{{ confort.temperatureEteChambres }}</td>
+                    <td>
+                        <span *ngFor="let electromenager of confort.electromenagers; let last = last">
+                            <a class="form-control-static" [routerLink]="['/electromenager', electromenager?.id, 'view']">{{ electromenager.id }}</a>{{ last ? '' : ', ' }}
+                        </span>
+                    </td>
+                    <td>
+                        <div *ngIf="confort.client">
+                            <a [routerLink]="['/client', confort.client?.id, 'view']" >{{ confort.client?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/confort', confort.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/confort', confort.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(confort)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

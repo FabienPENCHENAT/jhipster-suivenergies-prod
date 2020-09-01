@@ -27,6 +27,9 @@ public class Client implements Serializable {
     private Long codePostal;
 
     @OneToMany(mappedBy = "client")
+    private Set<Confort> conforts = new HashSet<>();
+
+    @OneToMany(mappedBy = "client")
     private Set<InfoDPE> infoDPES = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
@@ -74,6 +77,31 @@ public class Client implements Serializable {
 
     public void setCodePostal(Long codePostal) {
         this.codePostal = codePostal;
+    }
+
+    public Set<Confort> getConforts() {
+        return conforts;
+    }
+
+    public Client conforts(Set<Confort> conforts) {
+        this.conforts = conforts;
+        return this;
+    }
+
+    public Client addConfort(Confort confort) {
+        this.conforts.add(confort);
+        confort.setClient(this);
+        return this;
+    }
+
+    public Client removeConfort(Confort confort) {
+        this.conforts.remove(confort);
+        confort.setClient(null);
+        return this;
+    }
+
+    public void setConforts(Set<Confort> conforts) {
+        this.conforts = conforts;
     }
 
     public Set<InfoDPE> getInfoDPES() {

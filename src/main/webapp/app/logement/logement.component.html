@@ -34,10 +34,10 @@
 								<label class="col-md-2 col-form-label" for="adresseNumero">Adresse</label>
 								<div class="col-md-5">
 									<input
-										type="text" class="form-control dpeInput" id="dpt"
-										formControlName="adresse" readonly>
+										type="text" class="form-control dpeInput" id="adresse1"
+										formControlName="adresse1" readonly>
 									<input type="text" class="form-control dpeInput"
-										id="adresseNumero" readonly> 
+										id="adresse2" formControlName="adresse2" readonly> 
 								</div>
 							</div>
 						</div>
@@ -257,7 +257,7 @@
 			<h1 class="card-title">Mon confort</h1>
 			<hr class="col-md-3 ml-0" />
 			<div class="card-text col-md-12">
-				<form>
+				<form name="confort" role="form" (ngSubmit)="saveConfort()" [formGroup]="confortForm">
 					<div class="row">
 						<div class="col-md-2">
 							<i class="fas fa-hot-tub fa-7x icon-light"></i>
@@ -274,7 +274,7 @@
 									électrique</label>
 								<div class="col-md-3 mt-2">
 									<input type="checkbox"
-										aria-label="Checkbox for following text input">
+										aria-label="Checkbox for following text input" formControlName="installationElectrique">
 								</div>
 							</div>
 							<div class="row">
@@ -282,7 +282,7 @@
 									gaz</label>
 								<div class="col-md-3 mt-2">
 									<input type="checkbox"
-										aria-label="Checkbox for following text input">
+										aria-label="Checkbox for following text input" formControlName="installationGaz">
 								</div>
 							</div>
 							<div class="row">
@@ -290,7 +290,7 @@
 									d'humidité</label>
 								<div class="col-md-3 mt-2">
 									<input type="checkbox"
-										aria-label="Checkbox for following text input">
+										aria-label="Checkbox for following text input" formControlName="installationHumidite">
 								</div>
 							</div>
 							<div class="row">
@@ -298,7 +298,7 @@
 									fenêtres fuyardes</label>
 								<div class="col-md-3 mt-2">
 									<input type="checkbox"
-										aria-label="Checkbox for following text input">
+										aria-label="Checkbox for following text input" formControlName="installationPortesFenetres">
 								</div>
 							</div>
 						</div>
@@ -315,16 +315,9 @@
 								<div class="col-md-7">
 									<div
 										class="col-md-1 custom-control custom-radio custom-control-inline">
-										<input type="radio" id="radioOuiChauffage"
+										<input type="checkbox" id="radioOuiChauffage"
 											name="radioOuiNonChauffage" class="custom-control-input"
-											checked> <label class="custom-control-label"
-											for="radioOuiChauffage">Oui</label>
-									</div>
-									<div
-										class="col-md-1 custom-control custom-radio custom-control-inline">
-										<input type="radio" id="radioNonChauffage"
-											name="radioOuiNonChauffage" class="custom-control-input">
-										<label class="custom-control-label" for="radioNonChauffage">Non</label>
+											formControlName="chauffageHiver"> 
 									</div>
 								</div>
 							</div>
@@ -333,7 +326,7 @@
 									chauffée (m²)</label>
 								<div class="col-md-2">
 									<input type="text" class="form-control" id="surfaceChauffee"
-										value="">
+										value="" formControlName="surfaceChauffee">
 								</div>
 							</div>
 							<br /> <br />
@@ -347,8 +340,8 @@
 									<label for="presentEte">Séjour/cuisine</label>
 								</div>
 								<div class="col-md-3">
-									<input data-suffix="�C" value="19" min="0" max="100"
-										type="number" id="presentHiver" />
+									<input data-suffix="�C" min="0" max="100"
+										type="number" id="temperatureHiverSejour" formControlName="temperatureHiverSejour"/>
 								</div>
 							</div>
 							<div class="mt-2 row">
@@ -356,8 +349,8 @@
 									<label for="presentEte">Chambres</label>
 								</div>
 								<div class="col-md-3">
-									<input data-suffix="�C" value="16" min="0" max="100"
-										type="number" id="presentHiver" />
+									<input data-suffix="�C" min="0" max="100"
+										type="number" id="temperatureHiverChambres" formControlName="temperatureHiverChambres"/>
 								</div>
 							</div>
 							<br /> <br />
@@ -371,15 +364,8 @@
 								<div class="col-md-7">
 									<div
 										class="col-md-1 custom-control custom-radio custom-control-inline">
-										<input type="radio" id="radioOuiClim" name="radioOuiNonClim"
-											class="custom-control-input"> <label
-											class="custom-control-label" for="radioOuiClim">Oui</label>
-									</div>
-									<div
-										class="col-md-1 custom-control custom-radio custom-control-inline">
-										<input type="radio" id="radioNonClim" name="radioOuiNonClim"
-											class="custom-control-input" checked> <label
-											class="custom-control-label" for="radioNonClim">Non</label>
+										<input type="checkbox" id="radioOuiClim" name="radioOuiNonClim"
+											class="custom-control-input" formControlName="climEte"> 
 									</div>
 								</div>
 							</div>
@@ -388,8 +374,8 @@
 									<label for="presentEte">Séjour/cuisine</label>
 								</div>
 								<div class="col-md-3">
-									<input data-suffix="�C" value="26" min="0" max="100"
-										type="number" id="presentHiver" />
+									<input data-suffix="�C" min="0" max="100"
+										type="number" id="temperatureEteSejour" formControlName="temperatureEteSejour"/>
 								</div>
 							</div>
 							<div class="mt-2 row">
@@ -397,8 +383,8 @@
 									<label for="presentEte">Chambres</label>
 								</div>
 								<div class="col-md-3">
-									<input data-suffix="�C" value="26" min="0" max="100"
-										type="number" id="presentHiver" />
+									<input data-suffix="�C" min="0" max="100"
+										type="number" id="temperatureEteChambres" formControlName="temperatureEteChambres"/>
 								</div>
 							</div>
 
@@ -409,7 +395,6 @@
 							</div>
 							<hr class="col-md-3 ml-0" />
 							<div class="card-text col-md-12">
-								<form>
 									<div class="row">
 										<div class="col-md-2">
 											<i class="fas fa-bolt fa-7x icon-light"></i>
@@ -420,32 +405,19 @@
 													<b>Ajouter un équipement électrique : </b>
 												</p>
 											</div>
-											<div class="row">
+											<div class="row mb-2">
 												<label class="col-md-2 col-form-label" for="materiel">Matériel</label>
-												<div class="col-md-3">
-													<select id="inputState" class="form-control">
-														<option>Aspirateur</option>
-														<option>Box Internet WIFI</option>
-														<option>Bouilloire</option>
-														<option selected>Cafetière</option>
-														<option>Climatiseur mobile (usage 30 jours)</option>
-														<option>Congélateur A+++</option>
-														<option>Congélateur ancien</option>
-														<option>Cuisinière (gaz)</option>
-														<option>Décodeur Canal +</option>
-														<option>Démodulateur parabole</option>
-														<option>Fer à repasser</option>
-														<option>Four de cuisine</option>
-														<option>Friteuse</option>
-														<option>Grille pain</option>
-														<option>HiFi</option>
-													</select>
+												<div class="col-md-6">
+													<select class="form-control" id="field_electromenagers" multiple name="electromenagers" formControlName="electromenagers">
+								                        <option [ngValue]="getSelected(confortForm.get('electromenagers')!.value, electromenagerOption)" *ngFor="let electromenagerOption of electromenagers">{{ electromenagerOption.nom }}</option>
+								                    </select>
 												</div>
 												<div class="col-md-2">
-													<button type="button" class="btn btn-primary">Ajouter</button>
+													<button type="submit" class="btn btn-primary" style="margin-top: -5px;">
+						                               Ajouter
+						                            </button>
 												</div>
 											</div>
-											<div class="row"></div>
 
 											<div class="row">
 												<div class="col-md-12">
@@ -460,65 +432,15 @@
 																</tr>
 															</thead>
 															<tbody>
-																<tr>
-																	<td>Aspirateur</td>
-																	<td><i class="far fa-smile fa-lg"></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Box Internet WIFI</td>
-																	<td><i class="far fa-smile fa-lg"></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Congélateur ancien</td>
-																	<td><i class="far fa-frown fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Fer à repasser</td>
-																	<td><i class="far fa-smile fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Four de cuisine</td>
-																	<td><i class="far fa-smile fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Grille pain</td>
-																	<td><i class="far fa-smile fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Lave linge ancien</td>
-																	<td><i class="far fa-frown fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Lave vaisselle ancien</td>
-																	<td><i class="far fa-frown fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Plaques vitro</td>
-																	<td><i class="far fa-smile fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Réfrigérateur A++</td>
-																	<td><i class="far fa-smile fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Sèche-linge</td>
-																	<td><i class="far fa-frown fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
-																</tr>
-																<tr>
-																	<td>Tv Ecran plat Plasma</td>
-																	<td><i class="far fa-frown fa-lg "></i></td>
-																	<td><i class="far fa-trash-alt"></i></td>
+																<tr *ngFor="let electromenager of confort?.electromenagers!">
+																	<td>{{ electromenager.nom }}</td>
+																	<td>{{ electromenager.note }}</td>	
+																	<td class="consoAnnuelle" >{{ electromenager.consoAnnuelle }}</td>																
+																	<td>
+																		<button type="submit" (click)="removeElectromenager(electromenager?.id!)" class="btn btn-sm" style="margin-top: -5px;">
+											                               <fa-icon icon="times"></fa-icon>
+											                            </button>
+																	</td>
 																</tr>
 															</tbody>
 														</table>
@@ -530,8 +452,7 @@
 																	estimée à</h6>
 															</div>
 															<div class="col-sm-3">
-																<input type="text" class="form-control"
-																	id="adresseNumero" value="2712 kWh" readonly>
+																<input type="text" class="form-control">
 															</div>
 														</div>
 													</div>
@@ -539,26 +460,22 @@
 											</div>
 										</div>
 									</div>
-								</form>
 							</div>
 						</div>
 					</div>
+					<div>
+		                <button type="submit" id="save-entity" [disabled]="isSaving" class="btn btn-primary">
+		                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Enregistrer</span>
+		                </button>
+		            </div>
 				</form>
-			</div>
-		</div>
-	</div>
-	<div class="card">
-		<div class="card-body">
-			<div class="offset-md-8">
-				<button type="button" class="btn btn-primary">Enregistrer
-					mon profil</button>
 			</div>
 		</div>
 	</div>
 </div>
 
 	<script>
-		$("input[type='number']").inputSpinner()
+			$("input[type='number']").inputSpinner()
 				$('.popover-dismiss').popover({
 			  trigger: 'focus'
 			})

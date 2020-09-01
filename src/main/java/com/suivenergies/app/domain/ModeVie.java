@@ -1,10 +1,8 @@
 package com.suivenergies.app.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-
 import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  * A ModeVie.
@@ -12,7 +10,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "mode_vie")
 public class ModeVie implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -55,6 +52,14 @@ public class ModeVie implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = "modeVies", allowSetters = true)
     private Client client;
+
+    public ModeVie(Client client) {
+        this.client = client;
+    }
+
+    public ModeVie() {
+        // TODO Auto-generated constructor stub
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -220,6 +225,7 @@ public class ModeVie implements Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override

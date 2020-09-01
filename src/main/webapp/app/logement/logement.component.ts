@@ -8,12 +8,16 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IInfoDPE } from 'app/shared/model/info-dpe.model';
 import { IModeVie, ModeVie } from 'app/shared/model/mode-vie.model';
+import { IConfort, Confort } from 'app/shared/model/confort.model';
 import { IFacture } from 'app/shared/model/facture.model';
+import { IElectromenager } from 'app/shared/model/electromenager.model';
 import { FacturesByType } from 'app/shared/model/facturesByType.model';
 import { LogementService } from './logement.service';
 import { InfoDPEService } from '../entities/info-dpe/info-dpe.service';
+import { ConfortService } from '../entities/confort/confort.service';
 import { FactureService } from '../entities/facture/facture.service';
 import { ModeVieService } from '../entities/mode-vie/mode-vie.service';
+import { ElectromenagerService } from '../entities/electromenager/electromenager.service';
 
 import { FactureDeleteDialogComponent } from '../entities/facture/facture-delete-dialog.component';
 
@@ -27,11 +31,15 @@ export class LogementComponent implements OnInit, OnDestroy {
   infoDPE?: IInfoDPE;
   facturesByTypes?: FacturesByType[];
   modeVie?: IModeVie;
+  confort?: IConfort;
   eventSubscriber?: Subscription;
+  electromenagers?: IElectromenager[];
+  selected?: number;
 
   dpeForm = this.fb.group({
     numero: [''],
-    adresse: [''],
+    adresse1: [''],
+    adresse2: [''],
     typeBatiment: [''],
     anneeConstruction: [''],
     surface: [''],
@@ -71,11 +79,30 @@ export class LogementComponent implements OnInit, OnDestroy {
     bois2019: [''],
   });
 
+  confortForm = this.fb.group({
+    id: [],
+    installationElectrique: [],
+    installationGaz: [],
+    installationHumidite: [],
+    installationPortesFenetres: [],
+    chauffageHiver: [],
+    surfaceChauffee: [],
+    temperatureHiverSejour: [],
+    temperatureHiverChambres: [],
+    climEte: [],
+    temperatureEteSejour: [],
+    temperatureEteChambres: [],
+    electromenagers: [],
+    client: [],
+  });
+
   constructor(
     private logementService: LogementService,
     protected infoDPEService: InfoDPEService,
     protected factureService: FactureService,
     protected modeVieService: ModeVieService,
+    protected confortService: ConfortService,
+    protected electromenagerService: ElectromenagerService,
     private fb: FormBuilder,
     protected modalService: NgbModal,
     protected eventManager: JhiEventManager
@@ -85,6 +112,8 @@ export class LogementComponent implements OnInit, OnDestroy {
     this.infoDPEService.findLast().subscribe((dpe: HttpResponse<IInfoDPE>) => this.completeDpeForm(dpe));
     this.loadAllFactures();
     this.modeVieService.findOneByClient().subscribe((res: HttpResponse<IModeVie>) => this.completeModeVie(res));
+    this.confortService.findOneByClient().subscribe((res: HttpResponse<IConfort>) => this.completeConfort(res));
+    this.electromenagerService.query().subscribe((res: HttpResponse<IElectromenager[]>) => (this.electromenagers = res.body || []));
     this.registerChangeInFactures();
   }
 
@@ -109,7 +138,7 @@ export class LogementComponent implements OnInit, OnDestroy {
     if (this.infoDPE) {
       this.dpeForm.patchValue({
         numero: this.infoDPE.numero,
-        adresse: this.infoDPE.adresse,
+        adresse1: this.infoDPE.adresse,
         typeBatiment: this.infoDPE.typeBatiment,
         anneeConstruction: this.infoDPE.anneeConstruction,
         surface: this.infoDPE.surfaceHabitable,
@@ -143,6 +172,30 @@ export class LogementComponent implements OnInit, OnDestroy {
     }
   }
 
+  completeConfort(res: HttpResponse<IConfort>): void {
+    if (res && res.body) {
+      this.confort = res.body;
+    }
+    if (this.confort) {
+      this.confortForm.patchValue({
+        id: this.confort.id,
+        installationElectrique: this.confort.installationElectrique,
+        installationGaz: this.confort.installationGaz,
+        installationHumidite: this.confort.installationHumidite,
+        installationPortesFenetres: this.confort.installationPortesFenetres,
+        chauffageHiver: this.confort.chauffageHiver,
+        surfaceChauffee: this.confort.surfaceChauffee,
+        temperatureHiverSejour: this.confort.temperatureHiverSejour,
+        temperatureHiverChambres: this.confort.temperatureHiverChambres,
+        climEte: this.confort.climEte,
+        temperatureEteSejour: this.confort.temperatureEteSejour,
+        temperatureEteChambres: this.confort.temperatureEteChambres,
+        electromenagers: this.confort.electromenagers,
+        client: this.confort.client,
+      });
+    }
+  }
+
   saveDPE(): void {
     this.isSaving = true;
     const numDpe = this.dpeForm.get(['numero'])!.value;
@@ -156,6 +209,13 @@ export class LogementComponent implements OnInit, OnDestroy {
     modalRef.componentInstance.facture = facture;
   }
 
+  removeElectromenager(id: number): void {
+    this.confortService.removeElectromenager(id).subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
+  }
+
   previousState(): void {
     window.history.back();
   }
@@ -167,6 +227,16 @@ export class LogementComponent implements OnInit, OnDestroy {
       this.subscribeToSaveResponseModeVie(this.modeVieService.update(modeVie));
     } else {
       this.subscribeToSaveResponseModeVie(this.modeVieService.create(modeVie));
+    }
+  }
+
+  saveConfort(): void {
+    this.isSaving = true;
+    const confort = this.createFromConfortForm();
+    if (confort.id !== undefined) {
+      this.subscribeToSaveResponseConfort(this.confortService.update(confort));
+    } else {
+      this.subscribeToSaveResponseConfort(this.confortService.create(confort));
     }
   }
 
@@ -184,6 +254,13 @@ export class LogementComponent implements OnInit, OnDestroy {
     );
   }
 
+  protected subscribeToSaveResponseConfort(result: Observable<HttpResponse<IConfort>>): void {
+    result.subscribe(
+      () => this.onSaveSuccess(),
+      () => this.onSaveError()
+    );
+  }
+
   protected onSaveSuccess(): void {
     this.isSaving = false;
     this.previousState();
@@ -191,6 +268,17 @@ export class LogementComponent implements OnInit, OnDestroy {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  getSelected(selectedVals: IElectromenager[], option: IElectromenager): IElectromenager {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 
   private createFromModeVieForm(): IModeVie {
@@ -209,6 +297,26 @@ export class LogementComponent implements OnInit, OnDestroy {
       semainesAbsenceHiver: this.modeVieForm.get(['semainesAbsenceHiver'])!.value,
       semainesAbsenceEte: this.modeVieForm.get(['semainesAbsenceEte'])!.value,
       client: this.modeVieForm.get(['client'])!.value,
+    };
+  }
+
+  private createFromConfortForm(): IConfort {
+    return {
+      ...new Confort(),
+      id: this.confortForm.get(['id'])!.value,
+      installationElectrique: this.confortForm.get(['installationElectrique'])!.value,
+      installationGaz: this.confortForm.get(['installationGaz'])!.value,
+      installationHumidite: this.confortForm.get(['installationHumidite'])!.value,
+      installationPortesFenetres: this.confortForm.get(['installationPortesFenetres'])!.value,
+      chauffageHiver: this.confortForm.get(['chauffageHiver'])!.value,
+      surfaceChauffee: this.confortForm.get(['surfaceChauffee'])!.value,
+      temperatureHiverSejour: this.confortForm.get(['temperatureHiverSejour'])!.value,
+      temperatureHiverChambres: this.confortForm.get(['temperatureHiverChambres'])!.value,
+      climEte: this.confortForm.get(['climEte'])!.value,
+      temperatureEteSejour: this.confortForm.get(['temperatureEteSejour'])!.value,
+      temperatureEteChambres: this.confortForm.get(['temperatureEteChambres'])!.value,
+      electromenagers: this.confortForm.get(['electromenagers'])!.value,
+      client: this.confortForm.get(['client'])!.value,
     };
   }
 }

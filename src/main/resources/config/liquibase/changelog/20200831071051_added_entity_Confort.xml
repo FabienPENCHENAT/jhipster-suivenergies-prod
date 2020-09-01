@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <property name="autoIncrement" value="true"/>
+
+    <!--
+        Added the entity Confort.
+    -->
+    <changeSet id="20200831071051-1" author="jhipster">
+        <createTable tableName="confort">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="installation_electrique" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="installation_gaz" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="installation_humidite" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="installation_portes_fenetres" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="chauffage_hiver" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="surface_chauffee" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="temperature_hiver_sejour" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="temperature_hiver_chambres" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="clim_ete" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="temperature_ete_sejour" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="temperature_ete_chambres" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20200831071051-1-relations" author="jhipster">
+
+        <createTable tableName="confort_electromenager">
+            <column name="electromenager_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="confort_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="confort_id, electromenager_id" tableName="confort_electromenager"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20200831071051-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/confort.csv"
+                  separator=";"
+                  tableName="confort">
+            <column name="id" type="numeric"/>
+            <column name="installation_electrique" type="boolean"/>
+            <column name="installation_gaz" type="boolean"/>
+            <column name="installation_humidite" type="boolean"/>
+            <column name="installation_portes_fenetres" type="boolean"/>
+            <column name="chauffage_hiver" type="boolean"/>
+            <column name="surface_chauffee" type="numeric"/>
+            <column name="temperature_hiver_sejour" type="numeric"/>
+            <column name="temperature_hiver_chambres" type="numeric"/>
+            <column name="clim_ete" type="boolean"/>
+            <column name="temperature_ete_sejour" type="numeric"/>
+            <column name="temperature_ete_chambres" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

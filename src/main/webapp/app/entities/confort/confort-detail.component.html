@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="confort">
+            <h2><span>Confort</span> {{ confort.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Installation Electrique</span></dt>
+                <dd>
+                    <span>{{ confort.installationElectrique }}</span>
+                </dd>
+                <dt><span>Installation Gaz</span></dt>
+                <dd>
+                    <span>{{ confort.installationGaz }}</span>
+                </dd>
+                <dt><span>Installation Humidite</span></dt>
+                <dd>
+                    <span>{{ confort.installationHumidite }}</span>
+                </dd>
+                <dt><span>Installation Portes Fenetres</span></dt>
+                <dd>
+                    <span>{{ confort.installationPortesFenetres }}</span>
+                </dd>
+                <dt><span>Chauffage Hiver</span></dt>
+                <dd>
+                    <span>{{ confort.chauffageHiver }}</span>
+                </dd>
+                <dt><span>Surface Chauffee</span></dt>
+                <dd>
+                    <span>{{ confort.surfaceChauffee }}</span>
+                </dd>
+                <dt><span>Temperature Hiver Sejour</span></dt>
+                <dd>
+                    <span>{{ confort.temperatureHiverSejour }}</span>
+                </dd>
+                <dt><span>Temperature Hiver Chambres</span></dt>
+                <dd>
+                    <span>{{ confort.temperatureHiverChambres }}</span>
+                </dd>
+                <dt><span>Clim Ete</span></dt>
+                <dd>
+                    <span>{{ confort.climEte }}</span>
+                </dd>
+                <dt><span>Temperature Ete Sejour</span></dt>
+                <dd>
+                    <span>{{ confort.temperatureEteSejour }}</span>
+                </dd>
+                <dt><span>Temperature Ete Chambres</span></dt>
+                <dd>
+                    <span>{{ confort.temperatureEteChambres }}</span>
+                </dd>
+                <dt><span>Electromenager</span></dt>
+                <dd>
+                    <span *ngFor="let electromenager of confort.electromenagers; let last = last">
+                        <a [routerLink]="['/electromenager', electromenager?.id, 'view']">{{ electromenager.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span>Client</span></dt>
+                <dd>
+                    <div *ngIf="confort.client">
+                        <a [routerLink]="['/client', confort.client?.id, 'view']">{{ confort.client?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/confort', confort.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -3,9 +3,15 @@ package com.suivenergies.app.service;
 import com.suivenergies.app.config.Constants;
 import com.suivenergies.app.domain.Authority;
 import com.suivenergies.app.domain.Client;
+import com.suivenergies.app.domain.Confort;
+import com.suivenergies.app.domain.Electromenager;
+import com.suivenergies.app.domain.ModeVie;
 import com.suivenergies.app.domain.User;
 import com.suivenergies.app.repository.AuthorityRepository;
 import com.suivenergies.app.repository.ClientRepository;
+import com.suivenergies.app.repository.ConfortRepository;
+import com.suivenergies.app.repository.ElectromenagerRepository;
+import com.suivenergies.app.repository.ModeVieRepository;
 import com.suivenergies.app.repository.UserRepository;
 import com.suivenergies.app.security.AuthoritiesConstants;
 import com.suivenergies.app.security.SecurityUtils;
@@ -43,6 +49,12 @@ public class UserService {
 
     private final ClientRepository clientRepository;
 
+    private final ConfortRepository confortRepository;
+
+    private final ModeVieRepository modeVieRepository;
+
+    private final ElectromenagerRepository electromenagerRepository;
+
     private final InfoDPEService infoDPEService;
 
     public UserService(
@@ -50,13 +62,19 @@ public class UserService {
         PasswordEncoder passwordEncoder,
         AuthorityRepository authorityRepository,
         ClientRepository clientRepository,
-        InfoDPEService infoDPEService
+        InfoDPEService infoDPEService,
+        ConfortRepository confortRepository,
+        ModeVieRepository modeVieRepository,
+        ElectromenagerRepository electromenagerRepository
     ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.clientRepository = clientRepository;
         this.infoDPEService = infoDPEService;
+        this.confortRepository = confortRepository;
+        this.modeVieRepository = modeVieRepository;
+        this.electromenagerRepository = electromenagerRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -162,6 +180,13 @@ public class UserService {
         if (userDTO.getDpe() != null && !userDTO.getDpe().isEmpty()) {
             infoDPEService.downlodAndSaveDPE(userDTO.getDpe(), newClient);
         }
+
+        // Get default electromeagers
+        List<Electromenager> electromenagers = electromenagerRepository.findAllDefault();
+
+        // Init fild link with client
+        confortRepository.save(new Confort(newClient, electromenagers));
+        modeVieRepository.save(new ModeVie(newClient));
 
         return newUser;
     }

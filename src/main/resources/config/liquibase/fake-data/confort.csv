@@ -1,0 +1,2 @@
+id;installation_electrique;installation_gaz;installation_humidite;installation_portes_fenetres;chauffage_hiver;surface_chauffee;temperature_hiver_sejour;temperature_hiver_chambres;clim_ete;temperature_ete_sejour;temperature_ete_chambres;client_id
+1;true;false;true;false;false;136;24;19;false;22;17;5

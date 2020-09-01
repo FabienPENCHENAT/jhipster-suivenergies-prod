@@ -1,0 +1,40 @@
+id;nom;note;by_default;conso_annuelle
+1;Aspirateur;;true;70
+2;Box Internet WIFI;;true;180
+3;Bouilloire;Bien;;58
+4;Cafetière;;true;42
+5;Climatiseur mobile (usage 60 jours);Pas Bien;;960
+6;Congélateur A+++;Bien;;201
+7;Congélateur ancien;Pas Bien;;485
+8;Cuisinière électrique;Pas Bien;;757
+9;Décodeur;;;96
+10;Fer à repasser;;true;40
+11;Four de cuisine;;;224
+12;Friteuse;;;11
+13;Grille pain;;;5
+14;HiFi;;;35
+15;Lampe halogène sur pied;Pas Bien;;250
+16;Lave linge A+++;Bien;;160
+17;Lave linge ancien;Pas Bien;true;250
+18;Lave vaisselle A+++;Bien;;195
+19;Lave vaisselle ancien;Pas Bien;;285
+20;Lecteur DVD;;;40
+21;Micro-ondes / Mini Four;;true;90
+22;Ordinateur;;true;72
+23;Plaques de cuisson;Pas Bien;true;273
+24;Plaques fonte;Pas Bien;;198
+25;Plaques vitro;Pas Bien;;281
+26;Pompe de piscine;Pas Bien;;250
+27;Radio réveil;;;20
+28;Réfrigérateur américain A+++;Pas Bien;;210
+29;Réfrigérateur américain + de 5 ans;Pas Bien;;496
+30;Réfrigérateur A+++;Bien;;145
+31;Réfrigérateur ancien;Pas Bien;;253
+32;Réfrigérateur-congélateur A+++;Bien;;200
+33;Réfrigérateur-congélateur ancien;Pas Bien;true;500
+34;Sèche-cheveux;;true;6
+35;Sèche-linge;Pas Bien;;430
+36;Table induction;Pas Bien;;337
+37;Téléphone sans fil;;;23
+38;TV / TV Ecran plat LCD;;true;210
+39;TV Ecran plat Plasma;Pas Bien;;402
