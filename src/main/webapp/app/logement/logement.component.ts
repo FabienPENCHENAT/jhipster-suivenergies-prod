@@ -87,11 +87,11 @@ export class LogementComponent implements OnInit, OnDestroy {
     installationPortesFenetres: [],
     chauffageHiver: [],
     surfaceChauffee: [],
-    temperatureHiverSejour: [],
-    temperatureHiverChambres: [],
+    temperatureHiverSejour: [19],
+    temperatureHiverChambres: [16],
     climEte: [],
-    temperatureEteSejour: [],
-    temperatureEteChambres: [],
+    temperatureEteSejour: [26],
+    temperatureEteChambres: [26],
     electromenagers: [],
     client: [],
   });
@@ -216,9 +216,6 @@ export class LogementComponent implements OnInit, OnDestroy {
     );
   }
 
-  previousState(): void {
-    window.history.back();
-  }
 
   saveModeVie(): void {
     this.isSaving = true;
@@ -263,7 +260,6 @@ export class LogementComponent implements OnInit, OnDestroy {
 
   protected onSaveSuccess(): void {
     this.isSaving = false;
-    this.previousState();
   }
 
   protected onSaveError(): void {

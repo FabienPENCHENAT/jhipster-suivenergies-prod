@@ -98,8 +98,10 @@
 			</div>
 		</div>
 	</div>
+	<br /> <br />
+	
 
-	<div class="card" id="factures">
+	<div class="card" id="factures" *ngIf="infoDPE">
 		<div class="card-body">
 			<h1 class="card-title">Mes consommations  et productions annuelles d’énergie (à relever sur mes factures)</h1>
 			<hr class="col-md-3 ml-0" />
@@ -138,7 +140,7 @@
 	</div>
 	<br /> <br />
 
-	<div class="card" id="modeVie">
+	<div class="card" id="modeVie" *ngIf="infoDPE">
 		<div class="card-body">
 			<h1 class="card-title">Mon mode de vie</h1>
 			<hr class="col-md-3 ml-0" />
@@ -249,10 +251,10 @@
 
 		</div>
 	</div>
-	<!-- /#page-content-wrapper -->
+	
+	<br /> <br />
 
-
-	<div class="card" id="monConfort">
+	<div class="card" id="monConfort" *ngIf="infoDPE">
 		<div class="card-body">
 			<h1 class="card-title">Mon confort</h1>
 			<hr class="col-md-3 ml-0" />

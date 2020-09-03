@@ -101,6 +101,10 @@ public class ConfortResource {
         if (confort.getId() != null) {
             throw new BadRequestAlertException("A new confort cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if (confort.getClient() == null) {
+			Client clientConnected = clientService.getClientConnected();
+			confort.setClient(clientConnected);
+		}
         Confort result = confortRepository.save(confort);
         return ResponseEntity
             .created(new URI("/api/conforts/" + result.getId()))
@@ -121,8 +125,12 @@ public class ConfortResource {
     public ResponseEntity<Confort> updateConfort(@RequestBody Confort confort) throws URISyntaxException {
         log.debug("REST request to update Confort : {}", confort);
         if (confort.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+            createConfort(confort);
         }
+        if (confort.getClient() == null) {
+			Client clientConnected = clientService.getClientConnected();
+			confort.setClient(clientConnected);
+		}
         Confort result = confortRepository.save(confort);
         return ResponseEntity
             .ok()

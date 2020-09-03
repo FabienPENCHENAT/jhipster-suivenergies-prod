@@ -65,6 +65,17 @@ spring:
     # Otherwise, it will be filled in by maven when building the JAR file
     # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
     active: #spring.profiles.active#
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: monmail@gmail.com  	#Replace this field with your Gmail username.
+    password: monmotdepasse         			#Replace this field with your Gmail password/App password.
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+        auth: true
+        starttls.enable: true
+        ssl.trust: smtp.gmail.com
   jmx:
     enabled: false
   data:
